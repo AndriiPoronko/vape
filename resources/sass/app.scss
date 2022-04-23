@@ -1,0 +1,78 @@
+@import 'reset';
+@import 'variables';
+
+
+
+
+body {
+    background-color: rgb(22, 19, 19);
+    position: relative;
+    height: 100%;
+}
+html {
+    scroll-behavior: smooth;
+}
+.mainer {
+    max-width: 1370px;
+    padding: 0 $padding;
+    margin: 0 auto;
+}
+#app { height: 100% }
+// font-size: calc(24px + 26 * ((100vw - 320px) / (1280 - 320)));
+
+@keyframes line {
+    0% {
+        width: 100%;
+        left: 0;
+    }
+    25% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+        right: 0;
+    }
+    75% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+        right: 0;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(15deg);
+    }
+    25% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-15deg);
+    }
+    75% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(15deg);
+    }
+}
+
+.btn {
+    padding: $padding;
+    color: $colorBase;
+    font-family: $fontBase;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+    border: 2px solid $colorBorder;
+    transition-duration: 0.5s;
+    border-radius: $radius;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(0, 85, 154, 1);
+        border-color: #000;
+    }
+}

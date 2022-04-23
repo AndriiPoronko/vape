@@ -1,0 +1,179 @@
+{
+  "slider": {
+    "main": [
+      {
+        "url": "slides-main/test.jpg",
+        "title": "Наши сигаретки, <br /> круче самой вкусной конфетки!"
+      },
+      {
+        "url": "slides-main/test2.jpg",
+        "title": "Сам Линкольн, <br /> затаривался у нас <br /> и кричал КЛАСС!!"
+      },
+      {
+        "url": "slides-main/test3.jpg",
+        "title": "Жидкости на любой вкус, <br /> от хмельницкой голубики до<br /> черниговской клубники!"
+      }
+    ]
+  },
+  "category": [
+    { "name": "АККУМУЛЯТОРЫ", "subname": [], "value": 1 },
+    { "name": "ЖИДКОСТИ", "subname": [], "value": 2 },
+    { "name": "ЭЛЕКТРОННЫЕ СИГАРЕТЫ", "subname": [], "value": 3 },
+    { "name": "АКСЕСУАРЫ", "subname": [], "value": 4 },
+    { "name": "ВСЕ", "subname": [], "value": 5 }
+  ],
+  "contacts": {
+    "workPhone": "+38 093 678 73 89",
+    "socialData": [
+      {
+        "url": "https://www.facebook.com/",
+        "icon": "<i class=\"fab fa-facebook-f\"></i>"
+      },
+      {
+        "url": "https://www.instagram.com/",
+        "icon": "<i class=\"fab fa-instagram\"></i>"
+      },
+      { "url": "https://vk.com/", "icon": "<i class=\"fab fa-vk\"></i>" },
+      {
+        "url": "https://web.telegram.org/",
+        "icon": "<i class=\"fab fa-telegram-plane\"></i>"
+      }
+    ],
+    "email": "steamvapeinua@gmail.com"
+  },
+  "trand": [
+    {
+      "name": "OVNS Saber-S Kit ORIGINAL",
+      "image": "trand/8.png",
+      "price": 270,
+      "raiting": 4,
+      "id": 1000,
+      "quantity": 1
+    },
+    {
+      "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
+      "image": "trand/10.png",
+      "price": 210,
+      "raiting": 4,
+      "id": 1002,
+      "quantity": 1
+    },
+    {
+      "name": "Hotcig Kubi Pod kit ORIGINAL",
+      "image": "trand/11.png",
+      "price": 330,
+      "raiting": 5,
+      "id": 1003,
+      "quantity": 1
+    },
+    {
+      "name": "Vaporesso Renova Zero Pod Kit ORIGINAL",
+      "image": "trand/12.png",
+      "price": 390,
+      "raiting": 5,
+      "id": 1004,
+      "quantity": 1
+    },
+    {
+      "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
+      "image": "trand/9.png",
+      "price": 1200,
+      "raiting": 3,
+      "id": 1005,
+      "quantity": 1
+    }
+  ],
+  "deals": {
+    "endtime": "2020-07-31 18:30:40",
+    "image": "weekdeals/dealstop.png",
+    "name": "HIGH VOLTAGE energy inflused E-Liquil Vaporz",
+    "price": 999,
+    "sale-price": 1634,
+    "raiting": 4.3,
+    "avialable": true,
+    "id": 555,
+    "quantity": 1
+  },
+  "new": [
+    {
+      "name": "OVNS Saber-S Kit ORIGINAL",
+      "image": "newarrivals/1.png",
+      "price": 270,
+      "raiting": 4,
+      "id": 2000,
+      "quantity": 1
+    },
+    {
+      "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
+      "image": "newarrivals/2.png",
+      "price": 210,
+      "raiting": 4,
+      "id": 2002,
+      "quantity": 1
+    },
+    {
+      "name": "Hotcig Kubi Pod kit ORIGINAL",
+      "image": "newarrivals/3.png",
+      "price": 330,
+      "raiting": 5,
+      "id": 2003,
+      "quantity": 1
+    },
+    {
+      "name": "Vaporesso Renova Zero Pod Kit ORIGINAL",
+      "image": "newarrivals/4.png",
+      "price": 390,
+      "raiting": 5,
+      "id": 2004,
+      "quantity": 1
+    },
+    {
+      "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
+      "image": "newarrivals/5.png",
+      "price": 1200,
+      "raiting": 3,
+      "id": 2005,
+      "quantity": 1
+    },
+    {
+      "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
+      "image": "newarrivals/6.png",
+      "price": 1200,
+      "raiting": 3,
+      "id": 2006,
+      "quantity": 1
+    },
+    {
+      "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
+      "image": "newarrivals/7.png",
+      "price": 1200,
+      "raiting": 3,
+      "id": 2007,
+      "quantity": 1
+    },
+    {
+      "name": "OVNS Saber-S Kit ORIGINAL",
+      "image": "newarrivals/1.png",
+      "price": 270,
+      "raiting": 4,
+      "id": 2008,
+      "quantity": 1
+    },
+    {
+      "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
+      "image": "newarrivals/2.png",
+      "price": 210,
+      "raiting": 4,
+      "id": 2009,
+      "quantity": 1
+    },
+    {
+      "name": "Hotcig Kubi Pod kit ORIGINAL",
+      "image": "newarrivals/3.png",
+      "price": 330,
+      "raiting": 5,
+      "id": 2010,
+      "quantity": 1
+    }
+  ]
+}
