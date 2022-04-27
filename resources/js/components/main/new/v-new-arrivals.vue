@@ -6,7 +6,8 @@
             <swiper class="swiper" :options="swiperOption">
                 <swiper-slide class="item" v-for="(product, i) of newProduct" :key="i">
                     <div class="item__img">
-                        <img :src="('/storage/images/' + product.image)" alt />
+
+                        <img :src="('/images/' + product.image)" alt />
                         <span></span>
                     </div>
                     <div class="item__name">{{ product.name }}</div>
@@ -74,7 +75,7 @@ export default {
             newProduct: [
                 {
                     "name": "OVNS Saber-S Kit ORIGINAL",
-                    "image": "newarrivals/1.png",
+                    "image": "1.png",
                     "price": 270,
                     "raiting": 4,
                     "id": 2000,
@@ -82,7 +83,7 @@ export default {
                 },
                 {
                     "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-                    "image": "newarrivals/2.png",
+                    "image": "2.png",
                     "price": 210,
                     "raiting": 4,
                     "id": 2002,
@@ -90,7 +91,7 @@ export default {
                 },
                 {
                     "name": "Hotcig Kubi Pod kit ORIGINAL",
-                    "image": "newarrivals/3.png",
+                    "image": "3.png",
                     "price": 330,
                     "raiting": 5,
                     "id": 2003,
@@ -98,7 +99,7 @@ export default {
                 },
                 {
                     "name": "Vaporesso Renova Zero Pod Kit ORIGINAL",
-                    "image": "newarrivals/4.png",
+                    "image": "4.png",
                     "price": 390,
                     "raiting": 5,
                     "id": 2004,
@@ -106,7 +107,7 @@ export default {
                 },
                 {
                     "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-                    "image": "newarrivals/5.png",
+                    "image": "5.png",
                     "price": 1200,
                     "raiting": 3,
                     "id": 2005,
@@ -114,7 +115,7 @@ export default {
                 },
                 {
                     "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-                    "image": "newarrivals/6.png",
+                    "image": "6.png",
                     "price": 1200,
                     "raiting": 3,
                     "id": 2006,
@@ -122,7 +123,7 @@ export default {
                 },
                 {
                     "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-                    "image": "newarrivals/7.png",
+                    "image": "7.png",
                     "price": 1200,
                     "raiting": 3,
                     "id": 2007,
@@ -130,7 +131,7 @@ export default {
                 },
                 {
                     "name": "OVNS Saber-S Kit ORIGINAL",
-                    "image": "newarrivals/1.png",
+                    "image": "1.png",
                     "price": 270,
                     "raiting": 4,
                     "id": 2008,
@@ -138,7 +139,7 @@ export default {
                 },
                 {
                     "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-                    "image": "newarrivals/2.png",
+                    "image": "2.png",
                     "price": 210,
                     "raiting": 4,
                     "id": 2009,
@@ -146,7 +147,7 @@ export default {
                 },
                 {
                     "name": "Hotcig Kubi Pod kit ORIGINAL",
-                    "image": "newarrivals/3.png",
+                    "image": "3.png",
                     "price": 330,
                     "raiting": 5,
                     "id": 2010,
@@ -207,7 +208,7 @@ export default {
                 width: 100px;
                 height: 50px;
                 position: absolute;
-                background-image: url("/storage/images/icons/new.png");
+                background-image: url("/images/new.png");
                 top: 5px;
                 left: 5px;
             }
@@ -242,7 +243,7 @@ export default {
             margin: 10px auto;
 
             &-stars {
-                background-image: url("/storage/images/icons/rating-bg.png");
+                background-image: url("/images/rating-bg.png");
                 background-position: left bottom;
                 width: 109px;
                 display: block;

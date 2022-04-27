@@ -81,7 +81,7 @@ export default {
     padding: 50px 0;
     display: flex;
     flex-direction: column;
-    background-image: url( '/storage/images/bg/footer.jpg' );
+    background-image: url( '/images/footer.jpg' );
     background-position: center;
     background-size: cover;
 

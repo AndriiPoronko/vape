@@ -2,9 +2,9 @@
     <div class="v-tranding">
         <div class="v-tranding__title" data-aos="slide-left">Tranding</div>
         <div class="mainer block-container">
-            <div class="v-tranding__item" data-aos="flip-up" v-for="(item, i) in trands" :key="i">
+            <div class="v-tranding__item" data-aos="zoom-out-down" v-for="(item, i) in trands" :key="i">
                 <div class="v-tranding__item-img">
-                    <img :src="('/storage/images/' + item.image)" alt="item.title" />
+                    <img :src="('/images/' + item.image)" alt="item.title" />
                 </div>
                 <div class="v-tranding__item-name">{{ item.name }}</div>
                 <div class="v-tranding__item-raiting">
@@ -32,7 +32,7 @@ export default {
             trands: [
                 {
                     "name": "OVNS Saber-S Kit ORIGINAL",
-                    "image": "trand/8.png",
+                    "image": "8.png",
                     "price": 270,
                     "raiting": 4,
                     "id": 1000,
@@ -40,7 +40,7 @@ export default {
                 },
                 {
                     "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-                    "image": "trand/10.png",
+                    "image": "10.png",
                     "price": 210,
                     "raiting": 4,
                     "id": 1002,
@@ -48,7 +48,7 @@ export default {
                 },
                 {
                     "name": "Hotcig Kubi Pod kit ORIGINAL",
-                    "image": "trand/11.png",
+                    "image": "11.png",
                     "price": 330,
                     "raiting": 5,
                     "id": 1003,
@@ -56,7 +56,7 @@ export default {
                 },
                 {
                     "name": "Vaporesso Renova Zero Pod Kit ORIGINAL",
-                    "image": "trand/12.png",
+                    "image": "12.png",
                     "price": 390,
                     "raiting": 5,
                     "id": 1004,
@@ -64,7 +64,7 @@ export default {
                 },
                 {
                     "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-                    "image": "trand/9.png",
+                    "image": "9.png",
                     "price": 1200,
                     "raiting": 3,
                     "id": 1005,
@@ -104,7 +104,7 @@ export default {
             letter-spacing: 5px;
             transform: translateX(-50%);
             left: 50%;
-            bottom: 0%;
+            bottom: 0;
         }
     }
 
@@ -161,7 +161,7 @@ export default {
             margin: 10px 0;
 
             &-stars {
-                background-image: url('/storage/images/icons/rating-bg.png');
+                background-image: url('/images/rating-bg.png');
                 background-position: left bottom;
                 width: 109px;
                 display: block;
@@ -190,7 +190,7 @@ export default {
 
         &:hover {
             border: 1px solid $colorBorder;
-            transform: scale(1.03);
+            -webkit-transform: scale(1.05);
             .btn {
                 opacity: 1;
             }

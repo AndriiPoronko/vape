@@ -2218,24 +2218,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Catalog/v-catalog.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Catalog/v-catalog.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "v-catalog"
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/main/MainComponent.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/main/MainComponent.vue?vue&type=script&lang=js& ***!
@@ -2344,6 +2326,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateHeight: function updateHeight() {
       var imgBlock = document.querySelector(".swiper-wrapper");
+
+      if (imgBlock) {
+        this.height = imgBlock.clientWidth / 1.5;
+
+        if (imgBlock.clientHeight < this.height) {
+          this.height = document.documentElement.clientHeight;
+        }
+      }
     }
   },
   created: function created() {
@@ -2410,7 +2400,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       deals: {
         "endtime": "2022-05-31 18:30:40",
-        "image": "weekdeals/dealstop.png",
+        "image": "dealstop.png",
         "name": "HIGH VOLTAGE energy inflused E-Liquil Vaporz",
         "price": 999,
         "sale-price": 1634,
@@ -2548,6 +2538,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2590,70 +2581,70 @@ __webpack_require__.r(__webpack_exports__);
       },
       newProduct: [{
         "name": "OVNS Saber-S Kit ORIGINAL",
-        "image": "newarrivals/1.png",
+        "image": "1.png",
         "price": 270,
         "raiting": 4,
         "id": 2000,
         "quantity": 1
       }, {
         "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-        "image": "newarrivals/2.png",
+        "image": "2.png",
         "price": 210,
         "raiting": 4,
         "id": 2002,
         "quantity": 1
       }, {
         "name": "Hotcig Kubi Pod kit ORIGINAL",
-        "image": "newarrivals/3.png",
+        "image": "3.png",
         "price": 330,
         "raiting": 5,
         "id": 2003,
         "quantity": 1
       }, {
         "name": "Vaporesso Renova Zero Pod Kit ORIGINAL",
-        "image": "newarrivals/4.png",
+        "image": "4.png",
         "price": 390,
         "raiting": 5,
         "id": 2004,
         "quantity": 1
       }, {
         "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-        "image": "newarrivals/5.png",
+        "image": "5.png",
         "price": 1200,
         "raiting": 3,
         "id": 2005,
         "quantity": 1
       }, {
         "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-        "image": "newarrivals/6.png",
+        "image": "6.png",
         "price": 1200,
         "raiting": 3,
         "id": 2006,
         "quantity": 1
       }, {
         "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-        "image": "newarrivals/7.png",
+        "image": "7.png",
         "price": 1200,
         "raiting": 3,
         "id": 2007,
         "quantity": 1
       }, {
         "name": "OVNS Saber-S Kit ORIGINAL",
-        "image": "newarrivals/1.png",
+        "image": "1.png",
         "price": 270,
         "raiting": 4,
         "id": 2008,
         "quantity": 1
       }, {
         "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-        "image": "newarrivals/2.png",
+        "image": "2.png",
         "price": 210,
         "raiting": 4,
         "id": 2009,
         "quantity": 1
       }, {
         "name": "Hotcig Kubi Pod kit ORIGINAL",
-        "image": "newarrivals/3.png",
+        "image": "3.png",
         "price": 330,
         "raiting": 5,
         "id": 2010,
@@ -2707,35 +2698,35 @@ __webpack_require__.r(__webpack_exports__);
     return {
       trands: [{
         "name": "OVNS Saber-S Kit ORIGINAL",
-        "image": "trand/8.png",
+        "image": "8.png",
         "price": 270,
         "raiting": 4,
         "id": 1000,
         "quantity": 1
       }, {
         "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-        "image": "trand/10.png",
+        "image": "10.png",
         "price": 210,
         "raiting": 4,
         "id": 1002,
         "quantity": 1
       }, {
         "name": "Hotcig Kubi Pod kit ORIGINAL",
-        "image": "trand/11.png",
+        "image": "11.png",
         "price": 330,
         "raiting": 5,
         "id": 1003,
         "quantity": 1
       }, {
         "name": "Vaporesso Renova Zero Pod Kit ORIGINAL",
-        "image": "trand/12.png",
+        "image": "12.png",
         "price": 390,
         "raiting": 5,
         "id": 1004,
         "quantity": 1
       }, {
         "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-        "image": "trand/9.png",
+        "image": "9.png",
         "price": 1200,
         "raiting": 3,
         "id": 1005,
@@ -3265,7 +3256,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-deals {\n  background-image: url(\"/storage/images/bg/fordeals.jpg\");\n  background-position: center;\n  background-size: cover;\n  display: flex;\n  padding: 50px 0 0;\n}\n.v-deals .end {\n  display: flex;\n  justify-content: flex-end;\n  width: 100%;\n}\n.v-deals__row {\n  width: 1000px;\n  padding: 0 15px;\n  display: flex;\n}\n.v-deals__row-img {\n  max-width: 500px;\n  width: 100%;\n}\n.v-deals__row-img img {\n  margin: 0 auto;\n  display: block;\n}\n.v-deals__row-info {\n  flex-grow: 1;\n  display: flex;\n  flex-direction: column;\n  padding: 15px;\n  justify-content: space-between;\n  width: 100%;\n}\n.v-deals__row-info-name {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 700;\n  font-size: 26px;\n  color: #fff;\n  line-height: 30px;\n}\n.v-deals__row-info-price {\n  display: flex;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 700;\n  color: #ccc;\n}\n.v-deals__row-info-price-first {\n  font-size: calc(24px + 26 * (100vw - 320px) / 960);\n}\n.v-deals__row-info-price-second {\n  font-size: calc(16px + 16 * (100vw - 320px) / 960);\n}\n.v-deals__row-info-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-deals__row-info-raiting-stars {\n  background-image: url(\"/storage/images/icons/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-deals__row-info-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-deals__row-info-btn {\n  width: 150px;\n  text-align: center;\n}\n.v-deals__row-info-time {\n  display: flex;\n  justify-content: center;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-deals {\n  background-image: url(\"/images/fordeals.jpg\");\n  background-position: center;\n  background-size: cover;\n  display: flex;\n  padding: 50px 0 0;\n}\n.v-deals .end {\n  display: flex;\n  justify-content: flex-end;\n  width: 100%;\n}\n.v-deals__row {\n  width: 1000px;\n  padding: 0 15px;\n  display: flex;\n}\n.v-deals__row-img {\n  max-width: 500px;\n  width: 100%;\n}\n.v-deals__row-img img {\n  margin: 0 auto;\n  display: block;\n}\n.v-deals__row-info {\n  flex-grow: 1;\n  display: flex;\n  flex-direction: column;\n  padding: 15px;\n  justify-content: space-between;\n  width: 100%;\n}\n.v-deals__row-info-name {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 700;\n  font-size: 26px;\n  color: #fff;\n  line-height: 30px;\n}\n.v-deals__row-info-price {\n  display: flex;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 700;\n  color: #ccc;\n}\n.v-deals__row-info-price-first {\n  font-size: calc(24px + 26 * (100vw - 320px) / 960);\n}\n.v-deals__row-info-price-second {\n  font-size: calc(16px + 16 * (100vw - 320px) / 960);\n}\n.v-deals__row-info-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-deals__row-info-raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-deals__row-info-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-deals__row-info-btn {\n  width: 150px;\n  text-align: center;\n}\n.v-deals__row-info-time {\n  display: flex;\n  justify-content: center;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -3307,7 +3298,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-new-arrivals {\n  padding: 50px 0 0 0;\n}\n.v-new-arrivals__title {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(24px + 76 * (100vw - 320px) / 960);\n  font-weight: bold;\n  color: #002033;\n  text-transform: uppercase;\n  text-align: center;\n  position: relative;\n}\n.v-new-arrivals__title:before {\n  content: \"new arrivals\";\n  position: absolute;\n  font-size: calc(24px + 36 * (100vw - 320px) / 960);\n  color: #009fff;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  transform: translateX(-50%);\n  left: 50%;\n  bottom: 0%;\n}\n.v-new-arrivals .item {\n  border: 1px solid rgb(136, 135, 135);\n  padding: 0 15px 15px;\n  overflow: hidden;\n  box-sizing: border-box;\n}\n.v-new-arrivals .item__img {\n  margin: 0 -15px;\n  position: relative;\n}\n.v-new-arrivals .item__img img {\n  width: 100%;\n  display: block;\n}\n.v-new-arrivals .item__img span {\n  width: 100px;\n  height: 50px;\n  position: absolute;\n  background-image: url(\"/storage/images/icons/new.png\");\n  top: 5px;\n  left: 5px;\n}\n.v-new-arrivals .item__name {\n  margin: 15px 0;\n  height: 50px;\n  line-height: 25px;\n  text-align: center;\n  font-size: 20px;\n  color: #fff;\n  overflow: hidden;\n  cursor: pointer;\n}\n.v-new-arrivals .item__name:hover {\n  color: #009fff;\n}\n.v-new-arrivals .item__price {\n  font-size: 24px;\n  color: #fff;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: bold;\n  margin: 0 0 15px 0;\n  text-align: center;\n}\n.v-new-arrivals .item__raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px auto;\n}\n.v-new-arrivals .item__raiting-stars {\n  background-image: url(\"/storage/images/icons/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-new-arrivals .item__raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-new-arrivals .swiper {\n  padding: 50px 0 25px 0;\n}\n.v-new-arrivals .swiper-button-next,\n.v-new-arrivals .swiper-button-prev {\n  color: #fff;\n  width: 52px;\n  font-size: 40px;\n  position: relative;\n  bottom: -15px;\n  padding: 5px;\n  cursor: pointer;\n}\n.v-new-arrivals .swiper-button-next:hover,\n.v-new-arrivals .swiper-button-prev:hover {\n  color: #009fff;\n}\n.v-new-arrivals .swiper-button-next {\n  left: 50%;\n  bottom: -10px;\n}\n.v-new-arrivals .swiper-button-next:after {\n  display: none;\n}\n.v-new-arrivals .swiper-button-prev {\n  bottom: -32px;\n  left: calc(50% - 50px);\n}\n.v-new-arrivals .swiper-button-prev:after {\n  display: none;\n}\n.v-new-arrivals .swiper-button-disabled {\n  color: rgb(121, 113, 113);\n}\n.v-new-arrivals .swiper-button-disabled:hover {\n  color: rgb(121, 113, 113);\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-new-arrivals {\n  padding: 50px 0 0 0;\n}\n.v-new-arrivals__title {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(24px + 76 * (100vw - 320px) / 960);\n  font-weight: bold;\n  color: #002033;\n  text-transform: uppercase;\n  text-align: center;\n  position: relative;\n}\n.v-new-arrivals__title:before {\n  content: \"new arrivals\";\n  position: absolute;\n  font-size: calc(24px + 36 * (100vw - 320px) / 960);\n  color: #009fff;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  transform: translateX(-50%);\n  left: 50%;\n  bottom: 0;\n}\n.v-new-arrivals .item {\n  border: 1px solid rgb(136, 135, 135);\n  padding: 0 15px 15px;\n  overflow: hidden;\n  box-sizing: border-box;\n}\n.v-new-arrivals .item__img {\n  margin: 0 -15px;\n  position: relative;\n}\n.v-new-arrivals .item__img img {\n  width: 100%;\n  display: block;\n}\n.v-new-arrivals .item__img span {\n  width: 100px;\n  height: 50px;\n  position: absolute;\n  background-image: url(\"/images/new.png\");\n  top: 5px;\n  left: 5px;\n}\n.v-new-arrivals .item__name {\n  margin: 15px 0;\n  height: 50px;\n  line-height: 25px;\n  text-align: center;\n  font-size: 20px;\n  color: #fff;\n  overflow: hidden;\n  cursor: pointer;\n}\n.v-new-arrivals .item__name:hover {\n  color: #009fff;\n}\n.v-new-arrivals .item__price {\n  font-size: 24px;\n  color: #fff;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: bold;\n  margin: 0 0 15px 0;\n  text-align: center;\n}\n.v-new-arrivals .item__raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px auto;\n}\n.v-new-arrivals .item__raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-new-arrivals .item__raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-new-arrivals .swiper {\n  padding: 50px 0 25px 0;\n}\n.v-new-arrivals .swiper-button-next,\n.v-new-arrivals .swiper-button-prev {\n  color: #fff;\n  width: 52px;\n  font-size: 40px;\n  position: relative;\n  bottom: -15px;\n  padding: 5px;\n  cursor: pointer;\n}\n.v-new-arrivals .swiper-button-next:hover,\n.v-new-arrivals .swiper-button-prev:hover {\n  color: #009fff;\n}\n.v-new-arrivals .swiper-button-next {\n  left: 50%;\n  bottom: -10px;\n}\n.v-new-arrivals .swiper-button-next:after {\n  display: none;\n}\n.v-new-arrivals .swiper-button-prev {\n  bottom: -32px;\n  left: calc(50% - 50px);\n}\n.v-new-arrivals .swiper-button-prev:after {\n  display: none;\n}\n.v-new-arrivals .swiper-button-disabled {\n  color: rgb(121, 113, 113);\n}\n.v-new-arrivals .swiper-button-disabled:hover {\n  color: rgb(121, 113, 113);\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -3328,7 +3319,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-tranding__title {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(24px + 76 * (100vw - 320px) / 960);\n  font-weight: bold;\n  color: #002033;\n  text-transform: uppercase;\n  margin: -100px 0 0 0;\n  text-align: center;\n  position: relative;\n}\n.v-tranding__title:before {\n  content: \"tranding\";\n  position: absolute;\n  font-size: calc(24px + 36 * (100vw - 320px) / 960);\n  color: #009fff;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  transform: translateX(-50%);\n  left: 50%;\n  bottom: 0%;\n}\n.v-tranding .block-container {\n  display: flex;\n  justify-content: center;\n  padding: 50px 15px 0 15px;\n  min-height: 440px;\n}\n.v-tranding__item {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 15px;\n  max-width: 250px;\n  transition-duration: 0.5s;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 5px;\n}\n.v-tranding__item-img {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-tranding__item-img > img {\n  display: block;\n  width: 100%;\n}\n.v-tranding__item-name {\n  font-size: 16px;\n  font-weight: bold;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: rgb(136, 135, 135);\n  letter-spacing: 1px;\n  line-height: 25px;\n  overflow: hidden;\n  height: 50px;\n  text-align: center;\n  cursor: pointer;\n}\n.v-tranding__item-name:hover {\n  color: #009fff;\n}\n.v-tranding__item-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-tranding__item-raiting-stars {\n  background-image: url(\"/storage/images/icons/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-tranding__item-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-tranding__item-price {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 24px;\n  font-weight: 700;\n  color: #fff;\n  margin: 0 0 30px 0;\n}\n.v-tranding__item-buy {\n  width: 100%;\n  opacity: 0;\n}\n.v-tranding__item:hover {\n  border: 1px solid rgb(136, 135, 135);\n  transform: scale(1.03);\n}\n.v-tranding__item:hover .btn {\n  opacity: 1;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-tranding__title {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(24px + 76 * (100vw - 320px) / 960);\n  font-weight: bold;\n  color: #002033;\n  text-transform: uppercase;\n  margin: -100px 0 0 0;\n  text-align: center;\n  position: relative;\n}\n.v-tranding__title:before {\n  content: \"tranding\";\n  position: absolute;\n  font-size: calc(24px + 36 * (100vw - 320px) / 960);\n  color: #009fff;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  transform: translateX(-50%);\n  left: 50%;\n  bottom: 0;\n}\n.v-tranding .block-container {\n  display: flex;\n  justify-content: center;\n  padding: 50px 15px 0 15px;\n  min-height: 440px;\n}\n.v-tranding__item {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 15px;\n  max-width: 250px;\n  transition-duration: 0.5s;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 5px;\n}\n.v-tranding__item-img {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-tranding__item-img > img {\n  display: block;\n  width: 100%;\n}\n.v-tranding__item-name {\n  font-size: 16px;\n  font-weight: bold;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: rgb(136, 135, 135);\n  letter-spacing: 1px;\n  line-height: 25px;\n  overflow: hidden;\n  height: 50px;\n  text-align: center;\n  cursor: pointer;\n}\n.v-tranding__item-name:hover {\n  color: #009fff;\n}\n.v-tranding__item-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-tranding__item-raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-tranding__item-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-tranding__item-price {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 24px;\n  font-weight: 700;\n  color: #fff;\n  margin: 0 0 30px 0;\n}\n.v-tranding__item-buy {\n  width: 100%;\n  opacity: 0;\n}\n.v-tranding__item:hover {\n  border: 1px solid rgb(136, 135, 135);\n  -webkit-transform: scale(1.05);\n}\n.v-tranding__item:hover .btn {\n  opacity: 1;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -3391,7 +3382,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-footer {\n  padding: 50px 0;\n  display: flex;\n  flex-direction: column;\n  background-image: url(\"/storage/images/bg/footer.jpg\");\n  background-position: center;\n  background-size: cover;\n}\n.v-footer .footer {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n}\n.v-footer__catalog {\n  display: flex;\n  flex-direction: column;\n  font-size: 20px;\n  font-weight: 500;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: #ccc;\n  text-transform: uppercase;\n  align-items: center;\n}\n.v-footer__catalog-item {\n  margin: 5px 0;\n  cursor: pointer;\n  position: relative;\n  padding-bottom: 5px;\n  color: #ccc;\n}\n.v-footer__catalog-item:before {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  background-color: #ccc;\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  transition-duration: 0.5s;\n}\n.v-footer__catalog-item:hover:before {\n  width: 100%;\n}\n.v-footer__catalog-item:first-child {\n  font-weight: 700;\n  font-size: 24px;\n}\n.v-footer__form {\n  padding: 0 15px;\n  display: flex;\n  flex-direction: column;\n}\n.v-footer__form-title {\n  text-align: center;\n  font-size: 24px;\n  font-weight: 700;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: #ccc;\n  text-transform: uppercase;\n  margin: 5px 0;\n}\n.v-footer__form > label {\n  font-size: 16px;\n  margin: 15px 0;\n  color: #ccc;\n  cursor: pointer;\n}\n.v-footer__form > input, .v-footer__form > textarea {\n  width: 100%;\n  background-color: #fff;\n  padding: 5px 15px;\n  border-radius: 5px;\n  border: 1px solid transparent;\n}\n.v-footer__form > input:focus, .v-footer__form > textarea:focus {\n  border: 1px solid #009fff;\n}\n.v-footer__form .btn {\n  color: #ccc;\n  margin: 15px;\n}\n.v-footer-copy {\n  margin: 0 auto;\n  font-size: 16px;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 300;\n  color: #ccc;\n  padding: 5px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-footer {\n  padding: 50px 0;\n  display: flex;\n  flex-direction: column;\n  background-image: url(\"/images/footer.jpg\");\n  background-position: center;\n  background-size: cover;\n}\n.v-footer .footer {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n}\n.v-footer__catalog {\n  display: flex;\n  flex-direction: column;\n  font-size: 20px;\n  font-weight: 500;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: #ccc;\n  text-transform: uppercase;\n  align-items: center;\n}\n.v-footer__catalog-item {\n  margin: 5px 0;\n  cursor: pointer;\n  position: relative;\n  padding-bottom: 5px;\n  color: #ccc;\n}\n.v-footer__catalog-item:before {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  background-color: #ccc;\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  transition-duration: 0.5s;\n}\n.v-footer__catalog-item:hover:before {\n  width: 100%;\n}\n.v-footer__catalog-item:first-child {\n  font-weight: 700;\n  font-size: 24px;\n}\n.v-footer__form {\n  padding: 0 15px;\n  display: flex;\n  flex-direction: column;\n}\n.v-footer__form-title {\n  text-align: center;\n  font-size: 24px;\n  font-weight: 700;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: #ccc;\n  text-transform: uppercase;\n  margin: 5px 0;\n}\n.v-footer__form > label {\n  font-size: 16px;\n  margin: 15px 0;\n  color: #ccc;\n  cursor: pointer;\n}\n.v-footer__form > input, .v-footer__form > textarea {\n  width: 100%;\n  background-color: #fff;\n  padding: 5px 15px;\n  border-radius: 5px;\n  border: 1px solid transparent;\n}\n.v-footer__form > input:focus, .v-footer__form > textarea:focus {\n  border: 1px solid #009fff;\n}\n.v-footer__form .btn {\n  color: #ccc;\n  margin: 15px;\n}\n.v-footer-copy {\n  margin: 0 auto;\n  font-size: 16px;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 300;\n  color: #ccc;\n  padding: 5px;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -31474,29 +31465,24 @@ component.options.__file = "resources/js/components/Cart/v-cart.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v_catalog_vue_vue_type_template_id_920f631e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v-catalog.vue?vue&type=template&id=920f631e&scoped=true& */ "./resources/js/components/Catalog/v-catalog.vue?vue&type=template&id=920f631e&scoped=true&");
-/* harmony import */ var _v_catalog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v-catalog.vue?vue&type=script&lang=js& */ "./resources/js/components/Catalog/v-catalog.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
 
 
 /* normalize component */
 ;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _v_catalog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _v_catalog_vue_vue_type_template_id_920f631e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _v_catalog_vue_vue_type_template_id_920f631e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
   false,
   null,
-  "920f631e",
+  null,
   null
   
 )
 
-/* hot reload */
-if (false) { var api; }
 component.options.__file = "resources/js/components/Catalog/v-catalog.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
@@ -31906,19 +31892,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Catalog/v-catalog.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/Catalog/v-catalog.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_v_catalog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./v-catalog.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Catalog/v-catalog.vue?vue&type=script&lang=js&");
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_v_catalog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
 /***/ "./resources/js/components/main/MainComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/main/MainComponent.vue?vue&type=script&lang=js& ***!
@@ -32200,23 +32173,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Catalog/v-catalog.vue?vue&type=template&id=920f631e&scoped=true&":
-/*!**************************************************************************************************!*\
-  !*** ./resources/js/components/Catalog/v-catalog.vue?vue&type=template&id=920f631e&scoped=true& ***!
-  \**************************************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_catalog_vue_vue_type_template_id_920f631e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render; },
-/* harmony export */   "staticRenderFns": function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_catalog_vue_vue_type_template_id_920f631e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns; }
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_catalog_vue_vue_type_template_id_920f631e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./v-catalog.vue?vue&type=template&id=920f631e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Catalog/v-catalog.vue?vue&type=template&id=920f631e&scoped=true&");
-
-
-/***/ }),
-
 /***/ "./resources/js/components/main/MainComponent.vue?vue&type=template&id=1d15bfd9&scoped=true&":
 /*!***************************************************************************************************!*\
   !*** ./resources/js/components/main/MainComponent.vue?vue&type=template&id=1d15bfd9&scoped=true& ***!
@@ -32447,31 +32403,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Catalog/v-catalog.vue?vue&type=template&id=920f631e&scoped=true&":
-/*!*****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Catalog/v-catalog.vue?vue&type=template&id=920f631e&scoped=true& ***!
-  \*****************************************************************************************************************************************************************************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": function() { return /* binding */ render; },
-/* harmony export */   "staticRenderFns": function() { return /* binding */ staticRenderFns; }
-/* harmony export */ });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div")
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/main/MainComponent.vue?vue&type=template&id=1d15bfd9&scoped=true&":
 /*!******************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/main/MainComponent.vue?vue&type=template&id=1d15bfd9&scoped=true& ***!
@@ -32540,7 +32471,7 @@ var render = function () {
       _c("swiper-slide", [
         _c("img", {
           staticClass: "swiper-slide__image",
-          attrs: { src: "/storage/images/slides-main/slide_1.jpg", alt: "" },
+          attrs: { src: "/images/slide_1.jpg", alt: "" },
         }),
         _vm._v(" "),
         _c("div", {
@@ -32552,7 +32483,7 @@ var render = function () {
       _c("swiper-slide", [
         _c("img", {
           staticClass: "swiper-slide__image",
-          attrs: { src: "/storage/images/slides-main/slide_2.jpg", alt: "" },
+          attrs: { src: "/images/slide_2.jpg", alt: "" },
         }),
         _vm._v(" "),
         _c("div", {
@@ -32564,7 +32495,7 @@ var render = function () {
       _c("swiper-slide", [
         _c("img", {
           staticClass: "swiper-slide__image",
-          attrs: { src: "/storage/images/slides-main/slide_3.jpg", alt: "" },
+          attrs: { src: "/images/slide_3.jpg", alt: "" },
         }),
         _vm._v(" "),
         _c("div", {
@@ -32611,7 +32542,7 @@ var render = function () {
         _c("div", { staticClass: "v-deals__row-img" }, [
           _c("img", {
             attrs: {
-              src: "/storage/images/weekdeals/dealstop.png",
+              src: "/images/dealstop.png",
               alt: _vm.deals.name,
               "data-aos": "slide-right",
             },
@@ -32748,7 +32679,7 @@ var render = function () {
               return _c("swiper-slide", { key: i, staticClass: "item" }, [
                 _c("div", { staticClass: "item__img" }, [
                   _c("img", {
-                    attrs: { src: "/storage/images/" + product.image, alt: "" },
+                    attrs: { src: "/images/" + product.image, alt: "" },
                   }),
                   _vm._v(" "),
                   _c("span"),
@@ -32843,15 +32774,12 @@ var render = function () {
           {
             key: i,
             staticClass: "v-tranding__item",
-            attrs: { "data-aos": "flip-up" },
+            attrs: { "data-aos": "zoom-out-down" },
           },
           [
             _c("div", { staticClass: "v-tranding__item-img" }, [
               _c("img", {
-                attrs: {
-                  src: "/storage/images/" + item.image,
-                  alt: "item.title",
-                },
+                attrs: { src: "/images/" + item.image, alt: "item.title" },
               }),
             ]),
             _vm._v(" "),
@@ -32920,11 +32848,7 @@ var render = function () {
             staticClass: "v-category__logo",
             attrs: { "data-aos": "fade-up", "data-aos-delay": "200" },
           },
-          [
-            _c("img", {
-              attrs: { src: "/storage/images/icons/icon-catalog.jpg", alt: "" },
-            }),
-          ]
+          [_c("img", { attrs: { src: "/images/icon-catalog.jpg", alt: "" } })]
         ),
       ]),
       _vm._v(" "),
@@ -32949,9 +32873,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "v-category__item-icon" }, [
-          _c("img", {
-            attrs: { src: "/storage/images/icons/icon1.jpg", alt: "" },
-          }),
+          _c("img", { attrs: { src: "/images/icon1.jpg", alt: "" } }),
         ]),
       ]
     )
@@ -32969,9 +32891,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "v-category__item-icon" }, [
-          _c("img", {
-            attrs: { src: "/storage/images/icons/icon2.jpg", alt: "" },
-          }),
+          _c("img", { attrs: { src: "/images/icon2.jpg", alt: "" } }),
         ]),
       ]
     )
@@ -32987,9 +32907,7 @@ var staticRenderFns = [
         _c("p", { staticClass: "v-category__item-title" }, [_vm._v("Зарядки")]),
         _vm._v(" "),
         _c("div", { staticClass: "v-category__item-icon" }, [
-          _c("img", {
-            attrs: { src: "/storage/images/icons/icon3.jpg", alt: "" },
-          }),
+          _c("img", { attrs: { src: "/images/icon3.jpg", alt: "" } }),
         ]),
       ]
     )
@@ -33007,9 +32925,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "v-category__item-icon" }, [
-          _c("img", {
-            attrs: { src: "/storage/images/icons/icon4.jpg", alt: "" },
-          }),
+          _c("img", { attrs: { src: "/images/icon4.jpg", alt: "" } }),
         ]),
       ]
     )

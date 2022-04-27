@@ -4,7 +4,7 @@
             <div class="v-deals__row">
                 <div class="v-deals__row-img">
                     <img
-                        :src="('/storage/images/weekdeals/dealstop.png')"
+                        :src="('/images/dealstop.png')"
                         :alt="deals.name"
                         data-aos="slide-right"
                     />
@@ -47,7 +47,7 @@ export default {
         return {
             deals: {
                 "endtime": "2022-05-31 18:30:40",
-                "image": "weekdeals/dealstop.png",
+                "image": "dealstop.png",
                 "name": "HIGH VOLTAGE energy inflused E-Liquil Vaporz",
                 "price": 999,
                 "sale-price": 1634,
@@ -70,7 +70,7 @@ export default {
 <style lang="scss">
 @import "resources/sass/variables";
 .v-deals {
-    background-image: url("/storage/images/bg/fordeals.jpg");
+    background-image: url("/images/fordeals.jpg");
     background-position: center;
     background-size: cover;
     display: flex;
@@ -131,7 +131,7 @@ export default {
                 margin: 10px 0;
 
                 &-stars {
-                    background-image: url("/storage/images/icons/rating-bg.png");
+                    background-image: url("/images/rating-bg.png");
                     background-position: left bottom;
                     width: 109px;
                     display: block;

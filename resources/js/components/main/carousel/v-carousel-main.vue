@@ -7,15 +7,15 @@
         >
 
                 <swiper-slide>
-                    <img class="swiper-slide__image" src="/storage/images/slides-main/slide_1.jpg" alt="">
+                    <img class="swiper-slide__image" src="/images/slide_1.jpg" alt="">
                     <div class="info" v-html="'<p>' + title + '</p>'"></div>
                 </swiper-slide>
                 <swiper-slide>
-                    <img class="swiper-slide__image" src="/storage/images/slides-main/slide_2.jpg" alt="">
+                    <img class="swiper-slide__image" src="/images/slide_2.jpg" alt="">
                     <div class="info" v-html="'<p>' + title + '</p>'"></div>
                 </swiper-slide>
                 <swiper-slide>
-                    <img class="swiper-slide__image" src="/storage/images/slides-main/slide_3.jpg" alt="">
+                    <img class="swiper-slide__image" src="/images/slide_3.jpg" alt="">
                     <div class="info" v-html="'<p>' + title + '</p>'"></div>
                 </swiper-slide>
                 <div class="swiper-pagination" slot="pagination"></div>
@@ -52,6 +52,12 @@ export default {
         },
         updateHeight() {
             const imgBlock = document.querySelector(".swiper-wrapper");
+            if (imgBlock) {
+                this.height = imgBlock.clientWidth / 1.5;
+                if (imgBlock.clientHeight < this.height) {
+                    this.height = document.documentElement.clientHeight;
+                }
+            }
         },
     },
     created() {

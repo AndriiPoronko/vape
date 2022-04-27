@@ -20,4 +20,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/admin', \App\Http\Controllers\AdminController::class);
+
 Route::get('/{page}', [IndexController::class, '__invoke'])->where('page', '.*');
