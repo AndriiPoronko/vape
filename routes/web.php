@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 
@@ -20,6 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin', \App\Http\Controllers\AdminController::class);
+Route::get('/admin', AdminController::class);
 
-Route::get('/{page}', [IndexController::class, '__invoke'])->where('page', '.*');
+//Route::get('/{page}', [IndexController::class, '__invoke']);
+Route::get('/products', ProductController::class);

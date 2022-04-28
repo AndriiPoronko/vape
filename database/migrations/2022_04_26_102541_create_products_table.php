@@ -15,8 +15,19 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('image')->nullable();
+            $table->unsignedBigInteger('price');
+            $table->boolean('is_avialable');
+            $table->string('color');
+            $table->string('raiting');
             $table->timestamps();
-            $table->string(title);
+            $table->softDeletes();
+
+            $table->unsignedBigInteger('category_id');
+            $table->index('category_id', 'post_category_idx');
+            $table->foreign('category_id', 'post_category_fk')->on('categories')->references('id');
+
         });
     }
 
