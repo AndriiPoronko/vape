@@ -22,7 +22,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin', AdminController::class);
+Route::get('/admin', \App\Http\Controllers\Main\IndexController::class);
 
 //Route::get('/{page}', [IndexController::class, '__invoke']);
 Route::get('/products', ProductController::class);
+
+Route::group(['prefix' => 'categories'], function (){
+   Route::get('/', \App\Http\Controllers\Category\IndexController::class)->name('category.index');
+   Route::get('/create', \App\Http\Controllers\Category\CreateController::class)->name('category.create');
+   Route::post('/', \App\Http\Controllers\Category\StoreController::class)->name('category.store');
+   Route::get('/{category}', \App\Http\Controllers\Category\ShowController::class)->name('category.show');
+   Route::get('/{category}/edit', \App\Http\Controllers\Category\EditController::class)->name('category.edit');
+   Route::patch('/{category}', \App\Http\Controllers\Category\UpdateController::class)->name('category.update');
+   Route::delete('/{category}', \App\Http\Controllers\Category\DeleteController::class)->name('category.delete');
+});
