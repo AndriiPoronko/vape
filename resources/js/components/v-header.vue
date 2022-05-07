@@ -27,7 +27,7 @@
                 <ul class="menu">
                     <li class="menu__item menu__item--search">
                         <transition name="fade">
-                            <input type="text" placeholder="Поиск" v-show="isSearch" />
+                            <input type="text" placeholder="Поиск" v-show="isSearch"/>
                         </transition>
                         <i class="fas fa-search" @click="isSearch = !isSearch"></i>
                     </li>
@@ -37,9 +37,12 @@
                     <router-link :to="{ name: 'cart' }">
                         <li class="menu__item menu__item--basket">
                             <i class="fas fa-shopping-basket"></i>
-                            <span class="basket-count">{{cart.length}}</span>
+                            <span class="basket-count">{{ this.CART.length }}</span>
                         </li>
                     </router-link>
+                    <li class="menu__item">
+                        <a href="/administrator"><i class="fas fa-user-circle"></i></a>
+                    </li>
                     <li class="menu__item menu__item--toggle" @click="toggleMenu()">
                         <span class="menu__item-line"></span>
                         <span class="menu__item-line"></span>
@@ -52,7 +55,7 @@
 </template>
 
 <script>
-// import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "vHeader",
@@ -74,7 +77,6 @@ export default {
                         "url": "https://www.instagram.com/",
                         "icon": "<i class=\"fab fa-instagram\"></i>"
                     },
-                    { "url": "https://vk.com/", "icon": "<i class=\"fab fa-vk\"></i>" },
                     {
                         "url": "https://web.telegram.org/",
                         "icon": "<i class=\"fab fa-telegram-plane\"></i>"
@@ -87,7 +89,8 @@ export default {
     mounted() {
         // this.GET_CONTACTS_FROM_API();
     },
-    created() {},
+    created() {
+    },
     methods: {
         // ...mapActions(["GET_CONTACTS_FROM_API"]),
         toggleMenu() {
@@ -95,18 +98,20 @@ export default {
         },
     },
     computed: {
-        // ...mapGetters(["CONTACTS", "CART"]),
+        ...mapGetters(["CART"]),
     },
 };
 </script>
 
 <style lang="scss">
 @import "resources/sass/variables";
+
 .header {
     position: fixed;
     width: 100%;
     z-index: 99;
 }
+
 .header-block {
     display: flex;
     justify-content: space-between;
@@ -143,6 +148,7 @@ export default {
                 }
             }
         }
+
         &__social {
             display: flex;
             align-items: center;
@@ -278,6 +284,7 @@ export default {
 
             &:hover {
                 color: $colorBase;
+
                 .menu__item-line {
                     &:first-child {
                         width: 24px;
@@ -295,24 +302,30 @@ export default {
         }
     }
 }
+
 .fade-enter {
     width: 0;
     opacity: 0;
 }
+
 .fade-enter-to {
     width: 100%;
     opacity: 1;
 }
+
 .fade-leave {
     width: 100%;
 }
+
 .fade-leave-to {
     width: 0;
     opacity: 0;
 }
+
 .fade-enter-active {
     transition-duration: 0.5s;
 }
+
 .fade-leave-active {
     transition-duration: 0.5s;
 }

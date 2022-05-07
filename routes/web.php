@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\IndexController;
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Main\AdminController;
+use App\Http\Controllers\IndexController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,16 +15,11 @@ use App\Http\Controllers\IndexController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', IndexController::class);
 
 Auth::routes();
 
-Route::get('/admin', \App\Http\Controllers\Main\IndexController::class)->name('admin');
-
-//Route::get('/{page}', [IndexController::class, '__invoke']);
-Route::get('/products', ProductController::class);
+Route::get('/administrator', AdminController::class)->name('admin');
 
 Route::group(['prefix' => 'categories'], function (){
    Route::get('/', \App\Http\Controllers\Category\IndexController::class)->name('category.index');
@@ -65,4 +59,14 @@ Route::group(['prefix' => 'colors'], function (){
     Route::get('/{color}/edit', \App\Http\Controllers\Color\EditController::class)->name('color.edit');
     Route::patch('/{color}', \App\Http\Controllers\Color\UpdateController::class)->name('color.update');
     Route::delete('/{color}', \App\Http\Controllers\Color\DeleteController::class)->name('color.delete');
+});
+
+Route::group(['prefix' => 'products'], function (){
+    Route::get('/', \App\Http\Controllers\Product\IndexController::class)->name('product.index');
+    Route::get('/create', \App\Http\Controllers\Product\CreateController::class)->name('product.create');
+    Route::post('/', \App\Http\Controllers\Product\StoreController::class)->name('product.store');
+    Route::get('/{product}', \App\Http\Controllers\Product\ShowController::class)->name('product.show');
+    Route::get('/{product}/edit', \App\Http\Controllers\Product\EditController::class)->name('product.edit');
+    Route::patch('/{product}', \App\Http\Controllers\Product\UpdateController::class)->name('product.update');
+    Route::delete('/{product}', \App\Http\Controllers\Product\DeleteController::class)->name('product.delete');
 });

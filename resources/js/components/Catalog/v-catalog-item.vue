@@ -1,9 +1,9 @@
 <template>
     <div class="v-catalog-item">
         <div class="v-catalog-item-img">
-            <img :src="require('../../assets/images/' + product_data.image)" alt />
+            <img :src="('/images/' + product_data.image)" alt />
         </div>
-        <div class="v-catalog-item-title" @click="modalProduct()">{{product_data.name}}</div>
+        <div class="v-catalog-item-title" @click="modalProduct">{{product_data.title}}</div>
         <div class="v-catalog-item-raiting">
       <span class="v-catalog-item-raiting-stars">
         <span
@@ -15,14 +15,15 @@
         <div class="v-catalog-item-price">{{product_data.price}} грн.</div>
         <div
             class="v-catalog-item-avialable"
-            :class="{ 'no-avialable' : !product_data.available }"
-            v-text="product_data.available ? 'Есть в наличии' : 'Ожидается'"
+            :class="{ 'no-avialable' : !product_data.is_avialable }"
+            v-text="product_data.is_avialable ? 'Есть в наличии' : 'Ожидается'"
         ></div>
         <button
             class="v-catalog-item-btn btn"
-            :disabled="!product_data.available"
+            :disabled="!product_data.is_avialable"
             @click="addToCart"
-        >В корзину</button>
+            v-text="product_data.is_avialable ? 'В корзину' : ''"
+        ></button>
     </div>
 </template>
 
@@ -120,7 +121,7 @@ export default {
         margin: 10px 0;
 
         &-stars {
-            background-image: url("/storage/images/icons/rating-bg.png");
+            background-image: url("/images/rating-bg.png");
             background-position: left bottom;
             width: 109px;
             display: block;
@@ -144,9 +145,10 @@ export default {
             width: 100%;
         }
 
-        &:disabled:hover {
+        &:disabled {
             width: 130px;
-            background-color: #ccc;
+            background-color: transparent;
+            border: none;
             cursor: auto;
         }
     }

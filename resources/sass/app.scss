@@ -71,6 +71,7 @@ html {
     transition-duration: 0.5s;
     border-radius: $radius;
     cursor: pointer;
+    background: transparent;
 
     &:hover {
         background-color: rgba(0, 85, 154, 1);

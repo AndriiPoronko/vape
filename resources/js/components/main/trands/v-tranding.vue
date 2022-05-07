@@ -6,7 +6,7 @@
                 <div class="v-tranding__item-img">
                     <img :src="('/images/' + item.image)" alt="item.title" />
                 </div>
-                <div class="v-tranding__item-name">{{ item.name }}</div>
+                <div class="v-tranding__item-name" @click="modalProduct(item)">{{ item.title }}</div>
                 <div class="v-tranding__item-raiting">
           <span class="v-tranding__item-raiting-stars">
             <span
@@ -16,14 +16,14 @@
           </span>
                 </div>
                 <div class="v-tranding__item-price">{{ item.price }} грн.</div>
-                <button class="btn v-tranding__item-buy">В корзину</button>
+                <button class="btn v-tranding__item-buy" @click="addToCart(item)">В корзину</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-
+import {mapActions, mapGetters} from "vuex";
 export default {
     name: "v-tranding",
     components: {},
@@ -31,44 +31,49 @@ export default {
         return {
             trands: [
                 {
-                    "name": "OVNS Saber-S Kit ORIGINAL",
+                    "title": "OVNS Saber-S Kit ORIGINAL",
                     "image": "8.png",
                     "price": 270,
                     "raiting": 4,
                     "id": 1000,
-                    "quantity": 1
+                    "quantity": 1,
+                    "is_avialable": 1
                 },
                 {
-                    "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
+                    "title": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
                     "image": "10.png",
                     "price": 210,
                     "raiting": 4,
                     "id": 1002,
-                    "quantity": 1
+                    "quantity": 1,
+                    "is_avialable": 1
                 },
                 {
-                    "name": "Hotcig Kubi Pod kit ORIGINAL",
+                    "title": "Hotcig Kubi Pod kit ORIGINAL",
                     "image": "11.png",
                     "price": 330,
                     "raiting": 5,
                     "id": 1003,
-                    "quantity": 1
+                    "quantity": 1,
+                    "is_avialable": 0
                 },
                 {
-                    "name": "Vaporesso Renova Zero Pod Kit ORIGINAL",
+                    "title": "Vaporesso Renova Zero Pod Kit ORIGINAL",
                     "image": "12.png",
                     "price": 390,
                     "raiting": 5,
                     "id": 1004,
-                    "quantity": 1
+                    "quantity": 1,
+                    "is_avialable": 0
                 },
                 {
-                    "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
+                    "title": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
                     "image": "9.png",
                     "price": 1200,
                     "raiting": 3,
                     "id": 1005,
-                    "quantity": 1
+                    "quantity": 1,
+                    "is_avialable": 1
                 }
             ],
         };
@@ -76,6 +81,13 @@ export default {
     mounted() {
     },
     methods: {
+        ...mapActions(['ACTIVE_MODAL_PRODUCT', 'ADD_TO_CART']),
+        modalProduct(item){
+            this.ACTIVE_MODAL_PRODUCT(item);
+        },
+        addToCart(product){
+            this.ADD_TO_CART(product);
+        }
     },
     computed: {
     },

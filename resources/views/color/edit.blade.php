@@ -28,7 +28,8 @@
                     @csrf
                     @method('patch')
                     <div class="form-group">
-                        <input type="text" name="title" value="{{$color->title}}" class="form-control" placeholder="name">
+                        <label for="exampleColorInput" class="form-label">Color picker</label>
+                        <input type="color" class="form-control form-control-color" name="title" id="exampleColorInput" value="#563d7c" title="Choose your color">
                     </div>
 
                     <div class="form-group">
