@@ -38,7 +38,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -48,7 +48,7 @@
                                 <tbody>
 
                                     <tr>
-                                        <td>PRODUCT NAME</td>
+                                        <td>NAME</td>
                                         <td>{{$product->title}}</td>
                                     </tr>
                                     <tr>
@@ -62,6 +62,34 @@
                                     <tr>
                                         <td>CATEGORY</td>
                                         <td>{{$product->category->title}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DESCRIPTION</td>
+                                        <td>{{$product->description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CODE</td>
+                                        <td>{{$product->code}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SET</td>
+                                        <td>{{$product->set}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BATTERY</td>
+                                        <td>{{$product->battery}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CARTRIDGE</td>
+                                        <td>{{$product->cartridge}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SIZE</td>
+                                        <td>{{$product->size}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>QUANTITY</td>
+                                        <td>{{$product->quantity}}</td>
                                     </tr>
                                     <tr>
                                         <td>AVIALABLE</td>

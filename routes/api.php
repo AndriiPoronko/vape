@@ -23,3 +23,4 @@ Route::group(['prefix' => 'products'], function(){
     Route::get('/', ProductsController::class);
 });
 Route::get('/categories', \App\Http\Controllers\CategoryController::class);
+Route::get('/trends', \App\Http\Controllers\TrendController::class);

@@ -3316,52 +3316,12 @@ __webpack_require__.r(__webpack_exports__);
   name: "v-tranding",
   components: {},
   data: function data() {
-    return {
-      trands: [{
-        "title": "OVNS Saber-S Kit ORIGINAL",
-        "image": "8.png",
-        "price": 270,
-        "raiting": 4,
-        "id": 1000,
-        "quantity": 1,
-        "is_avialable": 1
-      }, {
-        "title": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-        "image": "10.png",
-        "price": 210,
-        "raiting": 4,
-        "id": 1002,
-        "quantity": 1,
-        "is_avialable": 1
-      }, {
-        "title": "Hotcig Kubi Pod kit ORIGINAL",
-        "image": "11.png",
-        "price": 330,
-        "raiting": 5,
-        "id": 1003,
-        "quantity": 1,
-        "is_avialable": 0
-      }, {
-        "title": "Vaporesso Renova Zero Pod Kit ORIGINAL",
-        "image": "12.png",
-        "price": 390,
-        "raiting": 5,
-        "id": 1004,
-        "quantity": 1,
-        "is_avialable": 0
-      }, {
-        "title": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-        "image": "9.png",
-        "price": 1200,
-        "raiting": 3,
-        "id": 1005,
-        "quantity": 1,
-        "is_avialable": 1
-      }]
-    };
+    return {};
   },
-  mounted: function mounted() {},
-  methods: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(['ACTIVE_MODAL_PRODUCT', 'ADD_TO_CART'])), {}, {
+  mounted: function mounted() {
+    this.GET_TRENDS_FROM_API();
+  },
+  methods: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(['ACTIVE_MODAL_PRODUCT', 'ADD_TO_CART', 'GET_TRENDS_FROM_API'])), {}, {
     modalProduct: function modalProduct(item) {
       this.ACTIVE_MODAL_PRODUCT(item);
     },
@@ -3369,7 +3329,7 @@ __webpack_require__.r(__webpack_exports__);
       this.ADD_TO_CART(product);
     }
   }),
-  computed: {}
+  computed: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)(['TRENDS']))
 });
 
 /***/ }),
@@ -3556,6 +3516,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "v-modal-about",
@@ -3572,7 +3547,7 @@ __webpack_require__.r(__webpack_exports__);
       this.ADD_TO_CART(this.ONEPRODUCT);
     }
   }),
-  computed: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)(["MODALPRODUCT", "ONEPRODUCT"]))
+  computed: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)(["MODALPRODUCT", "ONEPRODUCT", "CATEGORIES"]))
 });
 
 /***/ }),
@@ -4243,7 +4218,7 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4_
     // slider: {},
     categories: null,
     // contacts: {},
-    // trand: {},
+    trends: {},
     // deals: {},
     // newProducts: [],
     isVisibleModalCall: false,
@@ -4255,21 +4230,9 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4_
     SET_PRODUCTS_TO_STATE: function SET_PRODUCTS_TO_STATE(state, products) {
       state.products = products;
     },
-    // SET_CONTACTS_TO_STATE: (state, contacts) => {
-    //     state.contacts = contacts;
-    // },
-    // SET_SLIDES_TO_STATE: (state, slides) => {
-    //     state.slider = slides;
-    // },
-    // SET_TRAND_TO_STATE: (state, trand) => {
-    //     state.trand = trand;
-    // },
-    // SET_DEALS_TO_STATE: (state, deals) => {
-    //     state.deals = deals;
-    // },
-    // SET_NEW_TO_STATE: (state, newProducts) => {
-    //     state.newProducts = newProducts;
-    // },
+    SET_TRENDS_TO_STATE: function SET_TRENDS_TO_STATE(state, trends) {
+      state.trends = trends;
+    },
     SET_CATEGORIES_TO_STATE: function SET_CATEGORIES_TO_STATE(state, categories) {
       state.categories = categories;
     },
@@ -4317,43 +4280,36 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4_
         commit("SET_CATEGORIES_TO_STATE", response.data);
       })["catch"](function (e) {});
     },
-    ACTIVE_MODAL_CALL: function ACTIVE_MODAL_CALL(_ref3) {
+    GET_TRENDS_FROM_API: function GET_TRENDS_FROM_API(_ref3) {
       var commit = _ref3.commit;
+      axios.get('/api/trends').then(function (response) {
+        commit("SET_TRENDS_TO_STATE", response.data);
+      })["catch"](function (e) {});
+    },
+    ACTIVE_MODAL_CALL: function ACTIVE_MODAL_CALL(_ref4) {
+      var commit = _ref4.commit;
       commit("CHANGE_MODAL_CALL");
     },
-    ADD_TO_CART: function ADD_TO_CART(_ref4, product) {
-      var commit = _ref4.commit;
+    ADD_TO_CART: function ADD_TO_CART(_ref5, product) {
+      var commit = _ref5.commit;
       commit("SET_CART", product);
     },
-    DELETE_PRODUCT_FROM_CART: function DELETE_PRODUCT_FROM_CART(_ref5, index) {
-      var commit = _ref5.commit;
+    DELETE_PRODUCT_FROM_CART: function DELETE_PRODUCT_FROM_CART(_ref6, index) {
+      var commit = _ref6.commit;
       commit("REMOVE_FROM_CART", index);
     },
-    ACTIVE_MODAL_PRODUCT: function ACTIVE_MODAL_PRODUCT(_ref6, product) {
-      var commit = _ref6.commit;
+    ACTIVE_MODAL_PRODUCT: function ACTIVE_MODAL_PRODUCT(_ref7, product) {
+      var commit = _ref7.commit;
       commit("CHANGE_MODAL_PRODUCT", product);
     }
   },
   getters: {
-    //
-    // CONTACTS(state) {
-    //     return state.contacts;
-    // },
     PRODUCTS: function PRODUCTS(state) {
       return state.products;
     },
-    // SLIDES(state) {
-    //     return state.slider;
-    // },
-    // TRAND(state) {
-    //     return state.trand;
-    // },
-    // DEALS(state) {
-    //     return state.deals;
-    // },
-    // NEWPRODUCTS(state) {
-    //     return state.newProducts;
-    // },
+    TRENDS: function TRENDS(state) {
+      return state.trends;
+    },
     CATEGORIES: function CATEGORIES(state) {
       return state.categories;
     },
@@ -7160,7 +7116,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-tranding__title {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(24px + 76 * (100vw - 320px) / 960);\n  font-weight: bold;\n  color: #002033;\n  text-transform: uppercase;\n  margin: -100px 0 0 0;\n  text-align: center;\n  position: relative;\n}\n.v-tranding__title:before {\n  content: \"tranding\";\n  position: absolute;\n  font-size: calc(24px + 36 * (100vw - 320px) / 960);\n  color: #009fff;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  transform: translateX(-50%);\n  left: 50%;\n  bottom: 0;\n}\n.v-tranding .block-container {\n  display: flex;\n  justify-content: center;\n  padding: 50px 15px 0 15px;\n  min-height: 440px;\n}\n.v-tranding__item {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 15px;\n  max-width: 250px;\n  transition-duration: 0.5s;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 5px;\n}\n.v-tranding__item-img {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-tranding__item-img > img {\n  display: block;\n  width: 100%;\n}\n.v-tranding__item-name {\n  font-size: 16px;\n  font-weight: bold;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: rgb(136, 135, 135);\n  letter-spacing: 1px;\n  line-height: 25px;\n  overflow: hidden;\n  height: 50px;\n  text-align: center;\n  cursor: pointer;\n}\n.v-tranding__item-name:hover {\n  color: #009fff;\n}\n.v-tranding__item-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-tranding__item-raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-tranding__item-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-tranding__item-price {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 24px;\n  font-weight: 700;\n  color: #fff;\n  margin: 0 0 30px 0;\n}\n.v-tranding__item-buy {\n  width: 100%;\n  opacity: 0;\n}\n.v-tranding__item:hover {\n  border: 1px solid rgb(136, 135, 135);\n  -webkit-transform: scale(1.05);\n}\n.v-tranding__item:hover .btn {\n  opacity: 1;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-tranding__title {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(24px + 76 * (100vw - 320px) / 960);\n  font-weight: bold;\n  color: #002033;\n  text-transform: uppercase;\n  margin: -100px 0 0 0;\n  text-align: center;\n  position: relative;\n}\n.v-tranding__title:before {\n  content: \"trending\";\n  position: absolute;\n  font-size: calc(24px + 36 * (100vw - 320px) / 960);\n  color: #009fff;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  transform: translateX(-50%);\n  left: 50%;\n  bottom: 0;\n}\n.v-tranding .block-container {\n  display: flex;\n  justify-content: center;\n  padding: 50px 15px 0 15px;\n  min-height: 440px;\n}\n.v-tranding__item {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 15px;\n  max-width: 250px;\n  transition-duration: 0.5s;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 5px;\n}\n.v-tranding__item-img {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-tranding__item-img > img {\n  display: block;\n  width: 100%;\n}\n.v-tranding__item-name {\n  font-size: 16px;\n  font-weight: bold;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: rgb(136, 135, 135);\n  letter-spacing: 1px;\n  line-height: 25px;\n  overflow: hidden;\n  height: 50px;\n  text-align: center;\n  cursor: pointer;\n}\n.v-tranding__item-name:hover {\n  color: #009fff;\n}\n.v-tranding__item-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-tranding__item-raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-tranding__item-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-tranding__item-price {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 24px;\n  font-weight: 700;\n  color: #fff;\n  margin: 0 0 30px 0;\n}\n.v-tranding__item-buy {\n  width: 100%;\n  opacity: 0;\n}\n.v-tranding__item:hover {\n  border: 1px solid rgb(136, 135, 135);\n  -webkit-transform: scale(1.05);\n}\n.v-tranding__item:hover .btn {\n  opacity: 1;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -38401,75 +38357,84 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "v-tranding" }, [
-    _c(
-      "div",
-      { staticClass: "v-tranding__title", attrs: { "data-aos": "slide-left" } },
-      [_vm._v("Tranding")]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "mainer block-container" },
-      _vm._l(_vm.trands, function (item, i) {
-        return _c(
+  return _vm.TRENDS.length
+    ? _c("div", { staticClass: "v-tranding" }, [
+        _c(
           "div",
           {
-            key: i,
-            staticClass: "v-tranding__item",
-            attrs: { "data-aos": "zoom-out-down" },
+            staticClass: "v-tranding__title",
+            attrs: { "data-aos": "slide-left" },
           },
-          [
-            _c("div", { staticClass: "v-tranding__item-img" }, [
-              _c("img", {
-                attrs: { src: "/images/" + item.image, alt: "item.title" },
-              }),
-            ]),
-            _vm._v(" "),
-            _c(
+          [_vm._v("Trending")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "mainer block-container" },
+          _vm._l(_vm.TRENDS, function (item, i) {
+            return _c(
               "div",
               {
-                staticClass: "v-tranding__item-name",
-                on: {
-                  click: function ($event) {
-                    return _vm.modalProduct(item)
-                  },
-                },
+                key: i,
+                staticClass: "v-tranding__item",
+                attrs: { "data-aos": "zoom-out-down" },
               },
-              [_vm._v(_vm._s(item.title))]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "v-tranding__item-raiting" }, [
-              _c("span", { staticClass: "v-tranding__item-raiting-stars" }, [
-                _c("span", {
-                  staticClass: "v-tranding__item-raiting-stars-bg",
-                  style: { width: item.raiting * 20 + "%" },
-                }),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "v-tranding__item-price" }, [
-              _vm._v(_vm._s(item.price) + " грн."),
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn v-tranding__item-buy",
-                on: {
-                  click: function ($event) {
-                    return _vm.addToCart(item)
+              [
+                _c("div", { staticClass: "v-tranding__item-img" }, [
+                  _c("img", {
+                    attrs: { src: "/images/" + item.image, alt: "item.title" },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "v-tranding__item-name",
+                    on: {
+                      click: function ($event) {
+                        return _vm.modalProduct(item)
+                      },
+                    },
                   },
-                },
-              },
-              [_vm._v("В корзину")]
-            ),
-          ]
-        )
-      }),
-      0
-    ),
-  ])
+                  [_vm._v(_vm._s(item.title))]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "v-tranding__item-raiting" }, [
+                  _c(
+                    "span",
+                    { staticClass: "v-tranding__item-raiting-stars" },
+                    [
+                      _c("span", {
+                        staticClass: "v-tranding__item-raiting-stars-bg",
+                        style: { width: item.raiting * 20 + "%" },
+                      }),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "v-tranding__item-price" }, [
+                  _vm._v(_vm._s(item.price) + " грн."),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn v-tranding__item-buy",
+                    on: {
+                      click: function ($event) {
+                        return _vm.addToCart(item)
+                      },
+                    },
+                  },
+                  [_vm._v("В корзину")]
+                ),
+              ]
+            )
+          }),
+          0
+        ),
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38721,7 +38686,7 @@ var render = function () {
                       },
                     },
                   },
-                  [_vm._v("В корзину")]
+                  [_vm._v("В корзину\n                    ")]
                 ),
                 _vm._v(" "),
                 _c("div", {
@@ -38730,126 +38695,151 @@ var render = function () {
               ]),
             ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "v-modal-about__block-right" },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "v-modal-about__block-right-name",
-                    staticStyle: { height: "48px" },
-                  },
-                  [_vm._v(_vm._s(_vm.ONEPRODUCT.title))]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "v-modal-about__block-right-name" }, [
-                  _vm._v("Характеристики"),
-                ]),
-                _vm._v(" "),
-                _vm.ONEPRODUCT.colors.length
-                  ? _c(
-                      "div",
-                      { staticClass: "v-modal-about__block-right-specif" },
-                      [
-                        _c("span", [_vm._v("Цвет")]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "dotted" }),
-                        _vm._v(" "),
-                        _vm._l(_vm.ONEPRODUCT.colors, function (color, i) {
-                          return _c("span", {
-                            key: i,
-                            staticClass: "specif",
-                            style: { "background-color": color.title },
-                          })
-                        }),
-                      ],
-                      2
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm._l(_vm.ONEPRODUCT.specifications, function (item, index) {
-                  return _c(
+            _c("div", { staticClass: "v-modal-about__block-right" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "v-modal-about__block-right-name",
+                  staticStyle: { height: "48px" },
+                },
+                [_vm._v(_vm._s(_vm.ONEPRODUCT.title))]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "v-modal-about__block-right-name" }, [
+                _vm._v("Характеристики"),
+              ]),
+              _vm._v(" "),
+              _vm.ONEPRODUCT.colors.length
+                ? _c(
                     "div",
-                    {
-                      key: "item" + index,
-                      staticClass: "v-modal-about__block-right-specif",
-                    },
+                    { staticClass: "v-modal-about__block-right-specif" },
                     [
-                      _c("span", [_vm._v(_vm._s(item.name))]),
+                      _c("span", [_vm._v("Цвет")]),
                       _vm._v(" "),
                       _c("div", { staticClass: "dotted" }),
                       _vm._v(" "),
-                      _c("span", [_vm._v(_vm._s(item.config))]),
-                    ]
-                  )
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "v-modal-about__block-right-specif" },
-                  [
-                    _c("span", [_vm._v("Комплект:")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "dotted" }),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      { staticClass: "equipment" },
-                      _vm._l(_vm.ONEPRODUCT.equipment, function (eq, index) {
-                        return _c(
-                          "li",
-                          { key: index, staticClass: "equipment-item" },
-                          [_vm._v(_vm._s(eq))]
-                        )
+                      _vm._l(_vm.ONEPRODUCT.colors, function (color, i) {
+                        return _c("span", {
+                          key: i,
+                          staticClass: "specif",
+                          style: { "background-color": color.title },
+                        })
                       }),
-                      0
-                    ),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "v-modal-about__block-right-name" }, [
-                  _vm._v("Описание товара"),
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.ONEPRODUCT.about, function (about, j) {
-                  return _c(
+                    ],
+                    2
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.ONEPRODUCT.size.length
+                ? _c(
                     "div",
-                    { key: j, staticClass: "v-modal-about__block-right-block" },
+                    { staticClass: "v-modal-about__block-right-specif" },
                     [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "v-modal-about__block-right-block-caption",
-                        },
-                        [_vm._v(_vm._s(about.caption))]
-                      ),
+                      _c("span", [_vm._v("Комплект:")]),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "v-modal-about__block-right-block-description",
-                        },
-                        [_vm._v(_vm._s(about.description))]
-                      ),
+                      _c("div", { staticClass: "dotted" }),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "equipment" }, [
+                        _c("li", { staticClass: "equipment-item" }, [
+                          _vm._v(
+                            _vm._s(_vm.ONEPRODUCT.size) +
+                              "\n                        "
+                          ),
+                        ]),
+                      ]),
                     ]
                   )
-                }),
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "v-modal-about__block-close",
-                on: { click: _vm.closeModal },
-              },
-              [_c("i", { staticClass: "fas fa-times" })]
-            ),
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.ONEPRODUCT.battery.length
+                ? _c(
+                    "div",
+                    { staticClass: "v-modal-about__block-right-specif" },
+                    [
+                      _c("span", [_vm._v("Аккумулятор:")]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dotted" }),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "equipment" }, [
+                        _c("li", { staticClass: "equipment-item" }, [
+                          _vm._v(
+                            _vm._s(_vm.ONEPRODUCT.battery) +
+                              "\n                        "
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.ONEPRODUCT.cartridge.length
+                ? _c(
+                    "div",
+                    { staticClass: "v-modal-about__block-right-specif" },
+                    [
+                      _c("span", [_vm._v("Картридж:")]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dotted" }),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "equipment" }, [
+                        _c("li", { staticClass: "equipment-item" }, [
+                          _vm._v(
+                            _vm._s(_vm.ONEPRODUCT.cartridge) +
+                              "\n                        "
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.ONEPRODUCT.set.length
+                ? _c(
+                    "div",
+                    { staticClass: "v-modal-about__block-right-specif" },
+                    [
+                      _c("span", [_vm._v("Комплект:")]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dotted" }),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "equipment" }, [
+                        _c("li", { staticClass: "equipment-item" }, [
+                          _vm._v(
+                            _vm._s(_vm.ONEPRODUCT.set) +
+                              "\n                        "
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "v-modal-about__block-right-name" }, [
+                _vm._v("Описание товара"),
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "v-modal-about__block-right-block-caption" },
+                [_vm._v(_vm._s(_vm.ONEPRODUCT))]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "v-modal-about__block-right-block-description" },
+                [_vm._v(_vm._s(_vm.ONEPRODUCT.description))]
+              ),
+            ]),
           ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "v-modal-about__block-close",
+              on: { click: _vm.closeModal },
+            },
+            [_c("i", { staticClass: "fas fa-times" })]
+          ),
         ])
       : _vm._e(),
   ])
@@ -39428,7 +39418,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "menu__item" }, [
-      _c("a", { attrs: { href: "/administrator" } }, [
+      _c("a", { attrs: { href: "/admin" } }, [
         _c("i", { staticClass: "fas fa-user-circle" }),
       ]),
     ])

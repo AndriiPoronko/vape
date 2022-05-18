@@ -41,7 +41,7 @@
                         </li>
                     </router-link>
                     <li class="menu__item">
-                        <a href="/administrator"><i class="fas fa-user-circle"></i></a>
+                        <a href="/admin"><i class="fas fa-user-circle"></i></a>
                     </li>
                     <li class="menu__item menu__item--toggle" @click="toggleMenu()">
                         <span class="menu__item-line"></span>

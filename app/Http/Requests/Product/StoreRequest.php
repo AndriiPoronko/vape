@@ -30,7 +30,15 @@ class StoreRequest extends FormRequest
             'is_avialable' => 'nullable|integer',
             'raiting' => 'nullable|integer',
             'colors' => 'nullable|array',
-            'category_id' => 'required|integer'
+            'category_id' => 'required|integer',
+            'quantity' => 'nullable|integer',
+            'description' => 'nullable|string',
+            'size' => 'nullable|string',
+            'cartridge' => 'nullable|string',
+            'battery' => 'nullable|string',
+            'set' => 'nullable|string',
+            'trend' => 'nullable|integer',
+            'code' => 'nullable|integer',
 
         ];
     }

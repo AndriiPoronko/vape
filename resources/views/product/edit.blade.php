@@ -28,16 +28,59 @@
                     @csrf
                     @method('patch')
                     <div class="form-group">
-                        <input type="text" name="title" value="{{$product->title ?? old('title')}}" class="form-control" placeholder="name">
+                        <label for="productTitle">Product's name</label>
+                        <input type="text" id="productTitle" name="title" value="{{$product->title ?? old('title')}}" class="form-control" placeholder="name">
                     </div>
+
                     <div class="form-group">
-                        <input type="text" name="image" value="{{$product->image ?? old('image')}}" class="form-control" placeholder="image">
+                        <label for="productImage">Image</label>
+                        <input type="text" id="productImage" name="image" value="{{$product->image ?? old('image')}}" class="form-control" placeholder="image">
                     </div>
+
                     <div class="form-group">
-                        <input type="text" name="price" value="{{$product->price ?? old('price')}}" class="form-control" placeholder="price">
+                        <label for="productPrice">Price</label>
+                        <input type="text" id="productPrice" name="price" value="{{$product->price ?? old('price')}}" class="form-control" placeholder="price">
                     </div>
+
                     <div class="form-group">
-                        <input type="text" name="raiting" value="{{$product->raiting ?? old('raiting')}}" class="form-control" placeholder="raiting">
+                        <label for="productDimensions">Product dimensions</label>
+                        <input type="text" id="productDimensions" name="size" value="{{$product->size ?? old('size')}}" class="form-control" placeholder="height width">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productCartridge">Cartridge</label>
+                        <input type="text" id="productCartridge" name="cartridge" value="{{$product->cartridge ?? old('cartridge')}}" class="form-control" placeholder="cartridge">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productBattery">Battery</label>
+                        <input type="text" id="productBattery" name="battery" value="{{$product->battery ?? old('battery')}}" class="form-control" placeholder="battery">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="setArea">Product set</label>
+                        <textarea class="form-control" name="set" id="setArea" rows="4">{{$product->set ?? old('set')}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descriptionArea">Description</label>
+                        <textarea class="form-control" name="description" id="descriptionArea" rows="5">{{$product->description ?? old('description')}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productRating">Rating</label>
+                        <select class="custom-select rounded-0" name="raiting" id="productRating">
+                            <option {{$product->raiting == 5 ? 'selected' : ''}} value="5">5</option>
+                            <option {{$product->raiting == 4 ? 'selected' : ''}} value="4">4</option>
+                            <option {{$product->raiting == 3 ? 'selected' : ''}} value="3">3</option>
+                            <option {{$product->raiting == 2 ? 'selected' : ''}} value="2">2</option>
+                            <option {{$product->raiting == 1 ? 'selected' : ''}} value="1">1</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productQuantity">Quantity</label>
+                        <input type="number" id="productQuantity" name="quantity" value="{{$product->quantity ?? old('quantity')}}" class="form-control" placeholder="quantity">
                     </div>
 
                     <div class="form-group">
@@ -64,6 +107,13 @@
                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                             <input type="checkbox" name="is_avialable" {{$product->is_avialable == 1 ? 'checked' : ''}} value="1" class="custom-control-input" id="customSwitch3">
                             <label class="custom-control-label" for="customSwitch3">Наличие товара</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" name="trend" {{$product->trend == 1 ? 'checked' : ''}} value="1" class="custom-control-input" id="trend">
+                            <label class="custom-control-label" for="trend">Отправить в тренды</label>
                         </div>
                     </div>
 
