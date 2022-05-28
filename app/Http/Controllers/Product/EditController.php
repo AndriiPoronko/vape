@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Product;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\Tag;
 
-class EditController extends Controller
+class EditController extends BaseController
 {
     public function __invoke(Product $product){
         $categories = Category::all();
@@ -17,6 +16,11 @@ class EditController extends Controller
         foreach ($product->colors as $color){
             $colorsIds[] = $color->id;
         }
-        return view('product.edit', compact(['product', 'categories', 'colors', 'colorsIds']));
+        $tags = Tag::all();
+        $tagIds = [];
+        foreach ($product->tags as $tag){
+            $tagIds[] = $tag->id;
+        }
+        return view('product.edit', compact(['product', 'categories', 'colors', 'colorsIds', 'tags', 'tagIds']));
     }
 }

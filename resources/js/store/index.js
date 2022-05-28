@@ -10,16 +10,13 @@ export default new Vuex.Store({
     },
     state: {
         products: null,
-        // slider: {},
         categories: null,
-        // contacts: {},
         trends: {},
-        // deals: {},
-        // newProducts: [],
         isVisibleModalCall: false,
         cart: [],
         isModalProduct: false,
         oneProduct: null,
+        token: null
     },
     mutations: {
 
@@ -61,7 +58,13 @@ export default new Vuex.Store({
                 state.oneProduct = product;
             }
         },
-    },
+        SET_TOKEN: (state, token) => {
+            state.token = token;
+        },
+        REMOVE_TOKEN: (state, token) => {
+            state.token = token;
+        }
+     },
     actions: {
 
         GET_PRODUCTS_FROM_API({commit}) {
@@ -97,6 +100,12 @@ export default new Vuex.Store({
         ACTIVE_MODAL_PRODUCT({commit}, product) {
             commit("CHANGE_MODAL_PRODUCT", product);
         },
+        ADD_TOKEN({commit}, token) {
+            commit("SET_TOKEN", token);
+        },
+        REMOVE_TOKEN({commit}) {
+            commit("SET_TOKEN", null);
+        }
     },
     getters: {
         PRODUCTS(state) {
@@ -120,5 +129,8 @@ export default new Vuex.Store({
         ONEPRODUCT(state) {
             return state.oneProduct;
         },
+        TOKEN(state) {
+            return state.token;
+        }
     }
 });

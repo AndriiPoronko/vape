@@ -60,11 +60,13 @@ export default {
                 { "name": "ЭЛЕКТРОННЫЕ СИГАРЕТЫ", "subname": [], "value": 3 },
                 { "name": "АКСЕСУАРЫ", "subname": [], "value": 4 },
                 { "name": "ВСЕ", "subname": [], "value": 5 }
-            ]
+            ],
+            footerHeight: null,
         };
     },
     mounted() {
         // this.GET_CATEGORY_FROM_API();
+
     },
     methods: {
         // ...mapActions(["GET_CATEGORY_FROM_API"]),

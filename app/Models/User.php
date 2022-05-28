@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 2;
+    const GENDER_NO = null;
 
     protected $table = 'users';
     protected $guarded = false;
@@ -21,7 +23,8 @@ class User extends Authenticatable
     static function getGenders(){
         return [
             self::GENDER_MALE => 'Мужской',
-            self::GENDER_FEMALE => 'Женский'
+            self::GENDER_FEMALE => 'Женский',
+            self::GENDER_NO => 'Не указан'
         ];
     }
 
@@ -43,7 +46,8 @@ class User extends Authenticatable
         'age',
         'address',
         'gender',
-        'patronymic'
+        'patronymic',
+        'role',
     ];
 
     /**
@@ -64,4 +68,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

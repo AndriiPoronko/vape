@@ -4,6 +4,7 @@
         <div
             class="v-line-callback__btn btn"
             data-aos="zoom-out-down"
+            @click.prevent="call"
         >
             Жду звонка
         </div>
@@ -11,14 +12,19 @@
 </template>
 
 <script>
-
+import {mapActions} from 'vuex'
 export default {
     name: "v-line-callback",
     components: {},
     data() {
         return {};
     },
+
     methods: {
+        ...mapActions(['ACTIVE_MODAL_CALL']),
+        call(){
+            this.ACTIVE_MODAL_CALL();
+        }
     },
 };
 </script>

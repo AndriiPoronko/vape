@@ -31,18 +31,41 @@
                         </transition>
                         <i class="fas fa-search" @click="isSearch = !isSearch"></i>
                     </li>
-                    <li class="menu__item">
-                        <i class="fa-heart" :class="favorite_product.length ? 'fas' : 'far'"></i>
-                    </li>
-                    <router-link :to="{ name: 'cart' }">
-                        <li class="menu__item menu__item--basket">
+
+<!--                    <li class="menu__item">-->
+<!--                        <i class="fa-heart" :class="favorite_product.length ? 'fas' : 'far'"></i>-->
+<!--                    </li>-->
+
+                    <li class="menu__item menu__item--basket">
+                        <router-link :to="{ name: 'cart' }">
                             <i class="fas fa-shopping-basket"></i>
                             <span class="basket-count">{{ this.CART.length }}</span>
-                        </li>
-                    </router-link>
-                    <li class="menu__item">
-                        <a href="/admin"><i class="fas fa-user-circle"></i></a>
+                        </router-link>
                     </li>
+
+                    <li class="menu__item" v-if="!this.TOKEN">
+                        <router-link :to="{ name: 'login'}">
+                            <i class="fas fa-key"></i>
+                        </router-link>
+                    </li>
+                    <li class="menu__item  menu__item--person" v-else>
+                        <router-link :to="{ name: 'personal'}">
+                            <i class="fas fa-user-circle"></i>
+                        </router-link>
+                    </li>
+
+                    <li class="menu__item" v-if="this.TOKEN">
+                        <a href="/admin" >
+                            <i class="fas fa-user-cog"></i>
+                        </a>
+                    </li>
+
+                    <li class="menu__item" v-if="this.TOKEN" @click.prevent="logout">
+                        <router-link :to="{name: 'main'}">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </router-link>
+                    </li>
+
                     <li class="menu__item menu__item--toggle" @click="toggleMenu()">
                         <span class="menu__item-line"></span>
                         <span class="menu__item-line"></span>
@@ -55,7 +78,8 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapGetters, mapActions} from "vuex";
+import API from '../api'
 
 export default {
     name: "vHeader",
@@ -87,19 +111,33 @@ export default {
         };
     },
     mounted() {
-        // this.GET_CONTACTS_FROM_API();
+        this.getAccessToken();
     },
-    created() {
+    updated() {
+        this.getAccessToken();
     },
     methods: {
-        // ...mapActions(["GET_CONTACTS_FROM_API"]),
+        ...mapActions(["ADD_TOKEN", "REMOVE_TOKEN"]),
         toggleMenu() {
             this.$emit("toggleMenu");
         },
+        getAccessToken(){
+            if (localStorage.getItem('access_token')){
+                this.ADD_TOKEN(localStorage.getItem('access_token'));
+            }
+        },
+        logout(){
+            API.post('/api/auth/logout')
+            .then(res => {
+                localStorage.removeItem('access_token')
+                this.REMOVE_TOKEN()
+            })
+        }
     },
     computed: {
-        ...mapGetters(["CART"]),
+        ...mapGetters(["CART", "TOKEN"]),
     },
+
 };
 </script>
 
@@ -108,6 +146,7 @@ export default {
 
 .header {
     position: fixed;
+    background: rgba(0,0,0,0.5);
     width: 100%;
     z-index: 99;
 }
@@ -219,6 +258,14 @@ export default {
             color: $colorBorder;
             align-items: center;
 
+            i {
+                color: whitesmoke;
+
+                &:hover{
+                    color: white;
+                }
+            }
+
             &--search {
                 flex-grow: 1;
                 display: flex;
@@ -236,6 +283,10 @@ export default {
                     font-size: $fontSizeBase - 4;
                     background-color: #fff;
                 }
+            }
+
+            &--person{
+                font-size: 40px;
             }
 
             &--basket {

@@ -26,13 +26,29 @@ class StoreRequest extends FormRequest
         return [
             'first_name' => 'required|string',
             'password' => 'required|string|confirmed',
-            'email' => 'required|string',
-            'age' => 'nullable|integer',
+            'password_confirmation' => 'required|string',
+            'email' => 'required|string|email|unique:users',
+            'age' => 'required|integer',
             'last_name' => 'required|string',
             'patronymic' => 'nullable|string',
             'address' => 'nullable|string',
-            'phone_number' => 'nullable|integer',
+            'phone_number' => 'required|integer|unique:users',
             'gender' => 'nullable|integer',
+            'role' => 'nullable|string'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'first_name.required' => 'Поле должно быть заполненым',
+            'password.required' => 'Поле должно быть заполненым',
+            'phone_number.required' => 'Поле должно быть заполненым',
+            'email.required' => 'Поле должно быть заполненым',
+            'email.email' => 'ВВедите email корректно',
+            'email.unique' => 'Пользователь с таким email уже существует',
+            'phone_number.unique' => 'Пользователь с таким номером уже существует',
+            'age.required' => 'Поле должно быть заполненым',
+            'last_name.required' => 'Поле должно быть заполненым',
         ];
     }
 }

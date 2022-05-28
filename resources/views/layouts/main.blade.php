@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard 2</title>
+    <title>Vape Admin</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}} ">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}} ">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -142,7 +144,7 @@
                         <a href="{{route('product.index')}}" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>
-                                Products
+                                Товары
                             </p>
                         </a>
                     </li>
@@ -150,7 +152,7 @@
                         <a href="{{ route('category.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-stream"></i>
                             <p>
-                                Categories
+                                Категории
                             </p>
                         </a>
                     </li>
@@ -158,7 +160,7 @@
                         <a href="{{ route('user.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
-                                Users
+                                Пользователи
                             </p>
                         </a>
                     </li>
@@ -166,7 +168,7 @@
                         <a href="{{route('tag.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-hashtag"></i>
                             <p>
-                                Tags
+                                Вкусы
                             </p>
                         </a>
                     </li>
@@ -174,7 +176,7 @@
                         <a href="{{route('color.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-palette"></i>
                             <p>
-                                Colors
+                                Цвета
                             </p>
                         </a>
                     </li>
@@ -182,7 +184,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-calendar-minus"></i>
                             <p>
-                                Deals
+                                Предложение
                             </p>
                         </a>
                     </li>
@@ -190,7 +192,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-shopping-bag"></i>
                             <p>
-                                Orders
+                                Заказы
                             </p>
                         </a>
                     </li>
@@ -226,6 +228,17 @@
 <script src=" {{asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}} "></script>
 <!-- AdminLTE App -->
 <script src=" {{asset('admin/dist/js/adminlte.js')}} "></script>
+<!-- bs-custom-file-input -->
+<script src="{{asset('admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+<!-- Select2 -->
+<script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+
+<script>
+    $(function () {
+        bsCustomFileInput.init();
+    });
+    $('.select2').select2();
+</script>
 
 </body>
 </html>

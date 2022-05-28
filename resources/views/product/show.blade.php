@@ -105,6 +105,14 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>ВКУСЫ</td>
+                                        <td class="d-flex">
+                                            @foreach($product->tags as $tag)
+                                            {{$tag->title}}
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>RAITING</td>
                                         <td>{{$product->raiting}}<i class="ml-1 far fa-star"></i></td>
                                     </tr>

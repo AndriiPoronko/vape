@@ -79,6 +79,10 @@
                                         <td>Возраст</td>
                                         <td>{{$user->age}}</td>
                                     </tr>
+                                    <tr>
+                                        <td>Тип пользователя</td>
+                                        <td>{{$user->role}}</td>
+                                    </tr>
 
                                 </tbody>
                             </table>

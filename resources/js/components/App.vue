@@ -1,9 +1,10 @@
 <template>
-    <div>
+    <div class="App">
         <v-header  @toggleMenu="toggleMenu"/>
-        <keep-alive>
-            <router-view></router-view>
-        </keep-alive>
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
+
         <v-footer/>
         <v-modal-menu
             :visible="isModalMenuVisible"
@@ -48,6 +49,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+    .App{
+        height: 100vh;
+    }
 </style>

@@ -64,6 +64,9 @@ export default {
         this.documentHeight();
         window.addEventListener("resize", this.updateHeight);
     },
+    destroyed() {
+        window.removeEventListener("resize", this.updateHeight);
+    },
 
 }
 </script>

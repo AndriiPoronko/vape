@@ -4,7 +4,7 @@
         <div class="mainer block-container">
             <div class="v-tranding__item" data-aos="zoom-out-down" v-for="(item, i) in TRENDS" :key="i">
                 <div class="v-tranding__item-img">
-                    <img :src="('/images/' + item.image)" alt="item.title" />
+                    <img :src="('/storage/images/trand/' + item.image)" alt="item.title" />
                 </div>
                 <div class="v-tranding__item-name" @click="modalProduct(item)">{{ item.title }}</div>
                 <div class="v-tranding__item-raiting">
