@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Main\AdminController;
@@ -17,8 +18,6 @@ use App\Http\Controllers\IndexController;
 */
 
 Route::get('/', IndexController::class);
-
-Auth::routes();
 
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/', AdminController::class)->name('admin');
@@ -71,7 +70,15 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('/{product}/edit', \App\Http\Controllers\Product\EditController::class)->name('product.edit');
         Route::patch('/{product}', \App\Http\Controllers\Product\UpdateController::class)->name('product.update');
         Route::delete('/{product}', \App\Http\Controllers\Product\DeleteController::class)->name('product.delete');
+
     });
+
+    Route::group(['prefix' => 'orders'], function (){
+       Route::get('/', \App\Http\Controllers\Order\IndexController::class)->name('order.index');
+       Route::get('/{order}', \App\Http\Controllers\Order\ShowController::class)->name('order.show');
+       Route::patch('/{order}', \App\Http\Controllers\Order\UpdateController::class)->name('order.update');
+    });
+
 });
 
 

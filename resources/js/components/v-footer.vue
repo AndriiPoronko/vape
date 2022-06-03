@@ -1,5 +1,5 @@
 <template>
-    <div class="v-footer">
+    <div class="v-footer" :style="{'background-image': 'url(' + 'storage/images/bg/footer.jpg' + ')'}">
         <div class="mainer footer">
             <ul class="v-footer__catalog">
                 <router-link :to="{ name: 'catalog' }">
@@ -13,7 +13,7 @@
                 <li class="v-footer__catalog-item">Оплата и доставка</li>
                 <li class="v-footer__catalog-item">Контакты</li>
             </ul>
-            <form class="v-footer__form" action="POST">
+            <form class="v-footer__form">
                 <div class="v-footer__form-title">Написать Нам</div>
                 <label for="nameUser">Ваше Имя</label>
                 <input
@@ -83,7 +83,6 @@ export default {
     padding: 50px 0;
     display: flex;
     flex-direction: column;
-    background-image: url( '/images/footer.jpg' );
     background-position: center;
     background-size: cover;
 

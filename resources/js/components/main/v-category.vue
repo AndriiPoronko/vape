@@ -3,30 +3,30 @@
         <div class="v-category__item" data-aos="fade-right">
             <p class="v-category__item-title">Испарители</p>
             <div class="v-category__item-icon">
-                <img src="/images/icon1.jpg" alt />
+                <img :src="/storage/ + icons.first" alt />
             </div>
         </div>
         <div class="v-category__item" data-aos="fade-right">
             <p class="v-category__item-title">Под системы</p>
             <div class="v-category__item-icon">
-                <img src="/images/icon2.jpg" alt />
+                <img :src="/storage/ + icons.second" alt />
             </div>
         </div>
         <router-link :to="{ name: 'catalog' }">
             <div class="v-category__logo" data-aos="fade-up" data-aos-delay="200">
-                <img src="/images/icon-catalog.jpg" alt />
+                <img :src="/storage/ + icons.catalog" alt />
             </div>
         </router-link>
         <div class="v-category__item" data-aos="fade-left">
             <p class="v-category__item-title">Зарядки</p>
             <div class="v-category__item-icon">
-                <img src="/images/icon3.jpg" alt />
+                <img :src="/storage/ + icons.third" alt />
             </div>
         </div>
         <div class="v-category__item" data-aos="fade-left">
             <p class="v-category__item-title">Жидкости</p>
             <div class="v-category__item-icon">
-                <img src="/images/icon4.jpg" alt />
+                <img :src="/storage/ + icons.fourth" alt />
             </div>
         </div>
     </div>
@@ -38,6 +38,13 @@ export default {
     data() {
         return {
             showItem: false,
+            icons: {
+                first: 'images/icons/icon1.jpg',
+                second: 'images/icons/icon2.jpg',
+                third: 'images/icons/icon3.jpg',
+                fourth: 'images/icons/icon4.jpg',
+                catalog: 'images/icons/icon-catalog.jpg'
+            }
         };
     },
     methods:{}

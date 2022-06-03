@@ -12,6 +12,7 @@ export default new Vuex.Store({
         products: null,
         categories: null,
         trends: {},
+        newArrivals: {},
         isVisibleModalCall: false,
         cart: [],
         isModalProduct: false,
@@ -52,6 +53,9 @@ export default new Vuex.Store({
         REMOVE_FROM_CART: (state, index) => {
             state.cart.splice(index, 1);
         },
+        REMOVE_ALL_FROM_CART: (state) => {
+            state.cart = [];
+        },
         CHANGE_MODAL_PRODUCT: (state, product) => {
             state.isModalProduct = !state.isModalProduct;
             if (product) {
@@ -63,6 +67,9 @@ export default new Vuex.Store({
         },
         REMOVE_TOKEN: (state, token) => {
             state.token = token;
+        },
+        SET_NEW_ARRIVALS_TO_STATE: (state, newArrivals) => {
+            state.newArrivals = newArrivals;
         }
      },
     actions: {
@@ -88,6 +95,13 @@ export default new Vuex.Store({
                 }).catch(e => {
             })
         },
+        GET_NEW_ARRIVALS_FROM_API({commit}) {
+            axios.get('/api/newArrivals')
+                .then((response) => {
+                    commit("SET_NEW_ARRIVALS_TO_STATE", response.data);
+                }).catch(e => {
+            })
+        },
         ACTIVE_MODAL_CALL({commit}) {
             commit("CHANGE_MODAL_CALL");
         },
@@ -96,6 +110,9 @@ export default new Vuex.Store({
         },
         DELETE_PRODUCT_FROM_CART({commit}, index) {
             commit("REMOVE_FROM_CART", index);
+        },
+        DELETE_ALL_PRODUCTS_FROM_CART({commit}) {
+            commit("REMOVE_ALL_FROM_CART");
         },
         ACTIVE_MODAL_PRODUCT({commit}, product) {
             commit("CHANGE_MODAL_PRODUCT", product);
@@ -113,6 +130,9 @@ export default new Vuex.Store({
         },
         TRENDS(state) {
             return state.trends;
+        },
+        NEW_ARRIVALS(state) {
+            return state.newArrivals;
         },
         CATEGORIES(state) {
             return state.categories;

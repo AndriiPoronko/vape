@@ -1,7 +1,7 @@
 <template>
   <transition name="ageOff">
     <div class="v-modal-age" v-show="!isVisible">
-      <div class="v-modal-age__block">
+      <div class="v-modal-age__block" :style="{'background-image': 'url(' + 'storage/images/bg/bg-age.jpg' + ')'}">
         <div class="v-modal-age__block-title">{{title}}</div>
         <div class="v-modal-age__block-btns">
           <div class="v-modal-age__block-btns-btn" @click="changeVisible">да</div>
@@ -62,7 +62,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url("/images/bg-age.jpg");
     background-position: center;
     background-size: cover;
     border-radius: $radius * 3;

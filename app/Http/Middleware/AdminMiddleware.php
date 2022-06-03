@@ -16,7 +16,8 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        dd(auth()->user()->name);
+
+        dd(auth('api'));
         return $next($request);
     }
 }

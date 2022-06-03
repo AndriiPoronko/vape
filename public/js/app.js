@@ -2313,7 +2313,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.$store.dispatch('ADD_TOKEN', res.data.access_token);
 
         _this.$router.push({
-          name: 'personal'
+          name: 'main'
         });
       });
     }
@@ -2534,19 +2534,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_es_json_stringify_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.json.stringify.js */ "./node_modules/core-js/modules/es.json.stringify.js");
 /* harmony import */ var core_js_modules_es_json_stringify_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_json_stringify_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _v_select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../v-select */ "./resources/js/components/v-select.vue");
+/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.map.js */ "./node_modules/core-js/modules/es.array.map.js");
+/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _v_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../v-select */ "./resources/js/components/v-select.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
 
+
 //
 //
 //
@@ -2637,11 +2642,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "v-modal-checkout",
   components: {
-    vSelect: _v_select__WEBPACK_IMPORTED_MODULE_4__["default"]
+    vSelect: _v_select__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   props: {
     isCheckout: {
@@ -2654,33 +2670,55 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       deliveryList: [{
-        name: "Самовывоз из Новой Почты",
+        title: "Самовывоз из Новой Почты",
         value: 1
       }, {
-        name: "Курьер Новой Почты",
+        title: "Курьер Новой Почты",
         value: 2
       }],
       paymentList: [{
-        name: "Наложный платеж",
+        title: "Наложный платеж",
         value: 1
       }, {
-        name: "Оплата на карту",
+        title: "Оплата на карту",
         value: 2
       }],
-      cityList: ["Чернигов", "Киев"],
-      depatmentList: [],
+      cityList: [],
+      departmentList: [],
+      warehousesList: [{
+        title: 'Почтовое отделение',
+        ref: '841339c7-591a-42e2-8233-7a0a00f0ed6f',
+        value: 1
+      }, {
+        title: 'Почтомат приват банка',
+        ref: '95dc212d-479c-4ffb-a8ab-8c1b9073d0bc',
+        value: 2
+      }, {
+        title: 'Грузовое отделение',
+        ref: '9a68df70-0267-42a8-bb5c-37f427e36ee4',
+        value: 3
+      }, {
+        title: 'Почтомат',
+        ref: 'f9316480-5f2d-425d-bc2c-ac7cd29decf0',
+        value: 4
+      }],
       city: "",
+      cityDelivery: "",
       selectedTown: "Способ доставки",
       selectedPayment: "Способ оплаты",
-      selectedDepatment: "Выберите отделение",
+      selectedDepartment: "Выберите отделение",
       isDelivery: false,
       isDeliveryShow: false,
       data: {
         modelName: "",
         calledMethod: "",
         methodProperties: {},
-        apiKey: "0689024fb11bc6a5869fbbc738554ac3"
-      }
+        apiKey: "3242cb852293f7e6bc99d746faa68277"
+      },
+      first_name: null,
+      last_name: null,
+      phone_number: null,
+      address: ''
     };
   },
   methods: {
@@ -2690,15 +2728,18 @@ __webpack_require__.r(__webpack_exports__);
     delivery: function delivery(option) {
       var _this = this;
 
-      this.selectedTown = option.name;
+      this.selectedTown = option.title;
 
       if (option.value === 2) {
         this.isDelivery = true;
       } else if (option.value === 1) {
         this.isDelivery = false;
-        this.data.modelName = "AddressGeneral";
+        this.data.modelName = "Address";
         this.data.calledMethod = "getWarehouses";
         this.data.methodProperties.CityName = this.city;
+        this.data.methodProperties.Limit = 200;
+        this.data.methodProperties.Language = 'RU';
+        this.data.methodProperties.TypeOfWarehouseRef = '841339c7-591a-42e2-8233-7a0a00f0ed6f';
         fetch("https://api.novaposhta.ua/v2.0/json/", {
           crossDomain: true,
           method: "POST",
@@ -2710,10 +2751,10 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (response) {
           return response.json();
         }).then(function (list) {
-          _this.depatmentList = [];
+          _this.departmentList = [];
           list.data.forEach(function (item, i) {
-            _this.depatmentList[i] = {
-              name: item.DescriptionRu,
+            _this.departmentList[i] = {
+              title: item.DescriptionRu,
               value: i
             };
           });
@@ -2723,45 +2764,104 @@ __webpack_require__.r(__webpack_exports__);
       this.isDeliveryShow = true;
     },
     payment: function payment(option) {
-      this.selectedPayment = option.name;
+      this.selectedPayment = option.title;
     },
-    depatment: function depatment(option) {
-      this.selectedDepatment = option.name;
+    department: function department(option) {
+      this.selectedDepartment = option.title;
     },
     getCity: function getCity() {
       var _this2 = this;
 
-      this.data.modelName = "Address";
-      this.data.calledMethod = "searchSettlements";
-      this.data.methodProperties.CityName = this.city;
-      this.data.methodProperties.Limit = 5;
-      fetch("https://api.novaposhta.ua/v2.0/json/", {
-        crossDomain: true,
-        method: "POST",
-        headers: {
-          "content-type": "application/json"
-        },
-        processData: false,
-        body: JSON.stringify(this.data)
-      }).then(function (response) {
-        return response.json();
-      }).then(function (data) {
-        _this2.cityList = [];
-        console.log(data.data[0].Addresses);
+      if (this.city) {
+        this.data.modelName = "Address";
+        this.data.calledMethod = "searchSettlements";
+        this.data.methodProperties.CityName = this.city;
+        this.data.methodProperties.Limit = 5;
+        fetch("https://api.novaposhta.ua/v2.0/json/", {
+          crossDomain: true,
+          method: "POST",
+          headers: {
+            "content-type": "application/json"
+          },
+          processData: false,
+          body: JSON.stringify(this.data)
+        }).then(function (response) {
+          return response.json();
+        }).then(function (data) {
+          _this2.cityList = [];
 
-        if (data.data[0].Addresses.length) {
-          data.data[0].Addresses.forEach(function (item) {
-            if (item.MainDescription) {
-              _this2.cityList.push(item.Present);
-            }
-          });
-        }
+          if (data.data[0].Addresses.length) {
+            data.data[0].Addresses.forEach(function (item) {
+              if (item.MainDescription) {
+                _this2.cityList.push(item.MainDescription);
+              }
+            });
+          }
+        });
+      }
+    },
+    cityInNP: function cityInNP(item) {
+      this.city = item;
+      this.cityList = [];
+    },
+    order: function order() {
+      var _this3 = this;
 
-        console.log(_this2.cityList);
+      var products = this.cart.map(function (item) {
+        return {
+          'id': item.id,
+          'quantity': item.quantity
+        };
+      });
+      axios__WEBPACK_IMPORTED_MODULE_6___default().post('/api/orders', {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        phone_number: this.phone_number,
+        city: this.city,
+        payment: this.selectedPayment,
+        delivery: this.selectedTown,
+        address: this.address,
+        department: this.selectedDepartment !== 'Выберите отделение' ? this.selectedDepartment : '',
+        products: products
+      }).then(function (res) {
+        _this3.$store.dispatch('DELETE_ALL_PRODUCTS_FROM_CART');
+
+        _this3.isCheckout = false;
+        _this3.selectedTown = "Способ доставки";
+
+        _this3.$router.push({
+          name: 'catalog'
+        });
+      })["catch"](function (e) {
+        console.log(e);
       });
     }
   },
-  created: function created() {}
+  created: function created() {},
+  mounted: function mounted() {
+    this.getCity();
+  },
+  computed: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapState)(["cart"])), {}, {
+    totalCount: function totalCount() {
+      if (this.cart) {
+        var totalCount = 0;
+        this.cart.forEach(function (item) {
+          return totalCount += item.quantity;
+        });
+        return totalCount;
+      }
+    },
+    totalPrice: function totalPrice() {
+      if (this.cart) {
+        var totalPrice = 0;
+        this.cart.forEach(function (item) {
+          return totalPrice += item.price * item.quantity;
+        });
+        return totalPrice;
+      }
+    }
+  }),
+  watch: {}
 });
 
 /***/ }),
@@ -3208,11 +3308,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3230,6 +3325,16 @@ __webpack_require__.r(__webpack_exports__);
           dynamicBullets: true
         }
       },
+      sliderMain: [{
+        title: 'Что-то очень интересное',
+        path: 'images/slides-main/test.jpg'
+      }, {
+        title: 'Что-то прямо очень интересное',
+        path: 'images/slides-main/test2.jpg'
+      }, {
+        title: 'Что-то прямо очень, очень интересное',
+        path: 'images/slides-main/test3.jpg'
+      }],
       title: 'Очень много интересного текста!'
     };
   },
@@ -3315,7 +3420,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       deals: {
-        "endtime": "2022-05-31 18:30:40",
+        "endtime": "2022-07-31 18:30:40",
         "image": "dealstop.png",
         "name": "HIGH VOLTAGE energy inflused E-Liquil Vaporz",
         "price": 999,
@@ -3420,9 +3525,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-awesome-swiper */ "./node_modules/vue-awesome-swiper/dist/vue-awesome-swiper.js");
-/* harmony import */ var vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/js/swiper.esm.bundle.js");
+/* harmony import */ var _home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-awesome-swiper */ "./node_modules/vue-awesome-swiper/dist/vue-awesome-swiper.js");
+/* harmony import */ var vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/js/swiper.esm.bundle.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
 //
 //
 //
@@ -3454,14 +3562,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "v-new-arrivals",
   components: {
-    Swiper: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_0__.Swiper,
-    SwiperSlide: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_0__.SwiperSlide
+    Swiper: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_1__.Swiper,
+    SwiperSlide: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_1__.SwiperSlide
   },
   data: function data() {
     return {
@@ -3494,83 +3602,21 @@ __webpack_require__.r(__webpack_exports__);
             spaceBetween: 10
           }
         }
-      },
-      newProduct: [{
-        "name": "OVNS Saber-S Kit ORIGINAL",
-        "image": "1.png",
-        "price": 270,
-        "raiting": 4,
-        "id": 2000,
-        "quantity": 1
-      }, {
-        "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-        "image": "2.png",
-        "price": 210,
-        "raiting": 4,
-        "id": 2002,
-        "quantity": 1
-      }, {
-        "name": "Hotcig Kubi Pod kit ORIGINAL",
-        "image": "3.png",
-        "price": 330,
-        "raiting": 5,
-        "id": 2003,
-        "quantity": 1
-      }, {
-        "name": "Vaporesso Renova Zero Pod Kit ORIGINAL",
-        "image": "4.png",
-        "price": 390,
-        "raiting": 5,
-        "id": 2004,
-        "quantity": 1
-      }, {
-        "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-        "image": "5.png",
-        "price": 1200,
-        "raiting": 3,
-        "id": 2005,
-        "quantity": 1
-      }, {
-        "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-        "image": "6.png",
-        "price": 1200,
-        "raiting": 3,
-        "id": 2006,
-        "quantity": 1
-      }, {
-        "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-        "image": "7.png",
-        "price": 1200,
-        "raiting": 3,
-        "id": 2007,
-        "quantity": 1
-      }, {
-        "name": "OVNS Saber-S Kit ORIGINAL",
-        "image": "1.png",
-        "price": 270,
-        "raiting": 4,
-        "id": 2008,
-        "quantity": 1
-      }, {
-        "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-        "image": "2.png",
-        "price": 210,
-        "raiting": 4,
-        "id": 2009,
-        "quantity": 1
-      }, {
-        "name": "Hotcig Kubi Pod kit ORIGINAL",
-        "image": "3.png",
-        "price": 330,
-        "raiting": 5,
-        "id": 2010,
-        "quantity": 1
-      }]
+      }
     };
   },
-  mounted: function mounted() {},
-  methods: {},
-  computed: {}
+  mounted: function mounted() {
+    this.GET_NEW_ARRIVALS_FROM_API();
+  },
+  methods: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)(['GET_NEW_ARRIVALS_FROM_API', 'ADD_TO_CART', 'ACTIVE_MODAL_PRODUCT'])), {}, {
+    addToCart: function addToCart(product) {
+      this.ADD_TO_CART(product);
+    },
+    modalProduct: function modalProduct(item) {
+      this.ACTIVE_MODAL_PRODUCT(item);
+    }
+  }),
+  computed: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)(['NEW_ARRIVALS']))
 });
 
 /***/ }),
@@ -3679,7 +3725,14 @@ __webpack_require__.r(__webpack_exports__);
   name: "v-category",
   data: function data() {
     return {
-      showItem: false
+      showItem: false,
+      icons: {
+        first: 'images/icons/icon1.jpg',
+        second: 'images/icons/icon2.jpg',
+        third: 'images/icons/icon3.jpg',
+        fourth: 'images/icons/icon4.jpg',
+        catalog: 'images/icons/icon-catalog.jpg'
+      }
     };
   },
   methods: {}
@@ -3922,6 +3975,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
+//
 //
 //
 //
@@ -4345,10 +4399,13 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this = this;
 
-      _api__WEBPACK_IMPORTED_MODULE_1__["default"].post('/api/auth/logout').then(function (res) {
+      _api__WEBPACK_IMPORTED_MODULE_1__["default"].post('/api/auth/logout').then(function () {
         localStorage.removeItem('access_token');
 
         _this.REMOVE_TOKEN();
+
+        var path = "/";
+        if (_this.$route.path !== path) _this.$router.push(path);
       });
     }
   }),
@@ -4611,7 +4668,7 @@ var route = new vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]({
 route.beforeEach(function (to, from, next) {
   var accessToken = localStorage.getItem('access_token');
 
-  if (to.name === 'login' && accessToken) {
+  if (to.name === 'login' && accessToken || to.name === 'register' && accessToken) {
     return next({
       name: 'personal'
     });
@@ -4652,6 +4709,7 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4_
     products: null,
     categories: null,
     trends: {},
+    newArrivals: {},
     isVisibleModalCall: false,
     cart: [],
     isModalProduct: false,
@@ -4691,6 +4749,9 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4_
     REMOVE_FROM_CART: function REMOVE_FROM_CART(state, index) {
       state.cart.splice(index, 1);
     },
+    REMOVE_ALL_FROM_CART: function REMOVE_ALL_FROM_CART(state) {
+      state.cart = [];
+    },
     CHANGE_MODAL_PRODUCT: function CHANGE_MODAL_PRODUCT(state, product) {
       state.isModalProduct = !state.isModalProduct;
 
@@ -4703,6 +4764,9 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4_
     },
     REMOVE_TOKEN: function REMOVE_TOKEN(state, token) {
       state.token = token;
+    },
+    SET_NEW_ARRIVALS_TO_STATE: function SET_NEW_ARRIVALS_TO_STATE(state, newArrivals) {
+      state.newArrivals = newArrivals;
     }
   },
   actions: {
@@ -4724,28 +4788,38 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4_
         commit("SET_TRENDS_TO_STATE", response.data);
       })["catch"](function (e) {});
     },
-    ACTIVE_MODAL_CALL: function ACTIVE_MODAL_CALL(_ref4) {
+    GET_NEW_ARRIVALS_FROM_API: function GET_NEW_ARRIVALS_FROM_API(_ref4) {
       var commit = _ref4.commit;
+      axios.get('/api/newArrivals').then(function (response) {
+        commit("SET_NEW_ARRIVALS_TO_STATE", response.data);
+      })["catch"](function (e) {});
+    },
+    ACTIVE_MODAL_CALL: function ACTIVE_MODAL_CALL(_ref5) {
+      var commit = _ref5.commit;
       commit("CHANGE_MODAL_CALL");
     },
-    ADD_TO_CART: function ADD_TO_CART(_ref5, product) {
-      var commit = _ref5.commit;
+    ADD_TO_CART: function ADD_TO_CART(_ref6, product) {
+      var commit = _ref6.commit;
       commit("SET_CART", product);
     },
-    DELETE_PRODUCT_FROM_CART: function DELETE_PRODUCT_FROM_CART(_ref6, index) {
-      var commit = _ref6.commit;
+    DELETE_PRODUCT_FROM_CART: function DELETE_PRODUCT_FROM_CART(_ref7, index) {
+      var commit = _ref7.commit;
       commit("REMOVE_FROM_CART", index);
     },
-    ACTIVE_MODAL_PRODUCT: function ACTIVE_MODAL_PRODUCT(_ref7, product) {
-      var commit = _ref7.commit;
+    DELETE_ALL_PRODUCTS_FROM_CART: function DELETE_ALL_PRODUCTS_FROM_CART(_ref8) {
+      var commit = _ref8.commit;
+      commit("REMOVE_ALL_FROM_CART");
+    },
+    ACTIVE_MODAL_PRODUCT: function ACTIVE_MODAL_PRODUCT(_ref9, product) {
+      var commit = _ref9.commit;
       commit("CHANGE_MODAL_PRODUCT", product);
     },
-    ADD_TOKEN: function ADD_TOKEN(_ref8, token) {
-      var commit = _ref8.commit;
+    ADD_TOKEN: function ADD_TOKEN(_ref10, token) {
+      var commit = _ref10.commit;
       commit("SET_TOKEN", token);
     },
-    REMOVE_TOKEN: function REMOVE_TOKEN(_ref9) {
-      var commit = _ref9.commit;
+    REMOVE_TOKEN: function REMOVE_TOKEN(_ref11) {
+      var commit = _ref11.commit;
       commit("SET_TOKEN", null);
     }
   },
@@ -4755,6 +4829,9 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4_
     },
     TRENDS: function TRENDS(state) {
       return state.trends;
+    },
+    NEW_ARRIVALS: function NEW_ARRIVALS(state) {
+      return state.newArrivals;
     },
     CATEGORIES: function CATEGORIES(state) {
       return state.categories;
@@ -7460,7 +7537,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-modal-checkout {\n  width: 100%;\n  height: 100vh;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: 99;\n  padding: 15px;\n  top: 0;\n  left: 0;\n}\n.v-modal-checkout__block {\n  max-width: 1000px;\n  width: 100%;\n  background-color: #fff;\n  padding: 15px;\n  position: relative;\n}\n.v-modal-checkout__block-name {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(16px + 12 * (100vw - 320px) / 960);\n  padding: 0 0 15px 0;\n}\n.v-modal-checkout__block-close {\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  background-color: #fff;\n  top: 0;\n  right: 0;\n  color: #ccc;\n  font-size: 22px;\n  text-align: center;\n  line-height: 30px;\n  border: 2px solid #ccc;\n  cursor: pointer;\n}\n.v-modal-checkout__block-container {\n  display: flex;\n  justify-content: space-between;\n}\n.v-modal-checkout__block-container-data {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n}\n.v-modal-checkout__block-container-data-title {\n  font-size: calc(12px + 6 * (100vw - 320px) / 960);\n  font-family: \"Roboto Condensed\", sans-serif;\n  padding: 15px 0 0 0;\n}\n.v-modal-checkout__block-container-data-row {\n  display: flex;\n  flex-direction: row;\n  margin: 15px 0 0 0;\n}\n.v-modal-checkout__block-container-data-col {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n  max-width: 50%;\n  position: relative;\n  padding: 0 15px 0 0;\n}\n.v-modal-checkout__block-container-data-col > label {\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: rgb(136, 135, 135);\n  cursor: pointer;\n}\n.v-modal-checkout__block-container-data-col > input {\n  font-family: \"Roboto Condensed\", sans-serif;\n  height: 40px;\n  border: 1px solid rgb(136, 135, 135);\n  padding: 0 10px;\n}\n.v-modal-checkout__block-container-summ {\n  width: 300px;\n  background-color: rgb(136, 135, 135);\n  padding: 15px;\n}\n.v-modal-checkout__block-container-summ-title {\n  font-size: 28px;\n  font-family: \"Roboto Condensed\", sans-serif;\n  margin: 0 0 15px 0;\n}\n.v-modal-checkout__block-container-summ-check {\n  display: flex;\n  justify-content: space-between;\n}\n.v-modal-checkout__block-container-summ-check-span {\n  text-align: left;\n  width: 50%;\n  margin: 0 0 15px 0;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 15px;\n}\n.v-modal-checkout__block-container-summ-check-span--right {\n  text-align: right;\n}\n.v-modal-checkout__block-container-summ-btn {\n  width: 100%;\n  margin: 30px 0 0 0;\n  background-color: #000;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-modal-checkout {\n  width: 100%;\n  height: 100vh;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: 99;\n  padding: 15px;\n  top: 0;\n  left: 0;\n}\n.v-modal-checkout__block {\n  max-width: 1000px;\n  width: 100%;\n  background-color: #fff;\n  padding: 15px;\n  position: relative;\n}\n.v-modal-checkout__block-name {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(16px + 12 * (100vw - 320px) / 960);\n  padding: 0 0 15px 0;\n}\n.v-modal-checkout__block-close {\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  background-color: #fff;\n  top: 0;\n  right: 0;\n  color: #ccc;\n  font-size: 22px;\n  text-align: center;\n  line-height: 30px;\n  border: 2px solid #ccc;\n  cursor: pointer;\n}\n.v-modal-checkout__block-container {\n  display: flex;\n  justify-content: space-between;\n}\n.v-modal-checkout__block-container-data {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n}\n.v-modal-checkout__block-container-data-city {\n  position: absolute;\n  left: 0;\n  width: calc(100% - 15px);\n  top: 60px;\n}\n.v-modal-checkout__block-container-data-city div {\n  font-size: 15px;\n  background: #000;\n  color: white;\n  line-height: 20px;\n  padding-left: 5px;\n  border-bottom: 1px solid white;\n  max-width: 100%;\n  cursor: pointer;\n}\n.v-modal-checkout__block-container-data-city div:hover {\n  background: #fff;\n  color: #000;\n  border-bottom: 1px solid #000;\n}\n.v-modal-checkout__block-container-data-title {\n  font-size: calc(12px + 6 * (100vw - 320px) / 960);\n  font-family: \"Roboto Condensed\", sans-serif;\n  padding: 15px 0 0 0;\n}\n.v-modal-checkout__block-container-data-row {\n  display: flex;\n  flex-direction: row;\n  margin: 15px 0 0 0;\n}\n.v-modal-checkout__block-container-data-col {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n  max-width: 50%;\n  position: relative;\n  padding: 0 15px 0 0;\n}\n.v-modal-checkout__block-container-data-col > label {\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: rgb(136, 135, 135);\n  cursor: pointer;\n}\n.v-modal-checkout__block-container-data-col > input {\n  font-family: \"Roboto Condensed\", sans-serif;\n  height: 40px;\n  border: 1px solid rgb(136, 135, 135);\n  padding: 0 10px;\n}\n.v-modal-checkout__block-container-summ {\n  width: 300px;\n  background-color: rgb(136, 135, 135);\n  padding: 15px;\n}\n.v-modal-checkout__block-container-summ-title {\n  font-size: 28px;\n  font-family: \"Roboto Condensed\", sans-serif;\n  margin: 0 0 15px 0;\n}\n.v-modal-checkout__block-container-summ-check {\n  display: flex;\n  justify-content: space-between;\n}\n.v-modal-checkout__block-container-summ-check-span {\n  text-align: left;\n  width: 50%;\n  margin: 0 0 15px 0;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 15px;\n}\n.v-modal-checkout__block-container-summ-check-span--right {\n  text-align: right;\n}\n.v-modal-checkout__block-container-summ-btn {\n  width: 100%;\n  margin: 30px 0 0 0;\n  background-color: #000;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -7481,7 +7558,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-cart-item {\n  border: 1px solid rgb(136, 135, 135);\n  margin: 15px;\n  display: flex;\n  justify-content: space-between;\n  font-family: \"Roboto Condensed\", sans-serif;\n}\n.v-cart-item__img {\n  padding: 15px;\n  max-width: 150px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-cart-item__img > img {\n  width: 100%;\n  display: block;\n}\n.v-cart-item__info {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  color: #fff;\n  padding: 15px;\n  width: 250px;\n  align-items: center;\n}\n.v-cart-item__info-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-cart-item__info-raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-cart-item__info-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-cart-item__info-title {\n  font-size: 16px;\n  font-weight: 700;\n  width: 100%;\n  text-align: center;\n  margin: 5px 0;\n  line-height: 20px;\n  height: 60px;\n  overflow: hidden;\n}\n.v-cart-item__info-price {\n  font-size: 24px;\n  margin: 5px 0;\n}\n.v-cart-item__counter {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 26px;\n  color: #fff;\n}\n.v-cart-item__counter-number {\n  width: 50px;\n  height: 50px;\n  background-color: #fff;\n  border-radius: 5px;\n  padding: 5px;\n  text-align: center;\n  font-weight: 700;\n}\n.v-cart-item__counter-symbol {\n  width: 50px;\n  height: 50px;\n  cursor: pointer;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-cart-item__total {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 31px;\n  width: 200px;\n  text-align: center;\n  padding: 15px;\n  color: #fff;\n}\n.v-cart-item__delete {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 40px;\n  color: #ccc;\n  padding: 15px;\n}\n.v-cart-item__delete > i:hover {\n  color: rgb(231, 86, 86);\n  cursor: pointer;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-cart-item {\n  border: 1px solid rgb(136, 135, 135);\n  margin: 15px;\n  display: flex;\n  justify-content: space-between;\n  font-family: \"Roboto Condensed\", sans-serif;\n}\n.v-cart-item__img {\n  padding: 15px;\n  max-width: 150px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-cart-item__img > img {\n  width: 100%;\n  display: block;\n}\n.v-cart-item__info {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  color: #fff;\n  padding: 15px;\n  width: 250px;\n  align-items: center;\n}\n.v-cart-item__info-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-cart-item__info-raiting-stars {\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-cart-item__info-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-cart-item__info-title {\n  font-size: 16px;\n  font-weight: 700;\n  width: 100%;\n  text-align: center;\n  margin: 5px 0;\n  line-height: 20px;\n  height: 60px;\n  overflow: hidden;\n}\n.v-cart-item__info-price {\n  font-size: 24px;\n  margin: 5px 0;\n}\n.v-cart-item__counter {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 26px;\n  color: #fff;\n}\n.v-cart-item__counter-number {\n  width: 50px;\n  height: 50px;\n  background-color: #fff;\n  border-radius: 5px;\n  padding: 5px;\n  text-align: center;\n  font-weight: 700;\n}\n.v-cart-item__counter-symbol {\n  width: 50px;\n  height: 50px;\n  cursor: pointer;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-cart-item__total {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 31px;\n  width: 200px;\n  text-align: center;\n  padding: 15px;\n  color: #fff;\n}\n.v-cart-item__delete {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 40px;\n  color: #ccc;\n  padding: 15px;\n}\n.v-cart-item__delete > i:hover {\n  color: rgb(231, 86, 86);\n  cursor: pointer;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -7523,7 +7600,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-catalog-item {\n  padding: 15px;\n  margin: 5px;\n  width: 250px;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  color: #fff;\n  border: 1px solid rgb(136, 135, 135);\n  flex-grow: 1;\n  overflow: hidden;\n  font-family: \"Roboto Condensed\", sans-serif;\n}\n.v-catalog-item-img {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-catalog-item-img > img {\n  width: 100%;\n  display: block;\n}\n.v-catalog-item-title {\n  font-size: 16px;\n  font-weight: 700;\n  width: 100%;\n  text-align: center;\n  margin: 5px 0;\n  line-height: 20px;\n  height: 40px;\n  overflow: hidden;\n  cursor: pointer;\n}\n.v-catalog-item-title:hover {\n  color: #009fff;\n}\n.v-catalog-item-price {\n  font-size: 24px;\n  margin: 5px 0;\n}\n.v-catalog-item-avialable {\n  font-size: 14px;\n  color: #00a046;\n  align-self: flex-end;\n  margin: 0 0 15px 0;\n}\n.v-catalog-item-avialable.no-avialable {\n  color: rgb(231, 86, 86);\n}\n.v-catalog-item-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-catalog-item-raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-catalog-item-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-catalog-item-btn {\n  text-align: center;\n  transition-duration: 0.5s;\n  width: 130px;\n  align-self: flex-end;\n}\n.v-catalog-item-btn:hover {\n  width: 100%;\n}\n.v-catalog-item-btn:disabled {\n  width: 130px;\n  background-color: transparent;\n  border: none;\n  cursor: auto;\n}\n.v-catalog-item.empty {\n  padding-top: 0;\n  padding-bottom: 0;\n  border: none;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-catalog-item {\n  padding: 15px;\n  margin: 5px;\n  width: 250px;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  color: #fff;\n  border: 1px solid rgb(136, 135, 135);\n  flex-grow: 1;\n  overflow: hidden;\n  font-family: \"Roboto Condensed\", sans-serif;\n}\n.v-catalog-item-img {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-catalog-item-img > img {\n  width: 100%;\n  display: block;\n}\n.v-catalog-item-title {\n  font-size: 16px;\n  font-weight: 700;\n  width: 100%;\n  text-align: center;\n  margin: 5px 0;\n  line-height: 20px;\n  height: 40px;\n  overflow: hidden;\n  cursor: pointer;\n}\n.v-catalog-item-title:hover {\n  color: #009fff;\n}\n.v-catalog-item-price {\n  font-size: 24px;\n  margin: 5px 0;\n}\n.v-catalog-item-avialable {\n  font-size: 14px;\n  color: #00a046;\n  align-self: flex-end;\n  margin: 0 0 15px 0;\n}\n.v-catalog-item-avialable.no-avialable {\n  color: rgb(231, 86, 86);\n}\n.v-catalog-item-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-catalog-item-raiting-stars {\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-catalog-item-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-catalog-item-btn {\n  text-align: center;\n  transition-duration: 0.5s;\n  width: 130px;\n  align-self: flex-end;\n}\n.v-catalog-item-btn:hover {\n  width: 100%;\n}\n.v-catalog-item-btn:disabled {\n  width: 130px;\n  background-color: transparent;\n  border: none;\n  cursor: auto;\n}\n.v-catalog-item.empty {\n  padding-top: 0;\n  padding-bottom: 0;\n  border: none;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -7586,7 +7663,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-deals {\n  background-image: url(\"/images/fordeals.jpg\");\n  background-position: center;\n  background-size: cover;\n  display: flex;\n  padding: 50px 0 0;\n}\n.v-deals .end {\n  display: flex;\n  justify-content: flex-end;\n  width: 100%;\n}\n.v-deals__row {\n  width: 1000px;\n  padding: 0 15px;\n  display: flex;\n}\n.v-deals__row-img {\n  max-width: 500px;\n  width: 100%;\n}\n.v-deals__row-img img {\n  margin: 0 auto;\n  display: block;\n}\n.v-deals__row-info {\n  flex-grow: 1;\n  display: flex;\n  flex-direction: column;\n  padding: 15px;\n  justify-content: space-between;\n  width: 100%;\n}\n.v-deals__row-info-name {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 700;\n  font-size: 26px;\n  color: #fff;\n  line-height: 30px;\n}\n.v-deals__row-info-price {\n  display: flex;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 700;\n  color: #ccc;\n}\n.v-deals__row-info-price-first {\n  font-size: calc(24px + 26 * (100vw - 320px) / 960);\n}\n.v-deals__row-info-price-second {\n  font-size: calc(16px + 16 * (100vw - 320px) / 960);\n}\n.v-deals__row-info-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-deals__row-info-raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-deals__row-info-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-deals__row-info-btn {\n  width: 150px;\n  text-align: center;\n}\n.v-deals__row-info-time {\n  display: flex;\n  justify-content: center;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-deals {\n  background-position: center;\n  background-size: cover;\n  display: flex;\n  padding: 50px 0 0;\n}\n.v-deals .end {\n  display: flex;\n  justify-content: flex-end;\n  width: 100%;\n}\n.v-deals__row {\n  width: 1000px;\n  padding: 0 15px;\n  display: flex;\n}\n.v-deals__row-img {\n  max-width: 500px;\n  width: 100%;\n}\n.v-deals__row-img img {\n  margin: 0 auto;\n  display: block;\n}\n.v-deals__row-info {\n  flex-grow: 1;\n  display: flex;\n  flex-direction: column;\n  padding: 15px;\n  justify-content: space-between;\n  width: 100%;\n}\n.v-deals__row-info-name {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 700;\n  font-size: 26px;\n  color: #fff;\n  line-height: 30px;\n}\n.v-deals__row-info-price {\n  display: flex;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 700;\n  color: #ccc;\n}\n.v-deals__row-info-price-first {\n  font-size: calc(24px + 26 * (100vw - 320px) / 960);\n}\n.v-deals__row-info-price-second {\n  font-size: calc(16px + 16 * (100vw - 320px) / 960);\n}\n.v-deals__row-info-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-deals__row-info-raiting-stars {\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-deals__row-info-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-deals__row-info-btn {\n  width: 150px;\n  text-align: center;\n}\n.v-deals__row-info-time {\n  display: flex;\n  justify-content: center;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -7628,7 +7705,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-new-arrivals {\n  padding: 50px 0 0 0;\n}\n.v-new-arrivals__title {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(24px + 76 * (100vw - 320px) / 960);\n  font-weight: bold;\n  color: #002033;\n  text-transform: uppercase;\n  text-align: center;\n  position: relative;\n}\n.v-new-arrivals__title:before {\n  content: \"new arrivals\";\n  position: absolute;\n  font-size: calc(24px + 36 * (100vw - 320px) / 960);\n  color: #009fff;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  transform: translateX(-50%);\n  left: 50%;\n  bottom: 0;\n}\n.v-new-arrivals .item {\n  border: 1px solid rgb(136, 135, 135);\n  padding: 0 15px 15px;\n  overflow: hidden;\n  box-sizing: border-box;\n}\n.v-new-arrivals .item__img {\n  margin: 0 -15px;\n  position: relative;\n}\n.v-new-arrivals .item__img img {\n  width: 100%;\n  display: block;\n}\n.v-new-arrivals .item__img span {\n  width: 100px;\n  height: 50px;\n  position: absolute;\n  background-image: url(\"/images/new.png\");\n  top: 5px;\n  left: 5px;\n}\n.v-new-arrivals .item__name {\n  margin: 15px 0;\n  height: 50px;\n  line-height: 25px;\n  text-align: center;\n  font-size: 20px;\n  color: #fff;\n  overflow: hidden;\n  cursor: pointer;\n}\n.v-new-arrivals .item__name:hover {\n  color: #009fff;\n}\n.v-new-arrivals .item__price {\n  font-size: 24px;\n  color: #fff;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: bold;\n  margin: 0 0 15px 0;\n  text-align: center;\n}\n.v-new-arrivals .item__raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px auto;\n}\n.v-new-arrivals .item__raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-new-arrivals .item__raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-new-arrivals .swiper {\n  padding: 50px 0 25px 0;\n}\n.v-new-arrivals .swiper-button-next,\n.v-new-arrivals .swiper-button-prev {\n  color: #fff;\n  width: 52px;\n  font-size: 40px;\n  position: relative;\n  bottom: -15px;\n  padding: 5px;\n  cursor: pointer;\n}\n.v-new-arrivals .swiper-button-next:hover,\n.v-new-arrivals .swiper-button-prev:hover {\n  color: #009fff;\n}\n.v-new-arrivals .swiper-button-next {\n  left: 50%;\n  bottom: -10px;\n}\n.v-new-arrivals .swiper-button-next:after {\n  display: none;\n}\n.v-new-arrivals .swiper-button-prev {\n  bottom: -32px;\n  left: calc(50% - 50px);\n}\n.v-new-arrivals .swiper-button-prev:after {\n  display: none;\n}\n.v-new-arrivals .swiper-button-disabled {\n  color: rgb(121, 113, 113);\n}\n.v-new-arrivals .swiper-button-disabled:hover {\n  color: rgb(121, 113, 113);\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-new-arrivals {\n  padding: 50px 0 0 0;\n}\n.v-new-arrivals__title {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(24px + 76 * (100vw - 320px) / 960);\n  font-weight: bold;\n  color: #002033;\n  text-transform: uppercase;\n  text-align: center;\n  position: relative;\n}\n.v-new-arrivals__title:before {\n  content: \"new arrivals\";\n  position: absolute;\n  font-size: calc(24px + 36 * (100vw - 320px) / 960);\n  color: #009fff;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  transform: translateX(-50%);\n  left: 50%;\n  bottom: 0;\n}\n.v-new-arrivals .item {\n  border: 1px solid rgb(136, 135, 135);\n  padding: 0 15px 15px;\n  overflow: hidden;\n  box-sizing: border-box;\n}\n.v-new-arrivals .item__img {\n  margin: 0 -15px;\n  position: relative;\n}\n.v-new-arrivals .item__img img {\n  width: 100%;\n  display: block;\n}\n.v-new-arrivals .item__img span {\n  width: 100px;\n  height: 50px;\n  position: absolute;\n  top: 5px;\n  left: 5px;\n}\n.v-new-arrivals .item__name {\n  margin: 15px 0;\n  height: 50px;\n  line-height: 25px;\n  text-align: center;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 20px;\n  color: #fff;\n  overflow: hidden;\n  cursor: pointer;\n}\n.v-new-arrivals .item__name:hover {\n  color: #009fff;\n}\n.v-new-arrivals .item__price {\n  font-size: 24px;\n  color: #fff;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: bold;\n  margin: 0 0 15px 0;\n  text-align: center;\n}\n.v-new-arrivals .item__raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px auto;\n}\n.v-new-arrivals .item__raiting-stars {\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-new-arrivals .item__raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-new-arrivals .swiper {\n  padding: 50px 0 25px 0;\n}\n.v-new-arrivals .swiper-button-next,\n.v-new-arrivals .swiper-button-prev {\n  color: #fff;\n  width: 52px;\n  font-size: 40px;\n  position: relative;\n  bottom: -15px;\n  padding: 5px;\n  cursor: pointer;\n}\n.v-new-arrivals .swiper-button-next:hover,\n.v-new-arrivals .swiper-button-prev:hover {\n  color: #009fff;\n}\n.v-new-arrivals .swiper-button-next {\n  left: 50%;\n  bottom: -10px;\n}\n.v-new-arrivals .swiper-button-next:after {\n  display: none;\n}\n.v-new-arrivals .swiper-button-prev {\n  bottom: -32px;\n  left: calc(50% - 50px);\n}\n.v-new-arrivals .swiper-button-prev:after {\n  display: none;\n}\n.v-new-arrivals .swiper-button-disabled {\n  color: rgb(121, 113, 113);\n}\n.v-new-arrivals .swiper-button-disabled:hover {\n  color: rgb(121, 113, 113);\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -7649,7 +7726,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-tranding__title {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(24px + 76 * (100vw - 320px) / 960);\n  font-weight: bold;\n  color: #002033;\n  text-transform: uppercase;\n  margin: -100px 0 0 0;\n  text-align: center;\n  position: relative;\n}\n.v-tranding__title:before {\n  content: \"trending\";\n  position: absolute;\n  font-size: calc(24px + 36 * (100vw - 320px) / 960);\n  color: #009fff;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  transform: translateX(-50%);\n  left: 50%;\n  bottom: 0;\n}\n.v-tranding .block-container {\n  display: flex;\n  justify-content: center;\n  padding: 50px 15px 0 15px;\n  min-height: 440px;\n}\n.v-tranding__item {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 15px;\n  max-width: 250px;\n  transition-duration: 0.5s;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 5px;\n}\n.v-tranding__item-img {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-tranding__item-img > img {\n  display: block;\n  width: 100%;\n}\n.v-tranding__item-name {\n  font-size: 16px;\n  font-weight: bold;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: rgb(136, 135, 135);\n  letter-spacing: 1px;\n  line-height: 25px;\n  overflow: hidden;\n  height: 50px;\n  text-align: center;\n  cursor: pointer;\n}\n.v-tranding__item-name:hover {\n  color: #009fff;\n}\n.v-tranding__item-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-tranding__item-raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-tranding__item-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-tranding__item-price {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 24px;\n  font-weight: 700;\n  color: #fff;\n  margin: 0 0 30px 0;\n}\n.v-tranding__item-buy {\n  width: 100%;\n  opacity: 0;\n}\n.v-tranding__item:hover {\n  border: 1px solid rgb(136, 135, 135);\n  -webkit-transform: scale(1.05);\n}\n.v-tranding__item:hover .btn {\n  opacity: 1;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-tranding__title {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: calc(24px + 76 * (100vw - 320px) / 960);\n  font-weight: bold;\n  color: #002033;\n  text-transform: uppercase;\n  margin: -100px 0 0 0;\n  text-align: center;\n  position: relative;\n}\n.v-tranding__title:before {\n  content: \"trending\";\n  position: absolute;\n  font-size: calc(24px + 36 * (100vw - 320px) / 960);\n  color: #009fff;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  transform: translateX(-50%);\n  left: 50%;\n  bottom: 0;\n}\n.v-tranding .block-container {\n  display: flex;\n  justify-content: center;\n  padding: 50px 15px 0 15px;\n  min-height: 440px;\n}\n.v-tranding__item {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 15px;\n  max-width: 250px;\n  transition-duration: 0.5s;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 5px;\n}\n.v-tranding__item-img {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-tranding__item-img > img {\n  display: block;\n  width: 100%;\n}\n.v-tranding__item-name {\n  font-size: 16px;\n  font-weight: bold;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: rgb(136, 135, 135);\n  letter-spacing: 1px;\n  line-height: 25px;\n  overflow: hidden;\n  height: 50px;\n  text-align: center;\n  cursor: pointer;\n}\n.v-tranding__item-name:hover {\n  color: #009fff;\n}\n.v-tranding__item-raiting {\n  width: 109px;\n  display: flex;\n  margin: 10px 0;\n}\n.v-tranding__item-raiting-stars {\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-tranding__item-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-tranding__item-price {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 24px;\n  font-weight: 700;\n  color: #fff;\n  margin: 0 0 30px 0;\n}\n.v-tranding__item-buy {\n  width: 100%;\n  opacity: 0;\n}\n.v-tranding__item:hover {\n  border: 1px solid rgb(136, 135, 135);\n  -webkit-transform: scale(1.05);\n}\n.v-tranding__item:hover .btn {\n  opacity: 1;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -7712,7 +7789,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-modal-about {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding: 15px;\n  z-index: 99;\n}\n.v-modal-about__block {\n  max-width: 1000px;\n  width: 100%;\n  background-color: rgb(56, 53, 53);\n  position: relative;\n  display: flex;\n  border-radius: 10px;\n  color: #fff;\n}\n.v-modal-about__block-left {\n  width: 30%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 15px;\n}\n.v-modal-about__block-left-img {\n  width: 100%;\n  border-radius: 5px;\n  overflow: hidden;\n}\n.v-modal-about__block-left-img > img {\n  width: 100%;\n  display: block;\n}\n.v-modal-about__block-left-info {\n  width: 100%;\n}\n.v-modal-about__block-left-info-raiting {\n  width: 109px;\n  display: flex;\n  margin: 15px 0;\n}\n.v-modal-about__block-left-info-raiting-stars {\n  background-image: url(\"/images/rating-bg.png\");\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-modal-about__block-left-info-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-modal-about__block-left-info-price {\n  font-size: calc(20px + 12 * (100vw - 320px) / 960);\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 700;\n  margin: 0 0 30px 0;\n  color: #ccc;\n}\n.v-modal-about__block-left-info-avialable {\n  font-size: 16px;\n  color: #00a046;\n  margin: 0 0 15px 0;\n}\n.v-modal-about__block-left-info-avialable.no-avialable {\n  color: rgb(231, 86, 86);\n}\n.v-modal-about__block-left-info-btn {\n  width: 100%;\n}\n.v-modal-about__block-left-info-btn:disabled:hover {\n  background-color: #ccc;\n  cursor: auto;\n}\n.v-modal-about__block-right {\n  width: 70%;\n  padding: 15px;\n  font-family: \"Roboto Condensed\", sans-serif;\n}\n.v-modal-about__block-right-name {\n  font-size: calc(16px + 8 * (100vw - 320px) / 960);\n  line-height: 24px;\n  overflow: hidden;\n  margin: 15px 0;\n}\n.v-modal-about__block-right-specif {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n  margin: 15px 0;\n}\n.v-modal-about__block-right-specif > span {\n  font-size: 16px;\n  line-height: 16px;\n  font-weight: 300;\n  margin: 0 2px 0;\n}\n.v-modal-about__block-right-specif > .specif {\n  width: 16px;\n  height: 16px;\n  border: 1px solid rgb(136, 135, 135);\n  border-radius: 5px;\n}\n.v-modal-about__block-right-specif > .equipment {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n}\n.v-modal-about__block-right-specif > .equipment .equipment-item {\n  line-height: 16px;\n  text-align: right;\n}\n.v-modal-about__block-right-block-caption {\n  font-size: 20px;\n  text-transform: uppercase;\n  font-weight: 700;\n  margin: 5px 0;\n}\n.v-modal-about__block-right-block-description {\n  font-size: 16px;\n}\n.v-modal-about__block-close {\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  background-color: #fff;\n  top: 0;\n  right: 0;\n  color: #ccc;\n  font-size: 22px;\n  text-align: center;\n  line-height: 30px;\n  border: 2px solid #ccc;\n  cursor: pointer;\n}\n.dotted {\n  flex-grow: 1;\n  position: relative;\n}\n.dotted:before {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  border-bottom: 1px dotted rgb(136, 135, 135);\n  top: 14px;\n}\n.modalProduct-enter-active,\n.modalProduct-leave-active {\n  transition: all 0.5s;\n}\n.modalProduct-enter,\n.modalProduct-leave-to {\n  transform: translateY(100px);\n  opacity: 0;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-modal-about {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding: 15px;\n  z-index: 99;\n}\n.v-modal-about__block {\n  max-width: 1000px;\n  width: 100%;\n  background-color: rgb(56, 53, 53);\n  position: relative;\n  display: flex;\n  border-radius: 10px;\n  color: #fff;\n}\n.v-modal-about__block-left {\n  width: 30%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 15px;\n}\n.v-modal-about__block-left-img {\n  width: 100%;\n  border-radius: 5px;\n  overflow: hidden;\n}\n.v-modal-about__block-left-img > img {\n  width: 100%;\n  display: block;\n}\n.v-modal-about__block-left-info {\n  width: 100%;\n}\n.v-modal-about__block-left-info-raiting {\n  width: 109px;\n  display: flex;\n  margin: 15px 0;\n}\n.v-modal-about__block-left-info-raiting-stars {\n  background-position: left bottom;\n  width: 109px;\n  display: block;\n}\n.v-modal-about__block-left-info-raiting-stars-bg {\n  background-image: inherit;\n  height: 16px;\n  display: block;\n  background-position: left top;\n}\n.v-modal-about__block-left-info-price {\n  font-size: calc(20px + 12 * (100vw - 320px) / 960);\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 700;\n  margin: 0 0 30px 0;\n  color: #ccc;\n}\n.v-modal-about__block-left-info-avialable {\n  font-size: 16px;\n  color: #00a046;\n  margin: 0 0 15px 0;\n}\n.v-modal-about__block-left-info-avialable.no-avialable {\n  color: rgb(231, 86, 86);\n}\n.v-modal-about__block-left-info-btn {\n  width: 100%;\n}\n.v-modal-about__block-left-info-btn:disabled:hover {\n  background-color: #ccc;\n  cursor: auto;\n}\n.v-modal-about__block-right {\n  width: 70%;\n  padding: 15px;\n  font-family: \"Roboto Condensed\", sans-serif;\n}\n.v-modal-about__block-right-name {\n  font-size: calc(16px + 8 * (100vw - 320px) / 960);\n  line-height: 24px;\n  overflow: hidden;\n  margin: 15px 0;\n}\n.v-modal-about__block-right-specif {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n  margin: 15px 0;\n}\n.v-modal-about__block-right-specif > span {\n  font-size: 16px;\n  line-height: 16px;\n  font-weight: 300;\n  margin: 0 2px 0;\n}\n.v-modal-about__block-right-specif > .specif {\n  width: 16px;\n  height: 16px;\n  border: 1px solid rgb(136, 135, 135);\n  border-radius: 5px;\n}\n.v-modal-about__block-right-specif > .equipment {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n}\n.v-modal-about__block-right-specif > .equipment .equipment-item {\n  line-height: 16px;\n  text-align: right;\n}\n.v-modal-about__block-right-block-caption {\n  font-size: 20px;\n  text-transform: uppercase;\n  font-weight: 700;\n  margin: 5px 0;\n}\n.v-modal-about__block-right-block-description {\n  font-size: 16px;\n}\n.v-modal-about__block-close {\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  background-color: #fff;\n  top: 0;\n  right: 0;\n  color: #ccc;\n  font-size: 22px;\n  text-align: center;\n  line-height: 30px;\n  border: 2px solid #ccc;\n  cursor: pointer;\n}\n.dotted {\n  flex-grow: 1;\n  position: relative;\n}\n.dotted:before {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  border-bottom: 1px dotted rgb(136, 135, 135);\n  top: 14px;\n}\n.modalProduct-enter-active,\n.modalProduct-leave-active {\n  transition: all 0.5s;\n}\n.modalProduct-enter,\n.modalProduct-leave-to {\n  transform: translateY(100px);\n  opacity: 0;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -7733,7 +7810,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-modal-age {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 9999;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-modal-age__block {\n  max-width: 800px;\n  width: 100%;\n  padding: 50px 15px 15px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-image: url(\"/images/bg-age.jpg\");\n  background-position: center;\n  background-size: cover;\n  border-radius: 15px;\n}\n.v-modal-age__block-title {\n  font-size: calc(16px + 10 * (100vw - 320px) / 960);\n  line-height: 40px;\n  min-height: 80px;\n  text-align: center;\n  text-transform: uppercase;\n  color: #fff;\n  font-family: \"Roboto Condensed\", sans-serif;\n}\n.v-modal-age__block-btns {\n  display: flex;\n  margin: 0 0 50px 0;\n}\n.v-modal-age__block-btns-btn {\n  border: 1px solid rgb(136, 135, 135);\n  padding: 15px 0;\n  width: 100px;\n  color: #fff;\n  text-shadow: 0 0 5px black;\n  font-size: 24px;\n  text-transform: uppercase;\n  text-align: center;\n  font-family: \"Roboto Condensed\", sans-serif;\n  cursor: pointer;\n  margin: 30px 15px;\n  border-radius: 5px;\n}\n.v-modal-age__block-btns-btn:hover {\n  background-color: #009fff;\n}\n.v-modal-age__block-attantion {\n  text-align: center;\n  color: #ccc;\n}\n.ageOff-enter-active {\n  transition: all 0.3s ease;\n}\n.ageOff-leave-active {\n  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.ageOff-enter,\n.ageOff-leave-to {\n  transform: translateY(-100%);\n  opacity: 0;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-modal-age {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 9999;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-modal-age__block {\n  max-width: 800px;\n  width: 100%;\n  padding: 50px 15px 15px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-position: center;\n  background-size: cover;\n  border-radius: 15px;\n}\n.v-modal-age__block-title {\n  font-size: calc(16px + 10 * (100vw - 320px) / 960);\n  line-height: 40px;\n  min-height: 80px;\n  text-align: center;\n  text-transform: uppercase;\n  color: #fff;\n  font-family: \"Roboto Condensed\", sans-serif;\n}\n.v-modal-age__block-btns {\n  display: flex;\n  margin: 0 0 50px 0;\n}\n.v-modal-age__block-btns-btn {\n  border: 1px solid rgb(136, 135, 135);\n  padding: 15px 0;\n  width: 100px;\n  color: #fff;\n  text-shadow: 0 0 5px black;\n  font-size: 24px;\n  text-transform: uppercase;\n  text-align: center;\n  font-family: \"Roboto Condensed\", sans-serif;\n  cursor: pointer;\n  margin: 30px 15px;\n  border-radius: 5px;\n}\n.v-modal-age__block-btns-btn:hover {\n  background-color: #009fff;\n}\n.v-modal-age__block-attantion {\n  text-align: center;\n  color: #ccc;\n}\n.ageOff-enter-active {\n  transition: all 0.3s ease;\n}\n.ageOff-leave-active {\n  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.ageOff-enter,\n.ageOff-leave-to {\n  transform: translateY(-100%);\n  opacity: 0;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -7754,7 +7831,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-modal-call__bg {\n  width: 100%;\n  height: 100%;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 8;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-modal-call__bg-block {\n  padding: 30px 15px;\n  background-image: url(\"/images/man-smoke.jpg\");\n  max-width: 700px;\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  position: relative;\n  transition-duration: 1s;\n  z-index: 9;\n}\n.v-modal-call__bg-block-close {\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  background-color: #fff;\n  top: 0;\n  right: 0;\n  color: #ccc;\n  font-size: 22px;\n  text-align: center;\n  line-height: 30px;\n  border: 2px solid #ccc;\n  cursor: pointer;\n}\n.v-modal-call__bg-block-title {\n  text-transform: uppercase;\n  font-size: 22px;\n  color: #fff;\n  font-family: \"Roboto Condensed\", sans-serif;\n}\n.v-modal-call__bg-block > label {\n  font-size: 16px;\n  margin: 15px 0;\n  color: #ccc;\n  cursor: pointer;\n}\n.v-modal-call__bg-block > input {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 20px;\n  width: 50%;\n  background-color: #ccc;\n  padding: 10px 15px;\n  border-radius: 5px;\n  border: 1px solid transparent;\n}\n.v-modal-call__bg-block > input:focus {\n  border: 1px solid #009fff;\n}\n.v-modal-call__bg-block .v-modal-call__bg-btn {\n  width: 50%;\n  margin: 15px 0;\n  color: #fff;\n}\n.modalcall-enter-active,\n.modalcall-leave-active {\n  transition: ease 0.5s;\n}\n.modalcall-enter,\n.modalcall-leave-to {\n  opacity: 0;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-modal-call__bg {\n  width: 100%;\n  height: 100%;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 8;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.v-modal-call__bg-block {\n  padding: 30px 15px;\n  max-width: 700px;\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  position: relative;\n  z-index: 9;\n}\n.v-modal-call__bg-block-close {\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  background-color: #fff;\n  top: 0;\n  right: 0;\n  color: #ccc;\n  font-size: 22px;\n  text-align: center;\n  line-height: 30px;\n  border: 2px solid #ccc;\n  cursor: pointer;\n}\n.v-modal-call__bg-block-title {\n  text-transform: uppercase;\n  font-size: 22px;\n  color: #fff;\n  font-family: \"Roboto Condensed\", sans-serif;\n}\n.v-modal-call__bg-block > label {\n  font-size: 16px;\n  margin: 15px 0;\n  color: #ccc;\n  cursor: pointer;\n}\n.v-modal-call__bg-block > input {\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-size: 20px;\n  width: 50%;\n  background-color: #ccc;\n  padding: 10px 15px;\n  border-radius: 5px;\n  border: 1px solid transparent;\n}\n.v-modal-call__bg-block > input:focus {\n  border: 1px solid #009fff;\n}\n.v-modal-call__bg-block .v-modal-call__bg-btn {\n  width: 50%;\n  margin: 15px 0;\n  color: #fff;\n}\n.modalcall-enter-active,\n.modalcall-leave-active {\n  transition: ease 0.5s;\n}\n.modalcall-enter,\n.modalcall-leave-to {\n  opacity: 0;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -7796,7 +7873,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".v-footer {\n  padding: 50px 0;\n  display: flex;\n  flex-direction: column;\n  background-image: url(\"/images/footer.jpg\");\n  background-position: center;\n  background-size: cover;\n}\n.v-footer .footer {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n}\n.v-footer__catalog {\n  display: flex;\n  flex-direction: column;\n  font-size: 20px;\n  font-weight: 500;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: #ccc;\n  text-transform: uppercase;\n  align-items: center;\n}\n.v-footer__catalog-item {\n  margin: 5px 0;\n  cursor: pointer;\n  position: relative;\n  padding-bottom: 5px;\n  color: #ccc;\n}\n.v-footer__catalog-item:before {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  background-color: #ccc;\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  transition-duration: 0.5s;\n}\n.v-footer__catalog-item:hover:before {\n  width: 100%;\n}\n.v-footer__catalog-item:first-child {\n  font-weight: 700;\n  font-size: 24px;\n}\n.v-footer__form {\n  padding: 0 15px;\n  display: flex;\n  flex-direction: column;\n}\n.v-footer__form-title {\n  text-align: center;\n  font-size: 24px;\n  font-weight: 700;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: #ccc;\n  text-transform: uppercase;\n  margin: 5px 0;\n}\n.v-footer__form > label {\n  font-size: 16px;\n  margin: 15px 0;\n  color: #ccc;\n  cursor: pointer;\n}\n.v-footer__form > input, .v-footer__form > textarea {\n  width: 100%;\n  background-color: #fff;\n  padding: 5px 15px;\n  border-radius: 5px;\n  border: 1px solid transparent;\n}\n.v-footer__form > input:focus, .v-footer__form > textarea:focus {\n  border: 1px solid #009fff;\n}\n.v-footer__form .btn {\n  color: #ccc;\n  margin: 15px;\n}\n.v-footer-copy {\n  margin: 0 auto;\n  font-size: 16px;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 300;\n  color: #ccc;\n  padding: 5px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".v-footer {\n  padding: 50px 0;\n  display: flex;\n  flex-direction: column;\n  background-position: center;\n  background-size: cover;\n}\n.v-footer .footer {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n}\n.v-footer__catalog {\n  display: flex;\n  flex-direction: column;\n  font-size: 20px;\n  font-weight: 500;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: #ccc;\n  text-transform: uppercase;\n  align-items: center;\n}\n.v-footer__catalog-item {\n  margin: 5px 0;\n  cursor: pointer;\n  position: relative;\n  padding-bottom: 5px;\n  color: #ccc;\n}\n.v-footer__catalog-item:before {\n  content: \"\";\n  width: 0;\n  height: 2px;\n  background-color: #ccc;\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  transition-duration: 0.5s;\n}\n.v-footer__catalog-item:hover:before {\n  width: 100%;\n}\n.v-footer__catalog-item:first-child {\n  font-weight: 700;\n  font-size: 24px;\n}\n.v-footer__form {\n  padding: 0 15px;\n  display: flex;\n  flex-direction: column;\n}\n.v-footer__form-title {\n  text-align: center;\n  font-size: 24px;\n  font-weight: 700;\n  font-family: \"Roboto Condensed\", sans-serif;\n  color: #ccc;\n  text-transform: uppercase;\n  margin: 5px 0;\n}\n.v-footer__form > label {\n  font-size: 16px;\n  margin: 15px 0;\n  color: #ccc;\n  cursor: pointer;\n}\n.v-footer__form > input, .v-footer__form > textarea {\n  width: 100%;\n  background-color: #fff;\n  padding: 5px 15px;\n  border-radius: 5px;\n  border: 1px solid transparent;\n}\n.v-footer__form > input:focus, .v-footer__form > textarea:focus {\n  border: 1px solid #009fff;\n}\n.v-footer__form .btn {\n  color: #ccc;\n  margin: 15px;\n}\n.v-footer-copy {\n  margin: 0 auto;\n  font-size: 16px;\n  font-family: \"Roboto Condensed\", sans-serif;\n  font-weight: 300;\n  color: #ccc;\n  padding: 5px;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -38640,7 +38717,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _vm.isCheckout
     ? _c("div", { staticClass: "v-modal-checkout" }, [
-        _c("div", { staticClass: "v-modal-checkout__block" }, [
+        _c("form", { staticClass: "v-modal-checkout__block" }, [
           _c("div", { staticClass: "v-modal-checkout__block-name" }, [
             _vm._v("Оформление заказа"),
           ]),
@@ -38667,13 +38744,129 @@ var render = function () {
                   [_vm._v("Ваши контактные данные")]
                 ),
                 _vm._v(" "),
-                _vm._m(0),
+                _c(
+                  "div",
+                  { staticClass: "v-modal-checkout__block-container-data-row" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "v-modal-checkout__block-container-data-col",
+                      },
+                      [
+                        _c("label", { attrs: { for: "nameClient" } }, [
+                          _vm._v("Имя"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.first_name,
+                              expression: "first_name",
+                            },
+                          ],
+                          attrs: {
+                            type: "text",
+                            required: "",
+                            id: "nameClient",
+                          },
+                          domProps: { value: _vm.first_name },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.first_name = $event.target.value
+                            },
+                          },
+                        }),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "v-modal-checkout__block-container-data-col",
+                      },
+                      [
+                        _c("label", { attrs: { for: "surnameClient" } }, [
+                          _vm._v("Фамилия"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.last_name,
+                              expression: "last_name",
+                            },
+                          ],
+                          attrs: {
+                            type: "text",
+                            required: "",
+                            id: "surnameClient",
+                          },
+                          domProps: { value: _vm.last_name },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.last_name = $event.target.value
+                            },
+                          },
+                        }),
+                      ]
+                    ),
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "v-modal-checkout__block-container-data-row" },
                   [
-                    _vm._m(1),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "v-modal-checkout__block-container-data-col",
+                      },
+                      [
+                        _c("label", { attrs: { for: "phoneClient" } }, [
+                          _vm._v("Мобильный телефон"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.phone_number,
+                              expression: "phone_number",
+                            },
+                          ],
+                          attrs: {
+                            type: "text",
+                            required: "",
+                            id: "phoneClient",
+                          },
+                          domProps: { value: _vm.phone_number },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.phone_number = $event.target.value
+                            },
+                          },
+                        }),
+                      ]
+                    ),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -38695,7 +38888,12 @@ var render = function () {
                               expression: "city",
                             },
                           ],
-                          attrs: { type: "text", id: "cityClient" },
+                          attrs: {
+                            type: "text",
+                            required: "",
+                            pattern: "[а-яА-ЯёЁ\\s-]",
+                            id: "cityClient",
+                          },
                           domProps: { value: _vm.city },
                           on: {
                             input: [
@@ -38710,28 +38908,35 @@ var render = function () {
                           },
                         }),
                         _vm._v(" "),
-                        _vm._l(_vm.cityList, function (item, i) {
-                          return _c(
-                            "div",
-                            {
-                              key: i,
-                              staticClass:
-                                "v-modal-checkout__block-container-data-city",
-                            },
-                            [
-                              _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "v-modal-checkout__block-container-data-city-span",
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "v-modal-checkout__block-container-data-city",
+                          },
+                          _vm._l(_vm.cityList, function (item, i) {
+                            return _c(
+                              "div",
+                              {
+                                key: i,
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.cityInNP(item)
+                                  },
                                 },
-                                [_vm._v(_vm._s(item))]
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(item) +
+                                    "\n                            "
+                                ),
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                      ]
                     ),
                   ]
                 ),
@@ -38789,7 +38994,41 @@ var render = function () {
                         staticClass:
                           "v-modal-checkout__block-container-data-row",
                       },
-                      [_vm._m(2)]
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "v-modal-checkout__block-container-data-col",
+                          },
+                          [
+                            _c("label", { attrs: { for: "addressClient" } }, [
+                              _vm._v("Введите ваш адресс"),
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.address,
+                                  expression: "address",
+                                },
+                              ],
+                              attrs: { type: "text", id: "addressClient" },
+                              domProps: { value: _vm.address },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.address = $event.target.value
+                                },
+                              },
+                            }),
+                          ]
+                        ),
+                      ]
                     )
                   : _c(
                       "div",
@@ -38808,10 +39047,10 @@ var render = function () {
                       [
                         _c("v-select", {
                           attrs: {
-                            options: _vm.depatmentList,
-                            selected: _vm.selectedDepatment,
+                            options: _vm.departmentList,
+                            selected: _vm.selectedDepartment,
                           },
-                          on: { select: _vm.depatment },
+                          on: { select: _vm.department },
                         }),
                       ],
                       1
@@ -38819,7 +39058,93 @@ var render = function () {
               ]
             ),
             _vm._v(" "),
-            _vm._m(3),
+            _c(
+              "div",
+              { staticClass: "v-modal-checkout__block-container-summ" },
+              [
+                _c(
+                  "p",
+                  {
+                    staticClass: "v-modal-checkout__block-container-summ-title",
+                  },
+                  [_vm._v("Итого")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "v-modal-checkout__block-container-summ-check",
+                  },
+                  [
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "v-modal-checkout__block-container-summ-check-span",
+                      },
+                      [_vm._v(_vm._s(_vm.totalCount) + " товар на сумму")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "v-modal-checkout__block-container-summ-check-span v-modal-checkout__block-container-summ-check-span--right",
+                      },
+                      [_vm._v(_vm._s(_vm.totalPrice) + "грн")]
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "v-modal-checkout__block-container-summ-check",
+                  },
+                  [
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "v-modal-checkout__block-container-summ-check-span",
+                      },
+                      [_vm._v("К оплате")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "v-modal-checkout__block-container-summ-check-span v-modal-checkout__block-container-summ-check-span--right",
+                      },
+                      [_vm._v(_vm._s(_vm.totalPrice) + "грн")]
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn v-modal-checkout__block-container-summ-btn",
+                    attrs: { type: "submit" },
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        return _vm.order.apply(null, arguments)
+                      },
+                    },
+                  },
+                  [
+                    _vm._v(
+                      "Заказ\n                    подтверждаю\n                "
+                    ),
+                  ]
+                ),
+              ]
+            ),
           ]),
         ]),
       ])
@@ -38832,154 +39157,21 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "v-modal-checkout__block-container-data-row" },
+      { staticClass: "v-modal-checkout__block-container-summ-check" },
       [
         _c(
-          "div",
-          { staticClass: "v-modal-checkout__block-container-data-col" },
-          [
-            _c("label", { attrs: { for: "nameClient" } }, [_vm._v("Имя")]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text", id: "nameClient" } }),
-          ]
+          "span",
+          { staticClass: "v-modal-checkout__block-container-summ-check-span" },
+          [_vm._v("Стоимость доставки")]
         ),
         _vm._v(" "),
         _c(
-          "div",
-          { staticClass: "v-modal-checkout__block-container-data-col" },
-          [
-            _c("label", { attrs: { for: "surnameClient" } }, [
-              _vm._v("Фамилия"),
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text", id: "surnameClient" } }),
-          ]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "v-modal-checkout__block-container-data-col" },
-      [
-        _c("label", { attrs: { for: "phoneClient" } }, [
-          _vm._v("Мобильный телефон"),
-        ]),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text", id: "phoneClient" } }),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "v-modal-checkout__block-container-data-col" },
-      [
-        _c("label", { attrs: { for: "addressClient" } }, [
-          _vm._v("Введите ваш адресс"),
-        ]),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text", id: "addressClient" } }),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "v-modal-checkout__block-container-summ" },
-      [
-        _c(
-          "p",
-          { staticClass: "v-modal-checkout__block-container-summ-title" },
-          [_vm._v("Итого")]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "v-modal-checkout__block-container-summ-check" },
-          [
-            _c(
-              "span",
-              {
-                staticClass:
-                  "v-modal-checkout__block-container-summ-check-span",
-              },
-              [_vm._v("1 товар на сумму")]
-            ),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                staticClass:
-                  "v-modal-checkout__block-container-summ-check-span v-modal-checkout__block-container-summ-check-span--right",
-              },
-              [_vm._v("500грн")]
-            ),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "v-modal-checkout__block-container-summ-check" },
-          [
-            _c(
-              "span",
-              {
-                staticClass:
-                  "v-modal-checkout__block-container-summ-check-span",
-              },
-              [_vm._v("Стоимость доставки")]
-            ),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                staticClass:
-                  "v-modal-checkout__block-container-summ-check-span v-modal-checkout__block-container-summ-check-span--right",
-              },
-              [_vm._v("По тарифам перевозчика")]
-            ),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "v-modal-checkout__block-container-summ-check" },
-          [
-            _c(
-              "span",
-              {
-                staticClass:
-                  "v-modal-checkout__block-container-summ-check-span",
-              },
-              [_vm._v("К оплате")]
-            ),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                staticClass:
-                  "v-modal-checkout__block-container-summ-check-span v-modal-checkout__block-container-summ-check-span--right",
-              },
-              [_vm._v("500грн")]
-            ),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn v-modal-checkout__block-container-summ-btn" },
-          [_vm._v("Заказ подтверждаю")]
+          "span",
+          {
+            staticClass:
+              "v-modal-checkout__block-container-summ-check-span v-modal-checkout__block-container-summ-check-span--right",
+          },
+          [_vm._v("По тарифам перевозчика")]
         ),
       ]
     )
@@ -39009,7 +39201,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "v-cart-item" }, [
     _c("div", { staticClass: "v-cart-item__img" }, [
-      _c("img", { attrs: { src: "/images/" + _vm.cart_data.image, alt: "" } }),
+      _c("img", { attrs: { src: "/storage/" + _vm.cart_data.image, alt: "" } }),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "v-cart-item__info" }, [
@@ -39022,12 +39214,22 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "v-cart-item__info-raiting" }, [
-        _c("span", { staticClass: "v-cart-item__info-raiting-stars" }, [
-          _c("span", {
-            staticClass: "v-cart-item__info-raiting-stars-bg",
-            style: { width: _vm.cart_data.raiting * 20 + "%" },
-          }),
-        ]),
+        _c(
+          "span",
+          {
+            staticClass: "v-cart-item__info-raiting-stars",
+            style: {
+              "background-image":
+                "url(" + "storage/images/icons/rating-bg.png" + ")",
+            },
+          },
+          [
+            _c("span", {
+              staticClass: "v-cart-item__info-raiting-stars-bg",
+              style: { width: _vm.cart_data.raiting * 20 + "%" },
+            }),
+          ]
+        ),
       ]),
     ]),
     _vm._v(" "),
@@ -39222,7 +39424,7 @@ var render = function () {
   return _c("div", { staticClass: "v-catalog-item" }, [
     _c("div", { staticClass: "v-catalog-item-img" }, [
       _c("img", {
-        attrs: { src: "/images/" + _vm.product_data.image, alt: "" },
+        attrs: { src: "/storage/" + _vm.product_data.image, alt: "" },
       }),
     ]),
     _vm._v(" "),
@@ -39233,12 +39435,22 @@ var render = function () {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "v-catalog-item-raiting" }, [
-      _c("span", { staticClass: "v-catalog-item-raiting-stars" }, [
-        _c("span", {
-          staticClass: "v-catalog-item-raiting-stars-bg",
-          style: { width: _vm.product_data.raiting * 20 + "%" },
-        }),
-      ]),
+      _c(
+        "span",
+        {
+          staticClass: "v-catalog-item-raiting-stars",
+          style: {
+            "background-image":
+              "url(" + "storage/images/icons/rating-bg.png" + ")",
+          },
+        },
+        [
+          _c("span", {
+            staticClass: "v-catalog-item-raiting-stars-bg",
+            style: { width: _vm.product_data.raiting * 20 + "%" },
+          }),
+        ]
+      ),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "v-catalog-item-price" }, [
@@ -39411,41 +39623,19 @@ var render = function () {
       attrs: { options: _vm.swiperOption, height: _vm.height },
     },
     [
-      _c("swiper-slide", [
-        _c("img", {
-          staticClass: "swiper-slide__image",
-          attrs: { src: "/images/slide_1.jpg", alt: "" },
-        }),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "info",
-          domProps: { innerHTML: _vm._s("<p>" + _vm.title + "</p>") },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("swiper-slide", [
-        _c("img", {
-          staticClass: "swiper-slide__image",
-          attrs: { src: "/images/slide_2.jpg", alt: "" },
-        }),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "info",
-          domProps: { innerHTML: _vm._s("<p>" + _vm.title + "</p>") },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("swiper-slide", [
-        _c("img", {
-          staticClass: "swiper-slide__image",
-          attrs: { src: "/images/slide_3.jpg", alt: "" },
-        }),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "info",
-          domProps: { innerHTML: _vm._s("<p>" + _vm.title + "</p>") },
-        }),
-      ]),
+      _vm._l(_vm.sliderMain, function (slide, i) {
+        return _c("swiper-slide", { key: i }, [
+          _c("img", {
+            staticClass: "swiper-slide__image",
+            attrs: { src: /storage/ + slide.path, alt: "" },
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "info",
+            domProps: { innerHTML: _vm._s("<p>" + slide.title + "</p>") },
+          }),
+        ])
+      }),
       _vm._v(" "),
       _c("div", {
         staticClass: "swiper-pagination",
@@ -39453,7 +39643,7 @@ var render = function () {
         slot: "pagination",
       }),
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -39479,64 +39669,83 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "v-deals" }, [
-    _c("div", { staticClass: "mainer end" }, [
-      _c("div", { staticClass: "v-deals__row" }, [
-        _c("div", { staticClass: "v-deals__row-img" }, [
-          _c("img", {
-            attrs: {
-              src: "/images/dealstop.png",
-              alt: _vm.deals.name,
-              "data-aos": "slide-right",
+  return _c(
+    "div",
+    {
+      staticClass: "v-deals",
+      style: {
+        "background-image": "url(" + "storage/images/bg/fordeals.jpg" + ")",
+      },
+    },
+    [
+      _c("div", { staticClass: "mainer end" }, [
+        _c("div", { staticClass: "v-deals__row" }, [
+          _c("div", { staticClass: "v-deals__row-img" }, [
+            _c("img", {
+              attrs: {
+                src: "/images/dealstop.png",
+                alt: _vm.deals.name,
+                "data-aos": "slide-right",
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "v-deals__row-info",
+              attrs: { "data-aos": "slide-left" },
             },
-          }),
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "v-deals__row-info",
-            attrs: { "data-aos": "slide-left" },
-          },
-          [
-            _c("div", { staticClass: "v-deals__row-info-name" }, [
-              _vm._v(_vm._s(_vm.deals.name)),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "v-deals__row-info-price" }, [
-              _c("div", { staticClass: "v-deals__row-info-price-first" }, [
-                _vm._v(_vm._s(_vm.deals.price) + " грн."),
+            [
+              _c("div", { staticClass: "v-deals__row-info-name" }, [
+                _vm._v(_vm._s(_vm.deals.name)),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "v-deals__row-info-price-second" }, [
-                _c("s", [_vm._v(_vm._s(_vm.deals["sale-price"]) + " грн.")]),
+              _c("div", { staticClass: "v-deals__row-info-price" }, [
+                _c("div", { staticClass: "v-deals__row-info-price-first" }, [
+                  _vm._v(_vm._s(_vm.deals.price) + " грн."),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "v-deals__row-info-price-second" }, [
+                  _c("s", [_vm._v(_vm._s(_vm.deals["sale-price"]) + " грн.")]),
+                ]),
               ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "v-deals__row-info-raiting" }, [
-              _c("span", { staticClass: "v-deals__row-info-raiting-stars" }, [
-                _c("span", {
-                  staticClass: "v-deals__row-info-raiting-stars-bg",
-                  style: { width: _vm.deals.raiting * 20 + "%" },
-                }),
+              _vm._v(" "),
+              _c("div", { staticClass: "v-deals__row-info-raiting" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "v-deals__row-info-raiting-stars",
+                    style: {
+                      "background-image":
+                        "url(" + "storage/images/icons/rating-bg.png" + ")",
+                    },
+                  },
+                  [
+                    _c("span", {
+                      staticClass: "v-deals__row-info-raiting-stars-bg",
+                      style: { width: _vm.deals.raiting * 20 + "%" },
+                    }),
+                  ]
+                ),
               ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "v-deals__row-info-btn btn" }, [
-              _vm._v("В корзину"),
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "v-deals__row-info-time" },
-              [_c("v-time", { attrs: { endtime: _vm.deals.endtime } })],
-              1
-            ),
-          ]
-        ),
+              _vm._v(" "),
+              _c("div", { staticClass: "v-deals__row-info-btn btn" }, [
+                _vm._v("В корзину"),
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "v-deals__row-info-time" },
+                [_c("v-time", { attrs: { endtime: _vm.deals.endtime } })],
+                1
+              ),
+            ]
+          ),
+        ]),
       ]),
-    ]),
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39600,83 +39809,125 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "v-new-arrivals" }, [
-    _c(
-      "div",
-      {
-        staticClass: "v-new-arrivals__title",
-        attrs: { "data-aos": "slide-left" },
-      },
-      [_vm._v("New arrivals")]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "mainer" },
-      [
+  return _vm.NEW_ARRIVALS.length
+    ? _c("div", { staticClass: "v-new-arrivals" }, [
         _c(
-          "swiper",
-          { staticClass: "swiper", attrs: { options: _vm.swiperOption } },
+          "div",
+          {
+            staticClass: "v-new-arrivals__title",
+            attrs: { "data-aos": "slide-left" },
+          },
+          [_vm._v("New arrivals")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "mainer" },
           [
-            _vm._l(_vm.newProduct, function (product, i) {
-              return _c("swiper-slide", { key: i, staticClass: "item" }, [
-                _c("div", { staticClass: "item__img" }, [
-                  _c("img", {
-                    attrs: { src: "/images/" + product.image, alt: "" },
-                  }),
-                  _vm._v(" "),
-                  _c("span"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "item__name" }, [
-                  _vm._v(_vm._s(product.name)),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "item__raiting" }, [
-                  _c("span", { staticClass: "item__raiting-stars" }, [
-                    _c("span", {
-                      staticClass: "item__raiting-stars-bg",
-                      style: { width: product.raiting * 20 + "%" },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "item__price" }, [
-                  _vm._v(_vm._s(product.price) + " грн."),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "item__btn btn" }, [
-                  _vm._v("В корзину"),
-                ]),
-              ])
-            }),
-            _vm._v(" "),
             _c(
-              "div",
-              {
-                staticClass: "swiper-button-prev",
-                attrs: { slot: "button-prev" },
-                slot: "button-prev",
-              },
-              [_c("i", { staticClass: "fas fa-arrow-left" })]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "swiper-button-next",
-                attrs: { slot: "button-next" },
-                slot: "button-next",
-              },
-              [_c("i", { staticClass: "fas fa-arrow-right" })]
+              "swiper",
+              { staticClass: "swiper", attrs: { options: _vm.swiperOption } },
+              [
+                _vm._l(_vm.NEW_ARRIVALS, function (product, i) {
+                  return _c("swiper-slide", { key: i, staticClass: "item" }, [
+                    _c("div", { staticClass: "item__img" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "/storage/" + product.image,
+                          alt: "product.title",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("span", {
+                        style: {
+                          "background-image":
+                            "url(" + "storage/images/icons/new.png" + ")",
+                        },
+                      }),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "item__name",
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            return _vm.modalProduct(product)
+                          },
+                        },
+                      },
+                      [_vm._v(_vm._s(product.title))]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "item__raiting" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "item__raiting-stars",
+                          style: {
+                            "background-image":
+                              "url(" +
+                              "storage/images/icons/rating-bg.png" +
+                              ")",
+                          },
+                        },
+                        [
+                          _c("span", {
+                            staticClass: "item__raiting-stars-bg",
+                            style: { width: product.raiting * 20 + "%" },
+                          }),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "item__price" }, [
+                      _vm._v(_vm._s(product.price) + " грн."),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "item__btn btn",
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            return _vm.addToCart(product)
+                          },
+                        },
+                      },
+                      [_vm._v("В корзину")]
+                    ),
+                  ])
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "swiper-button-prev",
+                    attrs: { slot: "button-prev" },
+                    slot: "button-prev",
+                  },
+                  [_c("i", { staticClass: "fas fa-arrow-left" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "swiper-button-next",
+                    attrs: { slot: "button-next" },
+                    slot: "button-next",
+                  },
+                  [_c("i", { staticClass: "fas fa-arrow-right" })]
+                ),
+              ],
+              2
             ),
           ],
-          2
+          1
         ),
-      ],
-      1
-    ),
-  ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39726,10 +39977,7 @@ var render = function () {
               [
                 _c("div", { staticClass: "v-tranding__item-img" }, [
                   _c("img", {
-                    attrs: {
-                      src: "/storage/images/trand/" + item.image,
-                      alt: "item.title",
-                    },
+                    attrs: { src: "/storage/" + item.image, alt: "item.title" },
                   }),
                 ]),
                 _vm._v(" "),
@@ -39749,7 +39997,13 @@ var render = function () {
                 _c("div", { staticClass: "v-tranding__item-raiting" }, [
                   _c(
                     "span",
-                    { staticClass: "v-tranding__item-raiting-stars" },
+                    {
+                      staticClass: "v-tranding__item-raiting-stars",
+                      style: {
+                        "background-image":
+                          "url(" + "storage/images/icons/rating-bg.png" + ")",
+                      },
+                    },
                     [
                       _c("span", {
                         staticClass: "v-tranding__item-raiting-stars-bg",
@@ -39810,9 +40064,41 @@ var render = function () {
     "div",
     { staticClass: "v-category" },
     [
-      _vm._m(0),
+      _c(
+        "div",
+        {
+          staticClass: "v-category__item",
+          attrs: { "data-aos": "fade-right" },
+        },
+        [
+          _c("p", { staticClass: "v-category__item-title" }, [
+            _vm._v("Испарители"),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "v-category__item-icon" }, [
+            _c("img", { attrs: { src: /storage/ + _vm.icons.first, alt: "" } }),
+          ]),
+        ]
+      ),
       _vm._v(" "),
-      _vm._m(1),
+      _c(
+        "div",
+        {
+          staticClass: "v-category__item",
+          attrs: { "data-aos": "fade-right" },
+        },
+        [
+          _c("p", { staticClass: "v-category__item-title" }, [
+            _vm._v("Под системы"),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "v-category__item-icon" }, [
+            _c("img", {
+              attrs: { src: /storage/ + _vm.icons.second, alt: "" },
+            }),
+          ]),
+        ]
+      ),
       _vm._v(" "),
       _c("router-link", { attrs: { to: { name: "catalog" } } }, [
         _c(
@@ -39821,89 +40107,48 @@ var render = function () {
             staticClass: "v-category__logo",
             attrs: { "data-aos": "fade-up", "data-aos-delay": "200" },
           },
-          [_c("img", { attrs: { src: "/images/icon-catalog.jpg", alt: "" } })]
+          [
+            _c("img", {
+              attrs: { src: /storage/ + _vm.icons.catalog, alt: "" },
+            }),
+          ]
         ),
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _c(
+        "div",
+        { staticClass: "v-category__item", attrs: { "data-aos": "fade-left" } },
+        [
+          _c("p", { staticClass: "v-category__item-title" }, [
+            _vm._v("Зарядки"),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "v-category__item-icon" }, [
+            _c("img", { attrs: { src: /storage/ + _vm.icons.third, alt: "" } }),
+          ]),
+        ]
+      ),
       _vm._v(" "),
-      _vm._m(3),
+      _c(
+        "div",
+        { staticClass: "v-category__item", attrs: { "data-aos": "fade-left" } },
+        [
+          _c("p", { staticClass: "v-category__item-title" }, [
+            _vm._v("Жидкости"),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "v-category__item-icon" }, [
+            _c("img", {
+              attrs: { src: /storage/ + _vm.icons.fourth, alt: "" },
+            }),
+          ]),
+        ]
+      ),
     ],
     1
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "v-category__item", attrs: { "data-aos": "fade-right" } },
-      [
-        _c("p", { staticClass: "v-category__item-title" }, [
-          _vm._v("Испарители"),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "v-category__item-icon" }, [
-          _c("img", { attrs: { src: "/images/icon1.jpg", alt: "" } }),
-        ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "v-category__item", attrs: { "data-aos": "fade-right" } },
-      [
-        _c("p", { staticClass: "v-category__item-title" }, [
-          _vm._v("Под системы"),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "v-category__item-icon" }, [
-          _c("img", { attrs: { src: "/images/icon2.jpg", alt: "" } }),
-        ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "v-category__item", attrs: { "data-aos": "fade-left" } },
-      [
-        _c("p", { staticClass: "v-category__item-title" }, [_vm._v("Зарядки")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "v-category__item-icon" }, [
-          _c("img", { attrs: { src: "/images/icon3.jpg", alt: "" } }),
-        ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "v-category__item", attrs: { "data-aos": "fade-left" } },
-      [
-        _c("p", { staticClass: "v-category__item-title" }, [
-          _vm._v("Жидкости"),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "v-category__item-icon" }, [
-          _c("img", { attrs: { src: "/images/icon4.jpg", alt: "" } }),
-        ]),
-      ]
-    )
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -39977,7 +40222,7 @@ var render = function () {
             _c("div", { staticClass: "v-modal-about__block-left" }, [
               _c("div", { staticClass: "v-modal-about__block-left-img" }, [
                 _c("img", {
-                  attrs: { src: "/images/" + _vm.ONEPRODUCT.image, alt: "" },
+                  attrs: { src: "/storage/" + _vm.ONEPRODUCT.image, alt: "" },
                 }),
               ]),
               _vm._v(" "),
@@ -39991,6 +40236,10 @@ var render = function () {
                       {
                         staticClass:
                           "v-modal-about__block-left-info-raiting-stars",
+                        style: {
+                          "background-image":
+                            "url(" + "storage/images/icons/rating-bg.png" + ")",
+                        },
                       },
                       [
                         _c("span", {
@@ -40076,12 +40325,12 @@ var render = function () {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.ONEPRODUCT.size.length
+              _vm.ONEPRODUCT.size
                 ? _c(
                     "div",
                     { staticClass: "v-modal-about__block-right-specif" },
                     [
-                      _c("span", [_vm._v("Комплект:")]),
+                      _c("span", [_vm._v("Параметры:")]),
                       _vm._v(" "),
                       _c("div", { staticClass: "dotted" }),
                       _vm._v(" "),
@@ -40097,7 +40346,7 @@ var render = function () {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.ONEPRODUCT.battery.length
+              _vm.ONEPRODUCT.battery
                 ? _c(
                     "div",
                     { staticClass: "v-modal-about__block-right-specif" },
@@ -40118,7 +40367,7 @@ var render = function () {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.ONEPRODUCT.cartridge.length
+              _vm.ONEPRODUCT.cartridge
                 ? _c(
                     "div",
                     { staticClass: "v-modal-about__block-right-specif" },
@@ -40139,7 +40388,7 @@ var render = function () {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.ONEPRODUCT.set.length
+              _vm.ONEPRODUCT.set
                 ? _c(
                     "div",
                     { staticClass: "v-modal-about__block-right-specif" },
@@ -40160,9 +40409,13 @@ var render = function () {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _c("div", { staticClass: "v-modal-about__block-right-name" }, [
-                _vm._v("Описание товара"),
-              ]),
+              _vm.ONEPRODUCT.description
+                ? _c(
+                    "div",
+                    { staticClass: "v-modal-about__block-right-name" },
+                    [_vm._v("Описание товара")]
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "div",
@@ -40222,37 +40475,46 @@ var render = function () {
         staticClass: "v-modal-age",
       },
       [
-        _c("div", { staticClass: "v-modal-age__block" }, [
-          _c("div", { staticClass: "v-modal-age__block-title" }, [
-            _vm._v(_vm._s(_vm.title)),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "v-modal-age__block-btns" }, [
-            _c(
-              "div",
-              {
-                staticClass: "v-modal-age__block-btns-btn",
-                on: { click: _vm.changeVisible },
-              },
-              [_vm._v("да")]
-            ),
+        _c(
+          "div",
+          {
+            staticClass: "v-modal-age__block",
+            style: {
+              "background-image": "url(" + "storage/images/bg/bg-age.jpg" + ")",
+            },
+          },
+          [
+            _c("div", { staticClass: "v-modal-age__block-title" }, [
+              _vm._v(_vm._s(_vm.title)),
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "v-modal-age__block-btns-btn",
-                on: { click: _vm.changeTitle },
-              },
-              [_vm._v("нет")]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "v-modal-age__block-attantion" }, [
-            _vm._v(
-              "*Внимание! Данная продукция предназначена лицам 18лет и выше, пожалуйста, подтвердите свой возраст перед посещением сайта."
-            ),
-          ]),
-        ]),
+            _c("div", { staticClass: "v-modal-age__block-btns" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "v-modal-age__block-btns-btn",
+                  on: { click: _vm.changeVisible },
+                },
+                [_vm._v("да")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "v-modal-age__block-btns-btn",
+                  on: { click: _vm.changeTitle },
+                },
+                [_vm._v("нет")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "v-modal-age__block-attantion" }, [
+              _vm._v(
+                "*Внимание! Данная продукция предназначена лицам 18лет и выше, пожалуйста, подтвердите свой возраст перед посещением сайта."
+              ),
+            ]),
+          ]
+        ),
       ]
     ),
   ])
@@ -40288,6 +40550,10 @@ var render = function () {
               "form",
               {
                 staticClass: "v-modal-call__bg-block",
+                style: {
+                  "background-image":
+                    "url(" + "/storage/images/bg/man-smoke.jpg" + ")",
+                },
                 attrs: { method: "POST" },
               },
               [
@@ -40330,9 +40596,9 @@ var render = function () {
                     type: "text",
                     maxlength: "50",
                     minlength: "3",
-                    name: "phoneUserCall",
+                    name: "phoneUser",
                     required: "",
-                    id: "nameUser",
+                    id: "phoneUserCall",
                     placeholder: "Телефон",
                     autocomplete: "off",
                   },
@@ -40497,42 +40763,53 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "v-footer" }, [
-    _c("div", { staticClass: "mainer footer" }, [
-      _c(
-        "ul",
-        { staticClass: "v-footer__catalog" },
-        [
-          _c("router-link", { attrs: { to: { name: "catalog" } } }, [
-            _c("li", { staticClass: "v-footer__catalog-item" }, [
-              _vm._v("Каталог"),
+  return _c(
+    "div",
+    {
+      staticClass: "v-footer",
+      style: {
+        "background-image": "url(" + "storage/images/bg/footer.jpg" + ")",
+      },
+    },
+    [
+      _c("div", { staticClass: "mainer footer" }, [
+        _c(
+          "ul",
+          { staticClass: "v-footer__catalog" },
+          [
+            _c("router-link", { attrs: { to: { name: "catalog" } } }, [
+              _c("li", { staticClass: "v-footer__catalog-item" }, [
+                _vm._v("Каталог"),
+              ]),
             ]),
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.category, function (item, i) {
-            return _c("li", { key: i, staticClass: "v-footer__catalog-item" }, [
-              _vm._v(_vm._s(item.name)),
-            ])
-          }),
-        ],
-        2
-      ),
+            _vm._v(" "),
+            _vm._l(_vm.category, function (item, i) {
+              return _c(
+                "li",
+                { key: i, staticClass: "v-footer__catalog-item" },
+                [_vm._v(_vm._s(item.name))]
+              )
+            }),
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+      ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "v-footer-copy" }, [
+        _vm._v(
+          "\n        При использовании материалов с сайта обязательно указание прямой ссылки на\n        источник.\n    "
+        ),
+      ]),
       _vm._v(" "),
-      _vm._m(1),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "v-footer-copy" }, [
-      _vm._v(
-        "\n        При использовании материалов с сайта обязательно указание прямой ссылки на\n        источник.\n    "
-      ),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "v-footer-copy" }, [
-      _vm._v("Все права защищены. VapeSteam компани 2022"),
-    ]),
-  ])
+      _c("div", { staticClass: "v-footer-copy" }, [
+        _vm._v("Все права защищены. VapeSteam компани 2022"),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = [
   function () {
@@ -40555,49 +40832,45 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "form",
-      { staticClass: "v-footer__form", attrs: { action: "POST" } },
-      [
-        _c("div", { staticClass: "v-footer__form-title" }, [
-          _vm._v("Написать Нам"),
-        ]),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "nameUser" } }, [_vm._v("Ваше Имя")]),
-        _vm._v(" "),
-        _c("input", {
-          attrs: {
-            type: "text",
-            maxlength: "50",
-            minlength: "3",
-            name: "nameUser",
-            required: "",
-            id: "nameUser",
-            placeholder: "Имя",
-          },
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "msgUser" } }, [
-          _vm._v("Информация, которую вы хотите нам"),
-        ]),
-        _vm._v(" "),
-        _c("textarea", {
-          attrs: {
-            name: "msg",
-            maxlength: "500",
-            minlength: "10",
-            id: "msgUser",
-            required: "",
-            rows: "5",
-            placeholder: "Информация",
-          },
-        }),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn", attrs: { type: "submit" } }, [
-          _vm._v("Отправить"),
-        ]),
-      ]
-    )
+    return _c("form", { staticClass: "v-footer__form" }, [
+      _c("div", { staticClass: "v-footer__form-title" }, [
+        _vm._v("Написать Нам"),
+      ]),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "nameUser" } }, [_vm._v("Ваше Имя")]),
+      _vm._v(" "),
+      _c("input", {
+        attrs: {
+          type: "text",
+          maxlength: "50",
+          minlength: "3",
+          name: "nameUser",
+          required: "",
+          id: "nameUser",
+          placeholder: "Имя",
+        },
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "msgUser" } }, [
+        _vm._v("Информация, которую вы хотите нам"),
+      ]),
+      _vm._v(" "),
+      _c("textarea", {
+        attrs: {
+          name: "msg",
+          maxlength: "500",
+          minlength: "10",
+          id: "msgUser",
+          required: "",
+          rows: "5",
+          placeholder: "Информация",
+        },
+      }),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn", attrs: { type: "submit" } }, [
+        _vm._v("Отправить"),
+      ]),
+    ])
   },
 ]
 render._withStripped = true
@@ -40740,9 +41013,7 @@ var render = function () {
                   1
                 ),
             _vm._v(" "),
-            this.TOKEN
-              ? _c("li", { staticClass: "menu__item" }, [_vm._m(0)])
-              : _vm._e(),
+            _vm._m(0),
             _vm._v(" "),
             this.TOKEN
               ? _c(
@@ -40795,8 +41066,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "/admin" } }, [
-      _c("i", { staticClass: "fas fa-user-cog" }),
+    return _c("li", { staticClass: "menu__item" }, [
+      _c("a", { attrs: { href: "/admin" } }, [
+        _c("i", { staticClass: "fas fa-user-cog" }),
+      ]),
     ])
   },
 ]

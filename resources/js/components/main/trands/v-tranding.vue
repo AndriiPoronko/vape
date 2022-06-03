@@ -4,11 +4,11 @@
         <div class="mainer block-container">
             <div class="v-tranding__item" data-aos="zoom-out-down" v-for="(item, i) in TRENDS" :key="i">
                 <div class="v-tranding__item-img">
-                    <img :src="('/storage/images/trand/' + item.image)" alt="item.title" />
+                    <img :src="('/storage/' + item.image)" alt="item.title" />
                 </div>
                 <div class="v-tranding__item-name" @click="modalProduct(item)">{{ item.title }}</div>
                 <div class="v-tranding__item-raiting">
-          <span class="v-tranding__item-raiting-stars">
+          <span class="v-tranding__item-raiting-stars" :style="{'background-image': 'url(' + 'storage/images/icons/rating-bg.png' + ')'}">
             <span
                 class="v-tranding__item-raiting-stars-bg"
                 :style="{ width: item.raiting * 20 + '%' }"
@@ -107,8 +107,7 @@ export default {
 
         &-name {
             font-size: $fontSizeBase;
-            font-weight: bold;
-            font-family: $fontBase;
+            font-weight: bold;          font-family: $fontBase;
             color: $colorBorder;
             letter-spacing: 1px;
             line-height: 25px;
@@ -128,7 +127,6 @@ export default {
             margin: 10px 0;
 
             &-stars {
-                background-image: url('/images/rating-bg.png');
                 background-position: left bottom;
                 width: 109px;
                 display: block;

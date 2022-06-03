@@ -1,5 +1,5 @@
 <template>
-    <div class="v-deals">
+    <div class="v-deals" :style="{'background-image': 'url(' + 'storage/images/bg/fordeals.jpg' + ')'}">
         <div class="mainer end">
             <div class="v-deals__row">
                 <div class="v-deals__row-img">
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="v-deals__row-info-raiting">
-            <span class="v-deals__row-info-raiting-stars">
+            <span class="v-deals__row-info-raiting-stars" :style="{'background-image': 'url(' + 'storage/images/icons/rating-bg.png' + ')'}">
               <span
                   class="v-deals__row-info-raiting-stars-bg"
                   :style="{width: deals.raiting * 20 + '%'}"
@@ -46,7 +46,7 @@ export default {
     data() {
         return {
             deals: {
-                "endtime": "2022-05-31 18:30:40",
+                "endtime": "2022-07-31 18:30:40",
                 "image": "dealstop.png",
                 "name": "HIGH VOLTAGE energy inflused E-Liquil Vaporz",
                 "price": 999,
@@ -70,7 +70,6 @@ export default {
 <style lang="scss">
 @import "resources/sass/variables";
 .v-deals {
-    background-image: url("/images/fordeals.jpg");
     background-position: center;
     background-size: cover;
     display: flex;
@@ -131,7 +130,6 @@ export default {
                 margin: 10px 0;
 
                 &-stars {
-                    background-image: url("/images/rating-bg.png");
                     background-position: left bottom;
                     width: 109px;
                     display: block;

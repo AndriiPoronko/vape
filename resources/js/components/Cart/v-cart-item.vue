@@ -1,13 +1,13 @@
 <template>
   <div class="v-cart-item">
     <div class="v-cart-item__img">
-      <img :src="('/images/' + cart_data.image)" alt />
+      <img :src="('/storage/' + cart_data.image)" alt />
     </div>
     <div class="v-cart-item__info">
       <div class="v-cart-item__info-title">{{cart_data.title}}</div>
       <div class="v-cart-item__info-price">{{cart_data.price}} грн.</div>
       <div class="v-cart-item__info-raiting">
-        <span class="v-cart-item__info-raiting-stars">
+        <span class="v-cart-item__info-raiting-stars" :style="{'background-image': 'url(' + 'storage/images/icons/rating-bg.png' + ')'}">
           <span
             class="v-cart-item__info-raiting-stars-bg"
             :style="{width: cart_data.raiting * 20 + '%'}"
@@ -95,7 +95,6 @@ export default {
       margin: 10px 0;
 
       &-stars {
-        background-image: url("/images/rating-bg.png");
         background-position: left bottom;
         width: 109px;
         display: block;

@@ -1,31 +1,26 @@
 <template>
-        <swiper
-            class="swiper"
-            :options="swiperOption"
-            :height="height"
-            :style="{'height': height + 'px'}"
+    <swiper
+        class="swiper"
+        :options="swiperOption"
+        :height="height"
+        :style="{'height': height + 'px'}"
+    >
+
+        <swiper-slide
+        v-for="(slide, i) in sliderMain"
+        :key="i"
         >
+            <img class="swiper-slide__image" :src="(/storage/ + slide.path)" alt="">
+            <div class="info" v-html="'<p>' + slide.title + '</p>'"></div>
+        </swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
 
-                <swiper-slide>
-                    <img class="swiper-slide__image" src="/images/slide_1.jpg" alt="">
-                    <div class="info" v-html="'<p>' + title + '</p>'"></div>
-                </swiper-slide>
-                <swiper-slide>
-                    <img class="swiper-slide__image" src="/images/slide_2.jpg" alt="">
-                    <div class="info" v-html="'<p>' + title + '</p>'"></div>
-                </swiper-slide>
-                <swiper-slide>
-                    <img class="swiper-slide__image" src="/images/slide_3.jpg" alt="">
-                    <div class="info" v-html="'<p>' + title + '</p>'"></div>
-                </swiper-slide>
-                <div class="swiper-pagination" slot="pagination"></div>
-
-        </swiper>
+    </swiper>
 
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import {Swiper, SwiperSlide} from "vue-awesome-swiper";
 import 'swiper/css/swiper.css'
 
 export default {
@@ -43,10 +38,20 @@ export default {
                     dynamicBullets: true
                 }
             },
+            sliderMain: [{
+                title: 'Что-то очень интересное',
+                path: 'images/slides-main/test.jpg'
+            }, {
+                title: 'Что-то прямо очень интересное',
+                path: 'images/slides-main/test2.jpg'
+            }, {
+                title: 'Что-то прямо очень, очень интересное',
+                path: 'images/slides-main/test3.jpg'
+            }],
             title: 'Очень много интересного текста!'
         }
     },
-    methods:{
+    methods: {
         documentHeight() {
             this.height = document.documentElement.clientHeight;
         },
@@ -74,18 +79,19 @@ export default {
 <style lang="scss">
 @import "resources/sass/variables";
 
-    .swiper-slide__image{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .info {
-        position: absolute;
-        left: 50px;
-        bottom: 25%;
-        font-family: $fontSecondary;
-        font-size: calc(20px + 30 * ((100vw - 320px) / (1280 - 320)));
-        text-shadow: $textshadow;
-        color: #fff;
-    }
+.swiper-slide__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info {
+    position: absolute;
+    left: 50px;
+    bottom: 25%;
+    font-family: $fontSecondary;
+    font-size: calc(20px + 30 * ((100vw - 320px) / (1280 - 320)));
+    text-shadow: $textshadow;
+    color: #fff;
+}
 </style>

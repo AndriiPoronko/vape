@@ -1,23 +1,22 @@
 <template>
-    <div class="v-new-arrivals">
+    <div class="v-new-arrivals" v-if="NEW_ARRIVALS.length">
         <div class="v-new-arrivals__title" data-aos="slide-left">New arrivals</div>
 
         <div class="mainer">
             <swiper class="swiper" :options="swiperOption">
-                <swiper-slide class="item" v-for="(product, i) of newProduct" :key="i">
+                <swiper-slide class="item" v-for="(product, i) of NEW_ARRIVALS" :key="i">
                     <div class="item__img">
-
-                        <img :src="('/images/' + product.image)" alt />
-                        <span></span>
+                        <img :src="('/storage/' + product.image)" alt="product.title" />
+                        <span :style="{'background-image': 'url(' + 'storage/images/icons/new.png' + ')'}"></span>
                     </div>
-                    <div class="item__name">{{ product.name }}</div>
+                    <div class="item__name" @click.prevent="modalProduct(product)" >{{ product.title }}</div>
                     <div class="item__raiting">
-            <span class="item__raiting-stars">
+            <span class="item__raiting-stars" :style="{'background-image': 'url(' + 'storage/images/icons/rating-bg.png' + ')'}">
               <span class="item__raiting-stars-bg" :style="{ width: product.raiting * 20 + '%' }"></span>
             </span>
                     </div>
                     <div class="item__price">{{ product.price }} грн.</div>
-                    <div class="item__btn btn">В корзину</div>
+                    <div class="item__btn btn" @click.prevent="addToCart(product)">В корзину</div>
                 </swiper-slide>
                 <div class="swiper-button-prev" slot="button-prev">
                     <i class="fas fa-arrow-left"></i>
@@ -33,6 +32,7 @@
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import { Navigation } from "swiper";
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     name: "v-new-arrivals",
@@ -72,95 +72,23 @@ export default {
                     },
                 },
             },
-            newProduct: [
-                {
-                    "name": "OVNS Saber-S Kit ORIGINAL",
-                    "image": "1.png",
-                    "price": 270,
-                    "raiting": 4,
-                    "id": 2000,
-                    "quantity": 1
-                },
-                {
-                    "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-                    "image": "2.png",
-                    "price": 210,
-                    "raiting": 4,
-                    "id": 2002,
-                    "quantity": 1
-                },
-                {
-                    "name": "Hotcig Kubi Pod kit ORIGINAL",
-                    "image": "3.png",
-                    "price": 330,
-                    "raiting": 5,
-                    "id": 2003,
-                    "quantity": 1
-                },
-                {
-                    "name": "Vaporesso Renova Zero Pod Kit ORIGINAL",
-                    "image": "4.png",
-                    "price": 390,
-                    "raiting": 5,
-                    "id": 2004,
-                    "quantity": 1
-                },
-                {
-                    "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-                    "image": "5.png",
-                    "price": 1200,
-                    "raiting": 3,
-                    "id": 2005,
-                    "quantity": 1
-                },
-                {
-                    "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-                    "image": "6.png",
-                    "price": 1200,
-                    "raiting": 3,
-                    "id": 2006,
-                    "quantity": 1
-                },
-                {
-                    "name": "Vaporesso Renova Zero Pod Kit ORIGINAL мятный",
-                    "image": "7.png",
-                    "price": 1200,
-                    "raiting": 3,
-                    "id": 2007,
-                    "quantity": 1
-                },
-                {
-                    "name": "OVNS Saber-S Kit ORIGINAL",
-                    "image": "1.png",
-                    "price": 270,
-                    "raiting": 4,
-                    "id": 2008,
-                    "quantity": 1
-                },
-                {
-                    "name": "VOOPOO Drag Nano Pod Kit ORiGiNAL",
-                    "image": "2.png",
-                    "price": 210,
-                    "raiting": 4,
-                    "id": 2009,
-                    "quantity": 1
-                },
-                {
-                    "name": "Hotcig Kubi Pod kit ORIGINAL",
-                    "image": "3.png",
-                    "price": 330,
-                    "raiting": 5,
-                    "id": 2010,
-                    "quantity": 1
-                }
-            ],
         };
     },
     mounted() {
+        this.GET_NEW_ARRIVALS_FROM_API();
     },
     methods: {
+        ...mapActions(['GET_NEW_ARRIVALS_FROM_API', 'ADD_TO_CART', 'ACTIVE_MODAL_PRODUCT']),
+        addToCart(product){
+            this.ADD_TO_CART(product);
+        },
+        modalProduct(item){
+            this.ACTIVE_MODAL_PRODUCT(item);
+        },
+
     },
     computed: {
+        ...mapGetters(['NEW_ARRIVALS']),
     },
 };
 </script>
@@ -208,7 +136,6 @@ export default {
                 width: 100px;
                 height: 50px;
                 position: absolute;
-                background-image: url("/images/new.png");
                 top: 5px;
                 left: 5px;
             }
@@ -219,6 +146,7 @@ export default {
             height: 50px;
             line-height: 25px;
             text-align: center;
+            font-family: $fontBase;
             font-size: $fontSizeBase + 4;
             color: $colorBase;
             overflow: hidden;
@@ -243,7 +171,6 @@ export default {
             margin: 10px auto;
 
             &-stars {
-                background-image: url("/images/rating-bg.png");
                 background-position: left bottom;
                 width: 109px;
                 display: block;

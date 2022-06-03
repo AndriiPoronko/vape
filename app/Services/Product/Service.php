@@ -25,7 +25,7 @@ class Service
                 unset($data['tag_ids']);
             }
 
-            $data['image'] = isset($data['image']) ? Storage::disk('public')->put('/images', $data['image']) : null;
+            $data['image'] = isset($data['image']) ? Storage::disk('public')->put('/images/products', $data['image']) : null;
 
             $products = Product::firstOrCreate([
                 'title' => $data['title'],
@@ -58,7 +58,7 @@ class Service
                 unset($data['tag_ids']);
             }
             if(isset($data['image'])){
-                $data['image'] = Storage::disk('public')->put('/images', $data['image']);
+                $data['image'] = Storage::disk('public')->put('/images/products', $data['image']);
 
             }
 

@@ -1,11 +1,11 @@
 <template>
     <div class="v-catalog-item">
         <div class="v-catalog-item-img">
-            <img :src="('/images/' + product_data.image)" alt />
+            <img :src="('/storage/' + product_data.image)" alt />
         </div>
         <div class="v-catalog-item-title" @click="modalProduct">{{product_data.title}}</div>
         <div class="v-catalog-item-raiting">
-      <span class="v-catalog-item-raiting-stars">
+      <span class="v-catalog-item-raiting-stars" :style="{'background-image': 'url(' + 'storage/images/icons/rating-bg.png' + ')'}">
         <span
             class="v-catalog-item-raiting-stars-bg"
             :style="{width: product_data.raiting * 20 + '%'}"
@@ -121,7 +121,6 @@ export default {
         margin: 10px 0;
 
         &-stars {
-            background-image: url("/images/rating-bg.png");
             background-position: left bottom;
             width: 109px;
             display: block;

@@ -54,8 +54,8 @@
                         </router-link>
                     </li>
 
-                    <li class="menu__item" v-if="this.TOKEN">
-                        <a href="/admin" >
+                    <li class="menu__item">
+                        <a href="/admin">
                             <i class="fas fa-user-cog"></i>
                         </a>
                     </li>
@@ -128,11 +128,13 @@ export default {
         },
         logout(){
             API.post('/api/auth/logout')
-            .then(res => {
+            .then(() => {
                 localStorage.removeItem('access_token')
                 this.REMOVE_TOKEN()
+                const path = `/`
+                if (this.$route.path !== path) this.$router.push(path)
             })
-        }
+        },
     },
     computed: {
         ...mapGetters(["CART", "TOKEN"]),

@@ -4,11 +4,11 @@
             <div class="v-modal-about__block">
                 <div class="v-modal-about__block-left">
                     <div class="v-modal-about__block-left-img">
-                        <img :src="('/images/' + ONEPRODUCT.image)" alt/>
+                        <img :src="('/storage/' + ONEPRODUCT.image)" alt/>
                     </div>
                     <div class="v-modal-about__block-left-info">
                         <div class="v-modal-about__block-left-info-raiting">
-              <span class="v-modal-about__block-left-info-raiting-stars">
+              <span class="v-modal-about__block-left-info-raiting-stars" :style="{'background-image': 'url(' + 'storage/images/icons/rating-bg.png' + ')'}">
                 <span
                     class="v-modal-about__block-left-info-raiting-stars-bg"
                     :style="{width: ONEPRODUCT.raiting * 20 + '%'}"
@@ -44,8 +44,8 @@
                         ></span>
                     </div>
 
-                    <div class="v-modal-about__block-right-specif" v-if="ONEPRODUCT.size.length">
-                        <span>Комплект:</span>
+                    <div class="v-modal-about__block-right-specif" v-if="ONEPRODUCT.size">
+                        <span>Параметры:</span>
                         <div class="dotted"></div>
                         <ul class="equipment">
                             <li
@@ -54,7 +54,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="v-modal-about__block-right-specif" v-if="ONEPRODUCT.battery.length">
+                    <div class="v-modal-about__block-right-specif" v-if="ONEPRODUCT.battery">
                         <span>Аккумулятор:</span>
                         <div class="dotted"></div>
                         <ul class="equipment">
@@ -64,7 +64,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="v-modal-about__block-right-specif" v-if="ONEPRODUCT.cartridge.length">
+                    <div class="v-modal-about__block-right-specif" v-if="ONEPRODUCT.cartridge">
                         <span>Картридж:</span>
                         <div class="dotted"></div>
                         <ul class="equipment">
@@ -74,7 +74,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="v-modal-about__block-right-specif" v-if="ONEPRODUCT.set.length">
+                    <div class="v-modal-about__block-right-specif" v-if="ONEPRODUCT.set">
                         <span>Комплект:</span>
                         <div class="dotted"></div>
                         <ul class="equipment">
@@ -85,7 +85,7 @@
                         </ul>
                     </div>
 
-                    <div class="v-modal-about__block-right-name">Описание товара</div>
+                    <div class="v-modal-about__block-right-name" v-if="ONEPRODUCT.description">Описание товара</div>
 
                     <div class="v-modal-about__block-right-block-description">{{ ONEPRODUCT.description }}</div>
                 </div>
@@ -173,7 +173,6 @@ export default {
                     margin: $margin 0;
 
                     &-stars {
-                        background-image: url("/images/rating-bg.png");
                         background-position: left bottom;
                         width: 109px;
                         display: block;

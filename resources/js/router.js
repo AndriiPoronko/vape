@@ -59,12 +59,11 @@ route.beforeEach( (to, from, next) => {
 
     const accessToken = localStorage.getItem('access_token')
 
-    if(to.name === 'login' && accessToken){
+    if(to.name === 'login' && accessToken || to.name === 'register' && accessToken){
         return next({
             name: 'personal'
         })
     }
-
     next()
 })
 export default route

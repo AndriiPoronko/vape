@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Main\AdminController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,19 +31,18 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 
-    Route::group(['middleware' => 'jwt.auth'], function(){
-        Route::group(['prefix' => 'user'], function(){
-            Route::get('/', \App\Http\Controllers\UserController::class);
-        });
+    Route::group(['middleware' => 'jwt'], function(){
     });
-
 });
 
 Route::group(['prefix' => 'products'], function(){
     Route::get('/', ProductsController::class);
 });
+
+Route::post('/orders', \App\Http\Controllers\Order\StoreController::class)->name('order.store');
 Route::get('/categories', \App\Http\Controllers\CategoryController::class);
 Route::get('/trends', \App\Http\Controllers\TrendController::class);
-
 Route::post('/user', \App\Http\Controllers\StoreController::class);
+Route::get('/newArrivals', \App\Http\Controllers\NewArrivalsController::class);
+
 
