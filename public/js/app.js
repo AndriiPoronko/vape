@@ -2333,25 +2333,45 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../api */ "./resources/js/api.js");
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "v-personal",
   data: function data() {
     return {
       id: 13,
-      height: 100
+      height: 100,
+      person: null
     };
   },
   methods: {
     getHeightForPage: function getHeightForPage() {
       this.height = document.querySelector('.App').clientHeight - document.querySelector('.v-footer').clientHeight;
+    },
+    getMe: function getMe() {
+      var _this = this;
+
+      _api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/auth/me').then(function (res) {
+        _this.person = res.data;
+        console.log(_this.person);
+      });
     }
   },
   mounted: function mounted() {
     this.getHeightForPage();
+    this.getMe();
   }
 });
 
@@ -3323,6 +3343,9 @@ __webpack_require__.r(__webpack_exports__);
         pagination: {
           el: '.swiper-pagination',
           dynamicBullets: true
+        },
+        autoplay: {
+          delay: 9000
         }
       },
       sliderMain: [{
@@ -3973,8 +3996,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
+
+//
+//
 //
 //
 //
@@ -4019,9 +4047,30 @@ __webpack_require__.r(__webpack_exports__);
   name: "v-modal-call",
   components: {},
   data: function data() {
-    return {};
+    return {
+      name: null,
+      phone: null,
+      error: null
+    };
   },
-  methods: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["ACTIVE_MODAL_CALL"])), {}, {
+  methods: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)(["ACTIVE_MODAL_CALL"])), {}, {
+    checkModalCall: function checkModalCall(e) {
+      if (this.name && this.phone) {
+        this.getCall();
+        this.closeModalCall();
+      }
+
+      this.error = !this.email || !this.password ? true : '';
+      e.preventDefault();
+    },
+    getCall: function getCall() {
+      axios.post('/api/calls', {
+        name: this.name,
+        phone: this.phone
+      }).then(function (res) {
+        console.log(res);
+      });
+    },
     closeModalCall: function closeModalCall() {
       this.ACTIVE_MODAL_CALL();
     }
@@ -4033,7 +4082,7 @@ __webpack_require__.r(__webpack_exports__);
       return _this.ACTIVE_MODAL_CALL();
     }, 50000);
   },
-  computed: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)(["MODALCALL"]))
+  computed: (0,_home_endru_projects_vape_app_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["MODALCALL"]))
 });
 
 /***/ }),
@@ -4156,6 +4205,12 @@ __webpack_require__.r(__webpack_exports__);
     isVisible: function isVisible() {
       this.$emit("visible");
     },
+    toCatalog: function toCatalog() {
+      this.isVisible();
+      this.$router.push({
+        name: 'catalog'
+      });
+    },
     openModalCall: function openModalCall() {
       this.ACTIVE_MODAL_CALL();
       this.isVisible();
@@ -4175,6 +4230,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__);
+
+//
+//
 //
 //
 //
@@ -4250,12 +4310,35 @@ __webpack_require__.r(__webpack_exports__);
         "subname": [],
         "value": 5
       }],
-      footerHeight: null
+      footerHeight: null,
+      name: null,
+      message: null,
+      error: null
     };
   },
   mounted: function mounted() {// this.GET_CATEGORY_FROM_API();
   },
-  methods: {// ...mapActions(["GET_CATEGORY_FROM_API"]),
+  methods: {
+    // ...mapActions(["GET_CATEGORY_FROM_API"]),
+    checkMsg: function checkMsg(e) {
+      if (this.name && this.message) {
+        this.getMsg();
+      }
+
+      this.error = !this.name || !this.message ? true : '';
+      e.preventDefault();
+    },
+    getMsg: function getMsg() {
+      var _this = this;
+
+      axios.post('/api/messages', {
+        name: this.name,
+        message: this.message
+      }).then(function (res) {
+        _this.name = null;
+        _this.message = null;
+      });
+    }
   },
   computed: {// ...mapGetters(["CATEGORY"]),
   }
@@ -7894,7 +7977,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".header {\n  position: fixed;\n  background: rgba(0, 0, 0, 0.5);\n  width: 100%;\n  z-index: 99;\n}\n.header-block {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.header-block .contact {\n  display: flex;\n  align-items: center;\n  font-size: 26px;\n  flex-grow: 1;\n  text-shadow: 1px 1px 5px rgb(0, 159, 255);\n}\n.header-block .contact__phone {\n  color: #fff;\n  font-family: \"Montserrat\", sans-serif;\n  margin: 0 15px 0 0;\n  transition-duration: 0.5s;\n  cursor: pointer;\n}\n.header-block .contact__phone > i {\n  background: rgb(0, 85, 154);\n  background: linear-gradient(100deg, rgb(0, 85, 154) 0%, rgb(148, 229, 255) 50%, rgb(0, 85, 154) 100%);\n  border: 1px solid #fff;\n  border-radius: 2px;\n}\n.header-block .contact__phone:hover {\n  background: rgb(0, 85, 154);\n  background: linear-gradient(100deg, rgb(0, 85, 154) 0%, rgb(148, 229, 255) 50%, rgb(0, 85, 154) 100%);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n}\n.header-block .contact__phone:hover .fa-mobile-alt {\n  border: 1px solid #fff;\n  -webkit-animation: rotate 2s ease infinite;\n          animation: rotate 2s ease infinite;\n}\n.header-block .contact__social {\n  display: flex;\n  align-items: center;\n}\n.header-block .contact__social-item {\n  width: 45px;\n  height: 45px;\n  border-radius: 50%;\n  border: 2px solid rgb(136, 135, 135);\n  background-color: rgb(41, 39, 39);\n  transition-duration: 0.3s;\n  margin-right: 10px;\n}\n.header-block .contact__social-item:hover {\n  background: rgb(0, 85, 154);\n  background: linear-gradient(100deg, rgb(0, 85, 154) 0%, rgb(148, 229, 255) 50%, rgb(0, 85, 154) 100%);\n  border: none;\n}\n.header-block .contact__social-item-icon {\n  font-size: 26px;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  color: #fff;\n}\n.header-block .logo {\n  font-size: calc(24px + 16 * (100vw - 320px) / 960);\n  text-transform: uppercase;\n  font-family: \"Montserrat\", sans-serif;\n  color: #fff;\n  opacity: 0.8;\n  font-weight: 900;\n  position: relative;\n  line-height: calc(24px + 26 * (100vw - 320px) / 960);\n  margin: 0 15px;\n  text-shadow: 1px 1px 5px rgb(0, 159, 255);\n}\n.header-block .logo:before {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 3px;\n  background-color: #fff;\n  bottom: 0;\n  -webkit-animation: line 10s ease-in-out infinite;\n          animation: line 10s ease-in-out infinite;\n}\n.header-block .logo--bold {\n  font-size: calc(24px + 6 * (100vw - 320px) / 960);\n}\n.header-block .menu {\n  display: flex;\n  align-items: center;\n  flex-grow: 1;\n}\n.header-block .menu__item {\n  cursor: pointer;\n  margin: 0 0 0 30px;\n  font-size: 26px;\n  color: rgb(136, 135, 135);\n  align-items: center;\n}\n.header-block .menu__item i {\n  color: whitesmoke;\n}\n.header-block .menu__item i:hover {\n  color: white;\n}\n.header-block .menu__item--search {\n  flex-grow: 1;\n  display: flex;\n  justify-content: flex-end;\n  position: relative;\n}\n.header-block .menu__item--search > input {\n  position: absolute;\n  height: 25px;\n  border: none;\n  top: 0;\n  right: 30px;\n  border-radius: 5px;\n  padding: 0 10px;\n  font-size: 12px;\n  background-color: #fff;\n}\n.header-block .menu__item--person {\n  font-size: 40px;\n}\n.header-block .menu__item--basket {\n  position: relative;\n}\n.header-block .menu__item--basket .basket-count {\n  position: absolute;\n  color: #fff;\n  font-size: 10px;\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  background-color: #009fff;\n  top: 0;\n  right: 0;\n  text-align: center;\n  line-height: 15px;\n}\n.header-block .menu__item--toggle {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  width: 28px;\n}\n.header-block .menu__item-line {\n  width: 28px;\n  height: 2px;\n  background-color: #fff;\n  transition-duration: 0.5s;\n}\n.header-block .menu__item-line:not(:last-child) {\n  margin: 0 0 5px 0;\n}\n.header-block .menu__item-line:nth-child(2) {\n  width: 21px;\n}\n.header-block .menu__item-line:nth-child(3) {\n  width: 25px;\n}\n.header-block .menu__item:hover {\n  color: #fff;\n}\n.header-block .menu__item:hover .menu__item-line:first-child {\n  width: 24px;\n}\n.header-block .menu__item:hover .menu__item-line:nth-child(2) {\n  width: 28px;\n}\n.header-block .menu__item:hover .menu__item-line:nth-child(3) {\n  width: 18px;\n}\n.fade-enter {\n  width: 0;\n  opacity: 0;\n}\n.fade-enter-to {\n  width: 100%;\n  opacity: 1;\n}\n.fade-leave {\n  width: 100%;\n}\n.fade-leave-to {\n  width: 0;\n  opacity: 0;\n}\n.fade-enter-active {\n  transition-duration: 0.5s;\n}\n.fade-leave-active {\n  transition-duration: 0.5s;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".header {\n  position: fixed;\n  background: rgba(0, 0, 0, 0.5);\n  width: 100%;\n  z-index: 99;\n}\n.header-block {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.header-block .contact {\n  display: flex;\n  align-items: center;\n  font-size: 26px;\n  flex-grow: 1;\n  text-shadow: 1px 1px 5px rgb(0, 159, 255);\n}\n.header-block .contact__phone {\n  color: #fff;\n  font-family: \"Montserrat\", sans-serif;\n  margin: 0 15px 0 0;\n  transition-duration: 0.5s;\n  cursor: pointer;\n}\n.header-block .contact__phone > i {\n  background: rgb(0, 85, 154);\n  background: linear-gradient(100deg, rgb(0, 85, 154) 0%, rgb(148, 229, 255) 50%, rgb(0, 85, 154) 100%);\n  border: 1px solid #fff;\n  border-radius: 2px;\n}\n.header-block .contact__phone:hover {\n  background: rgb(0, 85, 154);\n  background: linear-gradient(100deg, rgb(0, 85, 154) 0%, rgb(148, 229, 255) 50%, rgb(0, 85, 154) 100%);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n}\n.header-block .contact__phone:hover .fa-mobile-alt {\n  border: 1px solid #fff;\n  -webkit-animation: rotate 2s ease infinite;\n          animation: rotate 2s ease infinite;\n}\n.header-block .contact__social {\n  display: flex;\n  align-items: center;\n}\n.header-block .contact__social-item {\n  width: 45px;\n  height: 45px;\n  border-radius: 50%;\n  border: 2px solid rgb(136, 135, 135);\n  background-color: rgb(41, 39, 39);\n  transition-duration: 0.3s;\n  margin-right: 10px;\n}\n.header-block .contact__social-item:hover {\n  background: rgb(0, 85, 154);\n  background: linear-gradient(100deg, rgb(0, 85, 154) 0%, rgb(148, 229, 255) 50%, rgb(0, 85, 154) 100%);\n  border: none;\n}\n.header-block .contact__social-item-icon {\n  font-size: 26px;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  color: #fff;\n}\n.header-block .logo {\n  font-size: calc(24px + 16 * (100vw - 320px) / 960);\n  text-transform: uppercase;\n  font-family: \"Montserrat\", sans-serif;\n  color: #fff;\n  opacity: 0.8;\n  font-weight: 900;\n  position: relative;\n  line-height: calc(24px + 26 * (100vw - 320px) / 960);\n  margin: 0 15px;\n  text-shadow: 1px 1px 5px rgb(0, 159, 255);\n}\n.header-block .logo:before {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 3px;\n  background-color: #fff;\n  bottom: 0;\n  -webkit-animation: line 10s ease-in-out infinite;\n          animation: line 10s ease-in-out infinite;\n}\n.header-block .logo--bold {\n  font-size: calc(24px + 6 * (100vw - 320px) / 960);\n}\n.header-block .menu {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  flex-grow: 1;\n}\n.header-block .menu__item {\n  cursor: pointer;\n  margin: 0 0 0 30px;\n  font-size: 26px;\n  color: rgb(136, 135, 135);\n  align-items: center;\n}\n.header-block .menu__item i {\n  color: whitesmoke;\n}\n.header-block .menu__item i:hover {\n  color: white;\n}\n.header-block .menu__item--search {\n  flex-grow: 1;\n  display: flex;\n  justify-content: flex-end;\n  position: relative;\n}\n.header-block .menu__item--search > input {\n  position: absolute;\n  height: 25px;\n  border: none;\n  top: 0;\n  right: 30px;\n  border-radius: 5px;\n  padding: 0 10px;\n  font-size: 12px;\n  background-color: #fff;\n}\n.header-block .menu__item--person {\n  font-size: 40px;\n}\n.header-block .menu__item--basket {\n  position: relative;\n}\n.header-block .menu__item--basket .basket-count {\n  position: absolute;\n  color: #fff;\n  font-size: 10px;\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  background-color: #009fff;\n  top: 0;\n  right: 0;\n  text-align: center;\n  line-height: 15px;\n}\n.header-block .menu__item--toggle {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n  width: 28px;\n}\n.header-block .menu__item-line {\n  width: 28px;\n  height: 2px;\n  background-color: #fff;\n  transition-duration: 0.5s;\n}\n.header-block .menu__item-line:not(:last-child) {\n  margin: 0 0 5px 0;\n}\n.header-block .menu__item-line:nth-child(2) {\n  width: 21px;\n}\n.header-block .menu__item-line:nth-child(3) {\n  width: 25px;\n}\n.header-block .menu__item:hover {\n  color: #fff;\n}\n.header-block .menu__item:hover .menu__item-line:first-child {\n  width: 24px;\n}\n.header-block .menu__item:hover .menu__item-line:nth-child(2) {\n  width: 28px;\n}\n.header-block .menu__item:hover .menu__item-line:nth-child(3) {\n  width: 18px;\n}\n.fade-enter {\n  width: 0;\n  opacity: 0;\n}\n.fade-enter-to {\n  width: 100%;\n  opacity: 1;\n}\n.fade-leave {\n  width: 100%;\n}\n.fade-leave-to {\n  width: 0;\n  opacity: 0;\n}\n.fade-enter-active {\n  transition-duration: 0.5s;\n}\n.fade-leave-active {\n  transition-duration: 0.5s;\n}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -38407,7 +38490,22 @@ var render = function () {
   return _c(
     "div",
     { staticClass: "v-personal", style: { "min-height": _vm.height + "px" } },
-    [_vm._v("Profile in progress...")]
+    [
+      _vm._v("Profile in progress...\n"),
+      _vm.person
+        ? _c("ol", [
+            _c("li", [_vm._v("Name: " + _vm._s(_vm.person.first_name))]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Surname: " + _vm._s(_vm.person.last_name))]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Email: " + _vm._s(_vm.person.email))]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Phone: " + _vm._s(_vm.person.phone_number))]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Age: " + _vm._s(_vm.person.age))]),
+          ])
+        : _vm._e(),
+    ]
   )
 }
 var staticRenderFns = []
@@ -40555,6 +40653,7 @@ var render = function () {
                     "url(" + "/storage/images/bg/man-smoke.jpg" + ")",
                 },
                 attrs: { method: "POST" },
+                on: { submit: _vm.checkModalCall },
               },
               [
                 _c(
@@ -40570,20 +40669,42 @@ var render = function () {
                   _vm._v("Заказать звонок"),
                 ]),
                 _vm._v(" "),
+                _vm.error
+                  ? _c("p", { staticClass: "v-login__block-error" }, [
+                      _vm._v("Введены не корректные данные"),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("label", { attrs: { for: "nameUserCall" } }, [
                   _vm._v("Ваше Имя"),
                 ]),
                 _vm._v(" "),
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name",
+                    },
+                  ],
                   attrs: {
                     type: "text",
                     maxlength: "50",
                     minlength: "3",
-                    name: "nameUser",
                     required: "",
                     id: "nameUserCall",
                     placeholder: "Имя",
                     autocomplete: "off",
+                  },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    },
                   },
                 }),
                 _vm._v(" "),
@@ -40592,15 +40713,31 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.phone,
+                      expression: "phone",
+                    },
+                  ],
                   attrs: {
-                    type: "text",
+                    type: "tel",
                     maxlength: "50",
-                    minlength: "3",
-                    name: "phoneUser",
+                    minlength: "10",
                     required: "",
                     id: "phoneUserCall",
                     placeholder: "Телефон",
                     autocomplete: "off",
+                  },
+                  domProps: { value: _vm.phone },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.phone = $event.target.value
+                    },
                   },
                 }),
                 _vm._v(" "),
@@ -40662,11 +40799,19 @@ var render = function () {
                 "ul",
                 { staticClass: "v-modal-menu__catalog" },
                 [
-                  _c("router-link", { attrs: { to: { name: "catalog" } } }, [
-                    _c("li", { staticClass: "v-modal-menu__catalog-item" }, [
-                      _vm._v("КАТАЛОГ"),
-                    ]),
-                  ]),
+                  _c(
+                    "li",
+                    {
+                      staticClass: "v-modal-menu__catalog-item",
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.toCatalog.apply(null, arguments)
+                        },
+                      },
+                    },
+                    [_vm._v("КАТАЛОГ")]
+                  ),
                   _vm._v(" "),
                   _vm._l(_vm.category, function (item, i) {
                     return _c(
@@ -40674,7 +40819,9 @@ var render = function () {
                       { key: i, staticClass: "v-modal-menu__catalog-item" },
                       [
                         _vm._v(
-                          "\n          " + _vm._s(item.name) + "\n        "
+                          "\n                    " +
+                            _vm._s(item.name) +
+                            "\n                "
                         ),
                       ]
                     )
@@ -40796,7 +40943,88 @@ var render = function () {
         _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
-        _vm._m(1),
+        _c(
+          "form",
+          { staticClass: "v-footer__form", on: { submit: _vm.checkMsg } },
+          [
+            _c("div", { staticClass: "v-footer__form-title" }, [
+              _vm._v("Написать Нам"),
+            ]),
+            _vm._v(" "),
+            _vm.error
+              ? _c("p", { staticClass: "v-login__block-error" }, [
+                  _vm._v("Введены не корректные данные"),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "nameUser" } }, [_vm._v("Ваше Имя")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name",
+                },
+              ],
+              attrs: {
+                type: "text",
+                maxlength: "50",
+                minlength: "2",
+                required: "",
+                id: "nameUser",
+                placeholder: "Имя",
+              },
+              domProps: { value: _vm.name },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "msgUser" } }, [
+              _vm._v("Информация, которую вы хотите нам"),
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.message,
+                  expression: "message",
+                },
+              ],
+              attrs: {
+                name: "msg",
+                maxlength: "500",
+                minlength: "5",
+                id: "msgUser",
+                required: "",
+                rows: "5",
+                placeholder: "Информация",
+              },
+              domProps: { value: _vm.message },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.message = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn", attrs: { type: "submit" } }, [
+              _vm._v("Отправить"),
+            ]),
+          ]
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "v-footer-copy" }, [
@@ -40826,50 +41054,6 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "v-footer__catalog-item" }, [_vm._v("Контакты")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("form", { staticClass: "v-footer__form" }, [
-      _c("div", { staticClass: "v-footer__form-title" }, [
-        _vm._v("Написать Нам"),
-      ]),
-      _vm._v(" "),
-      _c("label", { attrs: { for: "nameUser" } }, [_vm._v("Ваше Имя")]),
-      _vm._v(" "),
-      _c("input", {
-        attrs: {
-          type: "text",
-          maxlength: "50",
-          minlength: "3",
-          name: "nameUser",
-          required: "",
-          id: "nameUser",
-          placeholder: "Имя",
-        },
-      }),
-      _vm._v(" "),
-      _c("label", { attrs: { for: "msgUser" } }, [
-        _vm._v("Информация, которую вы хотите нам"),
-      ]),
-      _vm._v(" "),
-      _c("textarea", {
-        attrs: {
-          name: "msg",
-          maxlength: "500",
-          minlength: "10",
-          id: "msgUser",
-          required: "",
-          rows: "5",
-          placeholder: "Информация",
-        },
-      }),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn", attrs: { type: "submit" } }, [
-        _vm._v("Отправить"),
-      ]),
     ])
   },
 ]
@@ -40948,36 +41132,6 @@ var render = function () {
           _c("ul", { staticClass: "menu" }, [
             _c(
               "li",
-              { staticClass: "menu__item menu__item--search" },
-              [
-                _c("transition", { attrs: { name: "fade" } }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.isSearch,
-                        expression: "isSearch",
-                      },
-                    ],
-                    attrs: { type: "text", placeholder: "Поиск" },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "fas fa-search",
-                  on: {
-                    click: function ($event) {
-                      _vm.isSearch = !_vm.isSearch
-                    },
-                  },
-                }),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
               { staticClass: "menu__item menu__item--basket" },
               [
                 _c("router-link", { attrs: { to: { name: "cart" } } }, [
@@ -41013,7 +41167,9 @@ var render = function () {
                   1
                 ),
             _vm._v(" "),
-            _vm._m(0),
+            this.TOKEN
+              ? _c("li", { staticClass: "menu__item" }, [_vm._m(0)])
+              : _vm._e(),
             _vm._v(" "),
             this.TOKEN
               ? _c(
@@ -41066,10 +41222,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "menu__item" }, [
-      _c("a", { attrs: { href: "/admin" } }, [
-        _c("i", { staticClass: "fas fa-user-cog" }),
-      ]),
+    return _c("a", { attrs: { href: "/admin" } }, [
+      _c("i", { staticClass: "fas fa-user-cog" }),
     ])
   },
 ]

@@ -24,29 +24,15 @@
 
             <!-- Info boxes -->
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">CPU Traffic</span>
-                            <span class="info-box-number">
-                  10
-                  <small>%</small>
-                </span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
                 <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
+                <div class="col-12 col-sm-6 col-md-4">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Likes</span>
-                            <span class="info-box-number">41,410</span>
+                            <span class="info-box-number">41</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -57,26 +43,26 @@
                 <!-- fix for small devices only -->
                 <div class="clearfix hidden-md-up"></div>
 
-                <div class="col-12 col-sm-6 col-md-3">
+                <div class="col-12 col-sm-6 col-md-4">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Sales</span>
-                            <span class="info-box-number">760</span>
+                            <span class="info-box-number">{{count($sales)}}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
+                <div class="col-12 col-sm-6 col-md-4">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">New Members</span>
-                            <span class="info-box-number">2,000</span>
+                            <span class="info-box-text">Members</span>
+                            <span class="info-box-number">{{$members}}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -110,68 +96,24 @@
                                     <thead>
                                     <tr>
                                         <th>Order ID</th>
+                                        <th>Product ID</th>
                                         <th>Item</th>
+                                        <th>Quantity</th>
                                         <th>Status</th>
-                                        <th>Popularity</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($sales as $sale)
+                                        @foreach($sale->products as $product)
                                     <tr>
-                                        <td><a href="#">OR9842</a></td>
-                                        <td>Call of Duty IV</td>
-                                        <td><span class="badge badge-success">Shipped</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                        </td>
+                                        <td><a href="{{route('order.show', $sale->id)}}">{{$sale->id}}</a></td>
+                                        <td><a href="{{route('product.show', $product->id)}}">{{$product->id}}</a></td>
+                                        <td>{{$product->title}}</td>
+                                        <td>{{$product->pivot->quantity}}</td>
+                                        <td><span class="badge badge-success">sold</span></td>
                                     </tr>
-                                    <tr>
-                                        <td><a href="#">OR1848</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="badge badge-warning">Pending</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="badge badge-danger">Delivered</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#">OR7429</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="badge badge-info">Processing</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#">OR1848</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="badge badge-warning">Pending</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="badge badge-danger">Delivered</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#">OR9842</a></td>
-                                        <td>Call of Duty IV</td>
-                                        <td><span class="badge badge-success">Shipped</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                        </td>
-                                    </tr>
+                                        @endforeach
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -195,7 +137,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Inventory</span>
-                            <span class="info-box-number">5,200</span>
+                            <span class="info-box-number">{{$products}}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -204,8 +146,8 @@
                         <span class="info-box-icon"><i class="far fa-heart"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Mentions</span>
-                            <span class="info-box-number">92,050</span>
+                            <span class="info-box-text">Reviews</span>
+                            <span class="info-box-number">12</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -214,8 +156,8 @@
                         <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Downloads</span>
-                            <span class="info-box-number">114,381</span>
+                            <span class="info-box-text">Categories</span>
+                            <span class="info-box-number">{{$categories}}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -225,7 +167,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Direct Messages</span>
-                            <span class="info-box-number">163,921</span>
+                            <span class="info-box-number">{{$messages}}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

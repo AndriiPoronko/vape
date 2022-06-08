@@ -25,12 +25,12 @@
                     </div>
                 </router-link>
                 <ul class="menu">
-                    <li class="menu__item menu__item--search">
-                        <transition name="fade">
-                            <input type="text" placeholder="Поиск" v-show="isSearch"/>
-                        </transition>
-                        <i class="fas fa-search" @click="isSearch = !isSearch"></i>
-                    </li>
+<!--                    <li class="menu__item menu__item&#45;&#45;search">-->
+<!--                        <transition name="fade">-->
+<!--                            <input type="text" placeholder="Поиск" v-show="isSearch"/>-->
+<!--                        </transition>-->
+<!--                        <i class="fas fa-search" @click="isSearch = !isSearch"></i>-->
+<!--                    </li>-->
 
 <!--                    <li class="menu__item">-->
 <!--                        <i class="fa-heart" :class="favorite_product.length ? 'fas' : 'far'"></i>-->
@@ -54,7 +54,7 @@
                         </router-link>
                     </li>
 
-                    <li class="menu__item">
+                    <li class="menu__item" v-if="this.TOKEN">
                         <a href="/admin">
                             <i class="fas fa-user-cog"></i>
                         </a>
@@ -251,6 +251,7 @@ export default {
     .menu {
         display: flex;
         align-items: center;
+        justify-content: flex-end;
         flex-grow: 1;
 
         &__item {

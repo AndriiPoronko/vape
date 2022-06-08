@@ -3,17 +3,19 @@
         <div class="v-modal-call" v-if="MODALCALL">
             <div class="v-modal-call__bg">
                 <form class="v-modal-call__bg-block"
+                      @submit="checkModalCall"
                       :style="{'background-image':  'url(' + '/storage/images/bg/man-smoke.jpg' + ')' }" method="POST">
                     <div class="v-modal-call__bg-block-close" @click="closeModalCall">
                         <i class="fas fa-times"></i>
                     </div>
                     <div class="v-modal-call__bg-block-title">Заказать звонок</div>
+                    <p class="v-login__block-error" v-if="error">Введены не корректные данные</p>
                     <label for="nameUserCall">Ваше Имя</label>
                     <input
                         type="text"
                         maxlength="50"
                         minlength="3"
-                        name="nameUser"
+                        v-model="name"
                         required
                         id="nameUserCall"
                         placeholder="Имя"
@@ -21,10 +23,10 @@
                     />
                     <label for="phoneUserCall">Ваш номер телефона</label>
                     <input
-                        type="text"
+                        type="tel"
                         maxlength="50"
-                        minlength="3"
-                        name="phoneUser"
+                        minlength="10"
+                        v-model="phone"
                         required
                         id="phoneUserCall"
                         placeholder="Телефон"
@@ -44,10 +46,32 @@ export default {
     name: "v-modal-call",
     components: {},
     data() {
-        return {};
+        return {
+            name: null,
+            phone: null,
+            error: null
+        };
     },
     methods: {
         ...mapActions(["ACTIVE_MODAL_CALL"]),
+        checkModalCall(e){
+            if(this.name && this.phone){
+                this.getCall();
+                this.closeModalCall();
+            }
+
+            this.error = (!this.email || !this.password) ? true : '';
+
+            e.preventDefault()
+        },
+        getCall(){
+            axios.post('/api/calls', {
+                name: this.name,
+                phone: this.phone,
+            }).then(res=>{
+                console.log(res)
+            })
+        },
         closeModalCall() {
             this.ACTIVE_MODAL_CALL();
         },

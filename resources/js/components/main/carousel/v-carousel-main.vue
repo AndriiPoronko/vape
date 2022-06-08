@@ -36,7 +36,11 @@ export default {
                 pagination: {
                     el: '.swiper-pagination',
                     dynamicBullets: true
+                },
+                autoplay: {
+                    delay: 9000,
                 }
+
             },
             sliderMain: [{
                 title: 'Что-то очень интересное',

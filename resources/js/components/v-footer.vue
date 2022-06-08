@@ -13,14 +13,15 @@
                 <li class="v-footer__catalog-item">Оплата и доставка</li>
                 <li class="v-footer__catalog-item">Контакты</li>
             </ul>
-            <form class="v-footer__form">
+            <form @submit="checkMsg" class="v-footer__form">
                 <div class="v-footer__form-title">Написать Нам</div>
+                <p class="v-login__block-error" v-if="error">Введены не корректные данные</p>
                 <label for="nameUser">Ваше Имя</label>
                 <input
                     type="text"
                     maxlength="50"
-                    minlength="3"
-                    name="nameUser"
+                    minlength="2"
+                    v-model="name"
                     required
                     id="nameUser"
                     placeholder="Имя"
@@ -29,8 +30,9 @@
                 <textarea
                     name="msg"
                     maxlength="500"
-                    minlength="10"
+                    minlength="5"
                     id="msgUser"
+                    v-model="message"
                     required
                     rows="5"
                     placeholder="Информация"
@@ -62,6 +64,9 @@ export default {
                 { "name": "ВСЕ", "subname": [], "value": 5 }
             ],
             footerHeight: null,
+            name: null,
+            message: null,
+            error: null
         };
     },
     mounted() {
@@ -70,6 +75,24 @@ export default {
     },
     methods: {
         // ...mapActions(["GET_CATEGORY_FROM_API"]),
+        checkMsg(e){
+            if(this.name && this.message){
+                this.getMsg();
+            }
+
+            this.error = (!this.name || !this.message) ? true : '';
+
+            e.preventDefault()
+        },
+        getMsg(){
+            axios.post('/api/messages', {
+                name: this.name,
+                message: this.message,
+            }).then(res=>{
+                this.name = null
+                this.message = null
+            })
+        },
     },
     computed: {
         // ...mapGetters(["CATEGORY"]),

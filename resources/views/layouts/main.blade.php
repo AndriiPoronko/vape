@@ -41,34 +41,27 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('order.index')}}">
                     <i class="fas fa-shopping-bag"></i>
-                    <span class="badge badge-danger navbar-badge">{{$count}}</span>
+                    <span class="badge badge-danger navbar-badge">{{$countOrders}}</span>
                 </a>
             </li>
             <!-- Notifications Dropdown Menu -->
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell"></i>
-                    <span class="badge badge-warning navbar-badge">15</span>
+                    <span class="badge badge-warning navbar-badge">{{$countCalls + $countMessages}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <span class="dropdown-item dropdown-header">{{$countCalls + $countMessages}} Уведомления</span>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                    <a href="{{route('message.index')}}" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> {{$countMessages}} новых сообщений
                         <span class="float-right text-muted text-sm">3 mins</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-users mr-2"></i> 8 friend requests
+                    <a href="{{route('call.index')}}" class="dropdown-item">
+                        <i class="fas fa-phone-alt mr-2"></i> {{$countCalls}} новых звонков
                         <span class="float-right text-muted text-sm">12 hours</span>
                     </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-file mr-2"></i> 3 new reports
-                        <span class="float-right text-muted text-sm">2 days</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
             </li>
 
@@ -79,8 +72,8 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="/" class="brand-link">
-            <span class="brand-text font-weight-light">VapeSteam</span>
+        <a href="/" class="brand-link d-flex justify-content-center">
+            <span class="brand-text font-weight-light"><b>VAPE STEAM</b></span>
         </a>
 
         <!-- Sidebar -->
@@ -135,6 +128,22 @@
                             <i class="nav-icon fas fa-palette"></i>
                             <p>
                                 Цвета
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('message.index')}}" class="nav-link">
+                            <i class="nav-icon far fa-envelope"></i>
+                            <p>
+                                Уведомления
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('call.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-phone-alt"></i>
+                            <p>
+                                Перезвонить
                             </p>
                         </a>
                     </li>

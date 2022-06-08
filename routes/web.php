@@ -79,6 +79,15 @@ Route::group(['prefix' => 'admin'], function (){
        Route::patch('/{order}', \App\Http\Controllers\Order\UpdateController::class)->name('order.update');
     });
 
+    Route::group(['prefix' => 'calls'], function (){
+        Route::get('/', \App\Http\Controllers\Call\IndexController::class)->name('call.index');
+        Route::patch('/{call}', \App\Http\Controllers\Call\UpdateController::class)->name('call.update');
+    });
+
+    Route::group(['prefix' => 'messages'], function (){
+        Route::get('/', \App\Http\Controllers\Message\IndexController::class)->name('message.index');
+    });
+
 });
 
 

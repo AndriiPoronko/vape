@@ -39,7 +39,9 @@ Route::group(['prefix' => 'products'], function(){
     Route::get('/', ProductsController::class);
 });
 
-Route::post('/orders', \App\Http\Controllers\Order\StoreController::class)->name('order.store');
+Route::post('/orders', \App\Http\Controllers\Order\StoreController::class);
+Route::post('/calls', \App\Http\Controllers\Call\StoreController::class);
+Route::post('/messages', \App\Http\Controllers\Message\StoreController::class);
 Route::get('/categories', \App\Http\Controllers\CategoryController::class);
 Route::get('/trends', \App\Http\Controllers\TrendController::class);
 Route::post('/user', \App\Http\Controllers\StoreController::class);
